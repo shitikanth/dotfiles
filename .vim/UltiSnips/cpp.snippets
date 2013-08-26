@@ -1,0 +1,43 @@
+snippet incl
+#include <${1:cstdio}>
+$2
+endsnippet
+
+snippet iio
+#include <iostream>
+endsnippet
+
+snippet chef
+#include <cstdio>
+#include <algorithm>
+#include <vector>
+
+#define getcx getchar_unlocked
+#define min(a,b) (a<b?a:b)
+
+using namespace std;
+
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<int> vi;
+typedef vector<vi> vvi;
+#define pb push_back
+
+inline void inp(int &n){
+    n=0;
+    int ch=getcx(); int sign=1;
+    while(ch<'0'||ch>'9'){
+        if(ch=='-')
+            sign=-1;
+        ch=getcx();
+    }
+    while(ch>='0'&&ch<='9'){
+        n=(n<<3)+(n<<1)+ch-'0';
+        ch=getcx();
+    }
+    n=n*sign;
+}
+
+
+endsnippet
