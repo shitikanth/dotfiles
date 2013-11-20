@@ -1,11 +1,14 @@
 " Things to do if on windows {{{
+
 if has('win32') || has('win64')
-  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
   set shell=powershell
   set shellcmdflag=-command
   set shellpipe=>
   set shellredir=>
+  set bs=2
+  set shellslash
 endif
+
 "}}}
 "Basic settings {{{
 
@@ -19,13 +22,6 @@ set expandtab
 
 set nobackup
 set noswapfile
-
-"Tweak to make backspace work on Windows
-if has("win32")
-  set bs=2
-  set shellslash
-endif
-
 
 set mouse=a
 set incsearch
@@ -55,6 +51,7 @@ set pastetoggle=<F2>
 
 "Load plugins
 execute pathogen#infect()
+
 "}}}
 " {{{ Intermediate
 
@@ -132,11 +129,15 @@ autocmd filetype c,cpp set formatoptions-=ro
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
-" insert greek characters easily
 " }}}
 " Plugin specific settings {{{
+
 " latex-suite
 let g:tex_flavor='latex'
+let g:Tex_DefaultTargetFormat='pdf'
+let g:Tex_CompileRule_pdf = 'pdflatex -synctex=-1 -src-specials -interaction=nonstopmode $*'
+let g:Tex_ViewRule_pdf = 'SumatraPDF -reuse-instance -inverse-search "gvim --servername LaTeX -c \":RemoteOpen +\%l \%f\" --remote-silent"'
+set iskeyword+=:
 
 " Ultisnips
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -151,6 +152,7 @@ if has("gui_running")
 end
 
 " syntastic
+
 " use C++-11
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
 let g:syntastic_python_checkers = ['pylint']
@@ -161,6 +163,7 @@ let g:C_CplusCFlags = '-Wall -std=c++11 -g -O0 -c'
 let g:C_CplusLFlags = '-Wall -std=c++11 -g -O0'
 
 " omnicppcomplete
+
 " shortcut to generate ctags
 set ofu=syntaxcomplete#Complete
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
@@ -168,8 +171,10 @@ set tags+=~/.vim/tags/cpp
 
 " NERDTree
 let g:NERDTreeDirArrows=0
+
 " }}}
 " Awesome Macros {{{
+
 cmap w!! w !sudo tee % >/dev/null
 imap <F3> <F2><C-R>+<F2>
 nmap <F3> o<F2><C-R>+<F2><Esc>
@@ -180,6 +185,7 @@ endfunction
 command! W call WriteCreatingDirs()
 map <leader>i magg=G`azz
 map <leader>gu ggi#ifndef 
+
 " }}}
 "set Color scheme {{{
 
@@ -194,4 +200,7 @@ if has("gui_running")
 else
   colo ir_black
 endif
+
 " }}}
+
+
