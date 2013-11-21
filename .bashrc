@@ -8,6 +8,7 @@
 
 
 # My aliases
+alias screen='screen -s /bin/bash'
 alias wee='weechat-curses'
 alias ls='ls --color=auto'
 alias cp='cp -iv'

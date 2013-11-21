@@ -38,7 +38,6 @@ filetype plugin on
 filetype indent on
 syntax on
 set smartindent
-inoremap # X#
 set autoindent
 
 set ruler
@@ -198,7 +197,7 @@ if has("gui_running")
     set guifont=Consolas:h11:cANSI
   endif
 else
-  colo ir_black
+  colo wombat256mod
 endif
 
 " }}}
