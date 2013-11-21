@@ -1,9 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='C:/Users/s4kashya'
-let g:netrw_dirhist_2='C:/Users'
-let g:netrw_dirhist_3='C:/Users/s4kashya/Documents'
-let g:netrw_dirhist_4='C:/Users/s4kashya/Documents/ASUS'
-let g:netrw_dirhist_5='C:/Users/s4kashya/Documents/ASUS/LifeFrame'
-let g:netrw_dirhist_6='C:/Users/s4kashya/Documents/ASUS/LifeFrame/Image'
-let g:netrw_dirhist_7='C:/Users/s4kashya/Documents'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/cygdrive/c/Users/s4kashya/vimfiles/bundle/vim-distinguished'
+let g:netrw_dirhist_2='/cygdrive/c/Users/s4kashya/vimfiles/bundle/vim-distinguished/colors'
+let g:netrw_dirhist_3='/cygdrive/c/Users/s4kashya/vimfiles/bundle/vim-distinguished'
+let g:netrw_dirhist_4='/cygdrive/c/Users/s4kashya/vimfiles/bundle/vim-distinguished/colors'
+let g:netrw_dirhist_5='/cygdrive/c/Users/s4kashya/vimfiles/bundle/vim-distinguished'
+let g:netrw_dirhist_6='/cygdrive/c/Users/s4kashya/vimfiles/bundle/vim-distinguished/colors'
