@@ -24,10 +24,16 @@
 ;			     "~/.org/notes.org"
 ))
 
-(setq org-todo-keywords (quote ((sequence "TODO(t!)" "STARTED(z!)" "NEXT(n!)" "|" "DONE(d!/!)")
-                                (sequence "WAITING(w@/!)" "SOMEDAY(s!)" "|" "CANCELLED(c@/!)")
-                                (sequence "QUOTE(q!)" "QUOTED(Q!)" "|" "APPROVED(A@)" "EXPIRED(E@)" "REJECTED(R@)")
-                                (sequence "OPEN(O!)" "|" "CLOSED(C!)"))))
+(setq org-todo-keywords 
+  (quote
+    ((sequence 
+      "TODO(t!)" "STARTED(z!)" "NEXT(n!)" "|" "DONE(d!/!)")
+     (sequence 
+      "WAITING(w@/!)" "SOMEDAY(s!)" "|" "CANCELLED(c@/!)") 
+     (sequence 
+      "QUOTE(q!)" "QUOTED(Q!)" "|" 
+      "APPROVED(A@)" "EXPIRED(E@)" "REJECTED(R@)")
+     (sequence "OPEN(O!)" "|" "CLOSED(C!)"))))
 (setq org-use-fast-todo-selection t)
 (setq org-todo-keyword-faces
       (quote (("TODO"      :foreground "red"          :weight bold)
@@ -368,8 +374,6 @@ If the region is active, insert it."
 
 (add-hook 'org-mode-hook 'org-mode-reftex-setup)
 
-(add-hook 'org-mode-hook 'org-mode-reftex-setup)
-
 ;; Custom export blocks
 (setq org-export-blocks
   (cons '(latexmacro org-export-blocks-latexmacro) org-export-blocks))
@@ -384,18 +388,4 @@ If the region is active, insert it."
 
 (setq org-export-publishing-directory "./exports")
 (print org-export-publishing-directory)
-
-
-(setq reftex-default-bibliography
-      (quote
-       ("~/refs.bib" "other-default.bib")))
-(defun org-mode-reftex-setup ()
-  (load-library "reftex")
-  (and (buffer-file-name)
-       (file-exists-p (buffer-file-name))
-       (reftex-parse-all))
-  (define-key org-mode-map (kbd "C-c )") 'reftex-citation))
-(add-hook 'org-mode-hook 'org-mode-reftex-setup)
-
-
 
