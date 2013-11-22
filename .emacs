@@ -15,6 +15,16 @@
 ;(highlight-trailing-whitespace)
 
 
+
+;; Use package manager 
+(require 'package)
+(add-to-list 'package-archives 
+    '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives 
+    '("org" . "http://orgmode.org/elpa/") t)
+(package-initialize)
+
+
 ;; Markdown
 (autoload 'markdown-mode "markdown-mode.el"
    "Major mode for editing Markdown files" t)
@@ -33,14 +43,14 @@
 (setq TeX-view-program-selection '((output-pdf "Evince")))
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
-(setq-default TeX-master nil)
+(setq-default TeX-master t)
 
 
 (add-hook 'LaTeX-mode-hook 'visual-line-mode)
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+
 (setq reftex-plug-into-AUCTeX t)
 
 (setq TeX-PDF-Mode 1)
@@ -194,27 +204,21 @@ the character typed."
 
 (message "Loaded .emacs")
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/.org/college.org" "~/.org/personal.org" "~/.org/hobbies.org"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(org-agenda-files (quote ("~/.org/college.org" "~/.org/personal.org" "~/.org/hobbies.org"))))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  )
 (put 'narrow-to-region 'disabled nil)
 
 
-
-(require 'package)
-(add-to-list 'package-archives 
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
-(package-initialize)
 
 (require 'surround)
 (global-surround-mode 1)
