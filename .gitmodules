@@ -1,0 +1,9 @@
+[submodule "vimfiles/bundle/vim-wombat256mod"]
+	path = vimfiles/bundle/vim-wombat256mod
+	url = https://github.com/michalbachowski/vim-wombat256mod
+[submodule "vimfiles/bundle/vim-distinguished"]
+	path = vimfiles/bundle/vim-distinguished
+	url = https://github.com/Lokaltog/vim-distinguished
+[submodule "vimfiles/bundle/vim-irblack"]
+	path = vimfiles/bundle/vim-irblack
+	url = https://github.com/wesgibbs/vim-irblack
