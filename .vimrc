@@ -186,7 +186,7 @@ map <leader>i magg=G`azz
 map <leader>gu ggi#ifndef 
 
 " }}}
-"set Color scheme {{{
+"set Font and Color scheme {{{
 
 set t_Co=256
 if has("gui_running")
