@@ -6,11 +6,14 @@
 [ -z "$PS1" ] && return
 # [[ $- != *i* ]] && return
 
+OS='uname -s'
 
 # My aliases
 alias screen='screen -s /bin/bash'
 alias wee='weechat-curses'
-alias ls='ls --color=auto'
+if [ "$OS" == 'Linux' ]; then
+    alias ls='ls --color=auto'
+fi
 alias cp='cp -iv'
 alias python='python2.7'
 alias cal='cal -3'

@@ -13,6 +13,7 @@
    aquamacs-scratch-file nil                        ; do not save scratch file across sessions
    initial-major-mode 'emacs-lisp-mode              ; *scratch* shows up in emacs-lisp-mode
    )
+  (aquamacs-autoface-mode -1)
   (tabbar-mode -1)
   (one-buffer-one-frame-mode -1)
 )
