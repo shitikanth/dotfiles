@@ -7,3 +7,25 @@
 [submodule "vimfiles/bundle/vim-irblack"]
 	path = vimfiles/bundle/vim-irblack
 	url = https://github.com/wesgibbs/vim-irblack
+[submodule "vimfiles/bundle/nerdtree"]
+	path = vimfiles/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule "vimfiles/bundle/molokai"]
+	path = vimfiles/bundle/molokai
+	url = https://github.com/tomasr/molokai
+[submodule "vimfiles/bundle/colorzone"]
+	path = vimfiles/bundle/colorzone
+	url = https://github.com/vim-scripts/Colorzone
+[submodule "vimfiles/bundle/solarized"]
+	path = vimfiles/bundle/solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "vimfiles/bundle/github-theme"]
+	path = vimfiles/bundle/github-theme
+	url = https://github.com/ricardovaleriano/vim-github-theme.git
+[submodule ".org"]
+	path = .org
+	url = https://github.com/shitikanth/org
+[submodule "origin-org"]
+	path = .org
+	url = https://github.com/shitikanth/org
+	branch = 2013_winter

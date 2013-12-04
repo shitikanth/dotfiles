@@ -8,6 +8,7 @@
 ;;
 (provide 'orgsettings)
 (require 'org-install)
+
 ;(require 'org-checklist)
 
 
@@ -24,16 +25,13 @@
 ;			     "~/.org/notes.org"
 ))
 
-(setq org-todo-keywords 
-  (quote
-    ((sequence 
-      "TODO(t!)" "STARTED(z!)" "NEXT(n!)" "|" "DONE(d!/!)")
-     (sequence 
-      "WAITING(w@/!)" "SOMEDAY(s!)" "|" "CANCELLED(c@/!)") 
-     (sequence 
-      "QUOTE(q!)" "QUOTED(Q!)" "|" 
-      "APPROVED(A@)" "EXPIRED(E@)" "REJECTED(R@)")
-     (sequence "OPEN(O!)" "|" "CLOSED(C!)"))))
+
+(setq org-agenda-include-diary t)
+
+(setq org-todo-keywords (quote ((sequence "TODO(t!)" "STARTED(z!)" "NEXT(n!)" "|" "DONE(d!/!)")
+                                (sequence "WAITING(w@/!)" "SOMEDAY(s!)" "|" "CANCELLED(c@/!)")
+                                (sequence "QUOTE(q!)" "QUOTED(Q!)" "|" "APPROVED(A@)" "EXPIRED(E@)" "REJECTED(R@)")
+                                (sequence "OPEN(O!)" "|" "CLOSED(C!)"))))
 (setq org-use-fast-todo-selection t)
 (setq org-todo-keyword-faces
       (quote (("TODO"      :foreground "red"          :weight bold)
@@ -121,12 +119,13 @@
 (global-set-key (kbd "<f9> r") 'boxquote-region)
 (global-set-key (kbd "<f9> s") 'bh/switch-to-org-scratch)
 
+(message "No errors till here")
 
 ;; Clock settings
 
 ;;
 ;; Resume clocking tasks when emacs is restarted
-(org-clock-persistence-insinuate)
+;(org-clock-persistence-insinuate)
 ;;
 ;; Small windows on my Eee PC displays only the end of long lists which isn't very useful
 (setq org-clock-history-length 10)
@@ -148,6 +147,7 @@
 (setq org-clock-auto-clock-resolution (quote when-no-clock-is-running))
 ;; Include current clocking task in clock reports
 (setq org-clock-report-include-clocking-task t)
+
 
 (setq bh/keep-clock-running nil)
 
@@ -320,8 +320,10 @@ If the region is active, insert it."
                  (cdr (org-make-tags-matcher match)) todo-only))
 (global-set-key (kbd "<f9> m") 'org-tag-match-context)
 
+
 ;; Latex export settings
 (require 'org-latex)
+(message "here")
 (unless (boundp 'org-export-latex-classes)
   (setq org-export-latex-classes nil))
 (setq org-export-latex-packages-alist
@@ -337,9 +339,10 @@ If the region is active, insert it."
 \\setlength{\\topmargin}{0in}
 \\setlength{\\headheight}{0in}
 "))
+
 (add-to-list 'org-export-latex-classes
 	     '("article"
-	       "\\documentclass{article}
+	       "\\documentclass{article} 
 [NO-DEFAULT-PACKAGES]
 [PACKAGES]
 [EXTRA]"
@@ -349,30 +352,31 @@ If the region is active, insert it."
   ("\\paragraph{%s}" . "\\paragraph*{%s}")
   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-;; References
-(defun org-mode-reftex-setup ()
-  (interactive)
-  (and (buffer-file-name) (file-exists-p (buffer-file-name))
-       (progn
-        ; Reftex should use the org file as master file. See C-h v TeX-master for infos.
-        (setq TeX-master t)
-        (turn-on-reftex)
-        ; dont ask for the tex master on every start.
-	(setq reftex-default-bibliography
-	      (quote
-	       ("~/default.bib")))
-        (reftex-parse-all)
-        ;add a custom reftex cite format to insert links
-        (reftex-set-cite-format
-         '((?b . "[[bib:%l][%l-bib]]")
-           (?n . "[[notes:%l][%l-notes]]")
-           (?p . "[[papers:%l][%l-paper]]")
-           (?t . "%t")
-           (?h . "** %t\n:PROPERTIES:\n:Custom_ID: %l\n:END:\n[[papers:%l][%l-paper]]")))))
-  (define-key org-mode-map (kbd "C-c )") 'reftex-citation)
-  (define-key org-mode-map (kbd "C-c (") 'org-mode-reftex-search))
+;; ;; References
+;; (defun org-mode-reftex-setup ()
+;;   (interactive)
+;;   (and (buffer-file-name) (file-exists-p (buffer-file-name))
+;;        (progn
+;;         ; Reftex should use the org file as master file. See C-h v TeX-master for infos.
+;;         (setq TeX-master t)
+;;         (turn-on-reftex)
+;;         ; dont ask for the tex master on every start.
+;; 	(setq reftex-default-bibliography
+;; 	      (quote
+;; 	       ("~/default.bib")))
+;;         (reftex-parse-all)
+;;         ;add a custom reftex cite format to insert links
+;;         (reftex-set-cite-format
+;;          '((?b . "[[bib:%l][%l-bib]]")
+;;            (?n . "[[notes:%l][%l-notes]]")
+;;            (?p . "[[papers:%l][%l-paper]]")
+;;            (?t . "%t")
+;;            (?h . "** %t\n:PROPERTIES:\n:Custom_ID: %l\n:END:\n[[papers:%l][%l-paper]]")))))
 
-(add-hook 'org-mode-hook 'org-mode-reftex-setup)
+;;   (define-key org-mode-map (kbd "C-c )") 'reftex-citation)
+;;   (define-key org-mode-map (kbd "C-c (") 'org-mode-reftex-search))
+
+;; (add-hook 'org-mode-hook 'org-mode-reftex-setup)
 
 ;; Custom export blocks
 (setq org-export-blocks
@@ -388,4 +392,19 @@ If the region is active, insert it."
 
 (setq org-export-publishing-directory "./exports")
 (print org-export-publishing-directory)
+
+(setq reftex-default-bibliography
+      (quote
+       ("~/refs.bib" "other-default.bib")))
+(setq-default TeX-master t)
+(defun org-mode-reftex-setup ()
+  (interactive)
+  (load-library "reftex")
+  (and (buffer-file-name)
+       (file-exists-p (buffer-file-name))
+       (reftex-parse-all))
+  (define-key org-mode-map (kbd "C-c )") 'reftex-citation))
+(add-hook 'org-mode-hook 'org-mode-reftex-setup)
+
+
 
