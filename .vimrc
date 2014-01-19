@@ -197,7 +197,7 @@ if has("gui_running")
     set guifont=Consolas:h11:cANSI
   endif
 else
-  colo wombat256mod
+  colo ir_black
 endif
 
 " }}}
