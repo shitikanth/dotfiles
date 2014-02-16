@@ -1,8 +1,8 @@
 startup_message off
 vbell off
+term screen-256color
 termcapinfo xterm*|rxvt*|kterm*|Eterm*|cygwin hs:ts=\E]0;:fs=\007:ds=\E]0;\007
 hardstatus on
 hardstatus alwayslastline
 #hardstatus string "%{=}%-w%{+b w}%n*%t%{-b w}%+w %=%c"
 hardstatus string '%{= kG}%-Lw%{= kW}%50> %n*%f %t%{= kG}%+Lw%< %{= kG}%-=%D %m/%d/%y | %C:%s %A | %1`%{-}'
-

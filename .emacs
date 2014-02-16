@@ -1,41 +1,11 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 
-;; Use package manager 
-(require 'package)
-(setq package-user-dir "~/.emacs.d/elpa")
-(add-to-list 'package-archives 
-    '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives 
-    '("org" . "http://orgmode.org/elpa/") t)
-(package-initialize)
+;;
+;; Load settings from config files in .emacs.d/site-lisp
+(require 'basic-settings)
+(require 'misc-hacks)
 
 ;;
-;; Basic Customization
-
-(setq inhibit-splash-screen t)
-(setq search-highlight t)
-(setq query-replace-highlight t)
-
-(toggle-scroll-bar -1)
-(tool-bar-mode -1)
-(set-terminal-coding-system 'iso-latin-1)
-(auto-insert-mode t)
-(iswitchb-mode 1)
-
-;; Tab behaviour
-(setq c-basic-indent 2)
-(setq tab-width 4)
-(setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80))
-(setq-default indent-tabs-mode nil)
-;;(highlight-tabs) 		  ; could not find definitions
-;;(highlight-trailing-whitespace) 
-
-;; Backups to Temp Folder please
-(setq backup-directory-alist 
-    `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-    `((".*" ,temporary-file-directory t)))
-
 ;; Load system specific settings 
 (cond 
  ((eq system-type 'windows-nt) (load-library "nt"))
@@ -45,118 +15,49 @@
 (system-specific-setup)
 
 
-;; My own key-bindings
-(global-set-key (kbd "C-x n") 'make-frame)
-(global-set-key (kbd "C-c C-f") 'find-file)
-(global-set-key (kbd "C-<f9>") 'previous-buffer)
-(global-set-key (kbd "C-<f10>") 'next-buffer)
-
-;; Markdown
-(autoload 'markdown-mode "markdown-mode.el"
-   "Major mode for editing Markdown files" t)
-(setq auto-mode-alist
-   (cons '("\\.md" . markdown-mode) auto-mode-alist))
-
-;; Mark-region
-;(require 'wrap-region)
-
-;; AUCTEX
-
-;(load "auctex.el" nil t t)
-;(load "preview-latex.el" nil t t)
-(setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
-(setq TeX-view-program-selection '((output-pdf "Evince")))
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq-default TeX-master t)
-
-(add-hook 'LaTeX-mode-hook 'visual-line-mode)
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
-(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(setq reftex-plug-into-AUCTeX t)
-(setq TeX-PDF-Mode 1)
-
-
-;; Disable vc.git
-(eval-after-load "vc" '(remove-hook 'find-file-hooks 'vc-find-file-hook))
-
 ;;
-;; File finder (enter directories by " ")
-;;
-(defun geosoft-parse-minibuffer () 
-   ;; Extension to the complete word facility of the minibuffer 
-   (interactive) 
-   (backward-char 4) 
-   (setq found t) 
-   (cond 
-      ; local directories 
-      ((looking-at "..cd") (setq directory "c:/users/john/")) 
-      ((looking-at ".doc") (setq directory "c:/users/john/documents/")) 
-      ((looking-at "java") (setq directory "c:/users/john/src/java/")) 
- (t (setq found nil))) 
-   (cond (found (beginning-of-line) 
-                 (kill-line) 
-                 (insert directory)) 
-          (t     (forward-char 4) 
-                 (minibuffer-complete))))
-
-(define-key minibuffer-local-completion-map " " 'geosoft-parse-minibuffer)
-
-
-;;; Use "%" to jump to the matching parenthesis.
-(defun goto-match-paren (arg)
-  "Go to the matching parenthesis if on parenthesis, otherwise insert
-the character typed."
-  (interactive "p")
-  (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
-    ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
-    (t                    (self-insert-command (or arg 1))) ))
-(global-set-key (kbd "C-%") `goto-match-paren)
-
-
-(defun set-frame-size-according-to-resolution ()
-  (interactive)
-  (if window-system
-  (progn
-    ;; use 120 char wide window for largeish displays
-    ;; and smaller 80 column windows for smaller displays
-    ;; pick whatever numbers make sense for you
-    (message "set-frame-size")
-    (if
-     (> (x-display-pixel-width) 1200)
-      (add-to-list 'default-frame-alist (cons 'width 120))
-      (add-to-list 'default-frame-alist (cons 'width 80)))
-    ;; for the height, subtract a couple hundred pixels
-    ;; from the screen height (for panels, menubars and
-    ;; whatnot), then divide by the height of a char to
-    ;; get the height we want
-    (add-to-list 'default-frame-alist 
-         (cons 'height (/ (- (x-display-pixel-height) 200)
-                             (frame-char-height)))))))
-
-(put 'narrow-to-region 'disabled nil)
-
 ;; Load org mode settings
 (require 'orgsettings)
 
+;;
 ;; Surround mode
 (require 'surround)
 (global-surround-mode 1)
 
-;; Color Theme
-(require 'color-theme)
-;(eval-after-load "color-theme"
-;  '(progn (color-theme-arjen)))
+;;
+;; Use color scheme clues
+;(load-theme 'clues t)
+(set-face-font
+ 'mode-line "-apple-Inconsolata-medium-normal-normal-*-15-*-*-*-m-0-iso10646-1")
 
-;; Disable vc.git
-(eval-after-load "vc" '(remove-hook 'find-file-hooks 'vc-find-file-hook))
+;;
+;; Ido-mode
+;; (ido-mode)
 
-(set-frame-size-according-to-resolution)
+;; (custom-set-faces
+;;  '(ido-subdir ((t (:foreground "#ccccaa"))))      
+;;  '(ido-first-match ((t (:foreground "#ccff66")))) 
+;;  '(ido-only-match ((t (:foreground "#009945")))) 
+;;  '(ido-indicator ((t (:foreground "#ffffcc")))) 
+;;  '(ido-incomplete-regexp ((t (:foreground "#ffffcc"))))
+;; )
+
 
 ;; Start with agenda mode
 (org-agenda-list)
 (delete-other-windows)
-;; ^doesn't work on Aquamacs, find a fix
-
 (message "Loaded .emacs")
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("455d6059dfbcd1990350ed5fded17b028d7208e81c644cdb9c84d4b12d99f0fa" "a3d519ee30c0aa4b45a277ae41c4fa1ae80e52f04098a2654979b1ab859ab0bf" "76b226dd750d085eaaf7efa5eb07a3282223d74f327a0f4319512c0a59f6df39" "332955730fca9174f96461664ac7524314f181eefc390ef2fc7bc6cfac9a8573" "7694bfb46ec19cfc47093783633d8cd4df208d620104910bf5c1c840528a8dd1" "4a60f0178f5cfd5eafe73e0fc2699a03da90ddb79ac6dbc73042a591ae216f03" "86f4407f65d848ccdbbbf7384de75ba320d26ccecd719d50239f2c36bec18628" "e80a0a5e1b304eb92c58d0398464cd30ccbc3622425b6ff01eea80e44ea5130e" "0e121ff9bef6937edad8dfcff7d88ac9219b5b4f1570fd1702e546a80dba0832" "c27b3d858a9c033b93f9447337659d3ba34a72251b794e8bfe792ed722cc1f67" "bad832ac33fcbce342b4d69431e7393701f0823a3820f6030ccc361edd2a4be4" default)))
+ '(safe-local-variable-values (quote ((org-adapt-indentation)))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

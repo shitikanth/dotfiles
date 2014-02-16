@@ -60,11 +60,10 @@ set wildmenu
 set showcmd
 set showmode
 set ls=2
-set wildignore=*.swp,*.bak,*.pyc,*.o,*.pdf
+set wildignore=*.swp,*.bak,*.pyc,*.o,*.pdf,*.aux,*.log,*.out,*.dvi,*.pdfsync,*.synctex
+
 "Automatically read files changed on disk
 set autoread
-
-" set comments=sl:/*,mb:\ *,elx:\ */
 
 " allow command line editing like emacs
 " cnoremap <C-A> <Home>
@@ -80,9 +79,6 @@ set autoread
 " cnoremap <ESC><C-H> <C-W>
 " 
 
-" spell check
-autocmd filetype tex set spell
-nmap <F10> ;NERDTreeFind<CR>
 " shortcuts {{{
 nmap <leader>ev ;e $MYVIMRC<CR>zi
 nmap <leader>lv ;so $MYVIMRC<CR>zi
@@ -130,13 +126,25 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 " }}}
 " Plugin specific settings {{{
+" eventually move these ftplugin 
 
 " latex-suite
 let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat='pdf'
-let g:Tex_CompileRule_pdf = 'pdflatex -synctex=-1 -src-specials -interaction=nonstopmode $*'
-let g:Tex_ViewRule_pdf = 'SumatraPDF -reuse-instance -inverse-search "gvim --servername LaTeX -c \":RemoteOpen +\%l \%f\" --remote-silent"'
+"let g:Tex_CompileRule_pdf = 'pdflatex -synctex=-1 -src-specials -interaction=nonstopmode $*'
+let g:Tex_CompileRule_pdf = 'latexmk -pdf $*'
+let g:Tex_ViewRule_pdf = 'Skim'
+"let g:Tex_ViewRule_pdf = 'SumatraPDF -reuse-instance -inverse-search "gvim --servername LaTeX -c \":RemoteOpen +\%l \%f\" --remote-silent"'
 set iskeyword+=:
+let g:Tex_IgnoredWarnings ='
+  \"Underfull\n".
+  \"Overfull\n".
+  \"specifier changed to\n".
+  \"You have requested\n".
+  \"Missing number, treated as zero.\n".
+  \"There were undefined references\n".
+  \"Citation %.%# undefined\n".
+  \"\oval, \circle, or \line size unavailable\n"' 
 
 " Ultisnips
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -184,17 +192,20 @@ endfunction
 command! W call WriteCreatingDirs()
 map <leader>i magg=G`azz
 map <leader>gu ggi#ifndef 
+map <leader>d :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 
 " }}}
 "set Font and Color scheme {{{
 
 set t_Co=256
 if has("gui_running")
-  colo molokai
+  colo distinguished
   if has("gui_gtk2")
     set guifont=Inconsolata\ 10
   elseif has("gui_win32")
     set guifont=Consolas:h11:cANSI
+  elseif has("gui_macvim")
+    set guifont=Inconsolata:h15
   endif
 else
   colo wombat256mod

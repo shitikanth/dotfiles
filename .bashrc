@@ -40,6 +40,7 @@ alias back='cd "$OLDPWD"'
 alias cu='cd ..'
 alias r='reload'
 alias b='back'
+alias aquamacs='open /Applications/Aquamacs.app/'
 
 # Mis-spelled commands
 alias gvb='gdb'
@@ -96,6 +97,7 @@ function cl () {
 export PATH=/home/shiti/.gem/ruby/2.0.0/bin:$PATH
 export CPLUS_INCLUDE_PATH=/usr/local/UnitTest
 export EDITOR=vim
+export TERM=xterm-256color
 
 #added for amarok
 export PATH=$HOME/kde/bin:$PATH
