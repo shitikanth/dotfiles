@@ -1,10 +1,7 @@
 ;; osx.el
 ;; setting to use on Macbooks
 (provide 'osx)
-(defun system-specific-setup()
-  ; Default font
-  (set-default-font "Inconsolata-15")
-  
+(defun aquamacs-settings()
   ;;
   ;; Make Aquamacs behave more like emacs
   ;;
@@ -16,6 +13,23 @@
   (aquamacs-autoface-mode -1)
   (tabbar-mode -1)
   (one-buffer-one-frame-mode -1)
+  (set-face-attribute 'echo-area nil :family 'unspecified)  ; show echo area in Monaco
+  (set-face-attribute 'mode-line nil :inherit 'unspecified) ; show modeline in Monaco
+  )
+
+
+(defun system-specific-setup()
+  (interactive)
+  (if (boundp 'aquamacs-version)
+      (aquamacs-settings))
+  (setq mac-option-modifier nil)
+  (setq mac-command-modifier 'meta)
+  
+  (add-to-list 'default-frame-alist
+               '(font . "Inconsolata-15"))
+
+  (global-set-key (kbd "C-M-f") 'aquamacs-toggle-full-frame)
+  (message "Loaded settings for osx")
 )
 
 
