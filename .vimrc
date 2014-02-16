@@ -208,7 +208,7 @@ if has("gui_running")
     set guifont=Inconsolata:h15
   endif
 else
-  colo wombat256mod
+  colo ir_black
 endif
 
 " }}}

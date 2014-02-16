@@ -25,7 +25,4 @@
 [submodule ".org"]
 	path = .org
 	url = https://github.com/shitikanth/org
-[submodule "origin-org"]
-	path = .org
-	url = https://github.com/shitikanth/org
 	branch = 2013_winter
