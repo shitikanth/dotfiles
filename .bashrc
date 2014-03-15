@@ -94,7 +94,7 @@ function cl () {
   cd "$@" && la;
 }
 
-export PATH=/home/shiti/.gem/ruby/2.0.0/bin:$PATH
+export PATH=$HOME/.gem/ruby/2.0.0/bin:$PATH
 export CPLUS_INCLUDE_PATH=/usr/local/UnitTest
 export EDITOR=vim
 export TERM=xterm-256color

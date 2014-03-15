@@ -132,20 +132,19 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat='pdf'
 "let g:Tex_CompileRule_pdf = 'pdflatex -synctex=-1 -src-specials -interaction=nonstopmode $*'
-let g:Tex_CompileRule_pdf = 'latexmk -pdf $*'
+"let g:Tex_CompileRule_pdf = 'latexmk -pdf $*'
 let g:Tex_ViewRule_pdf = 'Skim'
 "let g:Tex_ViewRule_pdf = 'SumatraPDF -reuse-instance -inverse-search "gvim --servername LaTeX -c \":RemoteOpen +\%l \%f\" --remote-silent"'
 set iskeyword+=:
 let g:Tex_IgnoredWarnings ='
-  \"Underfull\n".
-  \"Overfull\n".
-  \"specifier changed to\n".
-  \"You have requested\n".
-  \"Missing number, treated as zero.\n".
-  \"There were undefined references\n".
-  \"Citation %.%# undefined\n".
-  \"\oval, \circle, or \line size unavailable\n"' 
-
+   \"Underfull\n".
+   \"Overfull\n".
+   \"specifier changed to\n".
+   \"You have requested\n".
+   \"Missing number, treated as zero.\n".
+   \"There were undefined references\n".
+   \"Citation %.%# undefined\n".'
+ 
 " Ultisnips
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -160,11 +159,10 @@ end
 
 " syntastic
 
-" use C++-11
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_checkers = ['gcc']
-
+let g:syntastic_tex_checkers    = ['chktex']
 " c.vim
 let g:C_CplusCFlags = '-Wall -std=c++11 -g -O0 -c'
 let g:C_CplusLFlags = '-Wall -std=c++11 -g -O0'
@@ -208,7 +206,7 @@ if has("gui_running")
     set guifont=Inconsolata:h15
   endif
 else
-  colo ir_black
+  colo distinguished
 endif
 
 " }}}

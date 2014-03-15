@@ -26,3 +26,12 @@
 	path = .org
 	url = https://github.com/shitikanth/org
 	branch = 2013_winter
+[submodule "vimfiles/bundle/fugitive"]
+	path = vimfiles/bundle/fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "vimfiles/bundle/snipmate"]
+	path = vimfiles/bundle/snipmate
+	url = https://github.com/msanders/snipmate.vim.git
+[submodule "vimfiles/bundle/syntastic"]
+	path = vimfiles/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic
