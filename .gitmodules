@@ -35,3 +35,30 @@
 [submodule "vimfiles/bundle/syntastic"]
 	path = vimfiles/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic
+[submodule "vimfiles/bundle/vim-javascript"]
+	path = vimfiles/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
+[submodule "vimfiles/bundle/ultisnips"]
+	path = vimfiles/bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips
+[submodule "vimfiles/bundle/vim-snippets"]
+	path = vimfiles/bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets
+[submodule "vimfiles/bundle/command-t"]
+	path = vimfiles/bundle/command-t
+	url = https://github.com/wincent/Command-T.git
+[submodule "vimfiles/bundle/ycm"]
+	path = vimfiles/bundle/ycm
+	url = https://github.com/Valloric/YouCompleteMe
+[submodule "vimfiles/bundle/vim-ruby"]
+	path = vimfiles/bundle/vim-ruby
+	url = https://github.com/vim-ruby/vim-ruby
+[submodule "vimfiles/bundle/vm-ruby-minitest"]
+	path = vimfiles/bundle/vm-ruby-minitest
+	url = https://github.com/sunaku/vim-ruby-minitest
+[submodule "vimfiles/bundle/nerd-commenter"]
+	path = vimfiles/bundle/nerd-commenter
+	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "vimfiles/bundle/vim-surround"]
+	path = vimfiles/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround.git
