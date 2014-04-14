@@ -95,14 +95,11 @@ function cl () {
 }
 
 export PATH=$HOME/.gem/ruby/2.0.0/bin:$PATH
+export PATH=/usr/local/bin:/usr/local/mysql/bin/:$PATH
 export CPLUS_INCLUDE_PATH=/usr/local/UnitTest
 export EDITOR=vim
 export TERM=xterm-256color
 
-#added for amarok
-export PATH=$HOME/kde/bin:$PATH
-export PATH=/usr/lib/ccache:$PATH
-export LD_LIBRARY_PATH=$HOME/kde/lib:$LD_LIBRARY_PATH
 
 export GTEST=/usr/local/gtest
 alias gtest="g++ -g -I${GTEST}/include -L${GTEST} -lgtest -lpthread"
