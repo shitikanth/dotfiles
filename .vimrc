@@ -210,6 +210,8 @@ set tags+=~/.vim/tags/cpp
 " NERDTree
 let g:NERDTreeDirArrows=0
 
+" NERDCommenter
+let NERDSpaceDelims=1
 " }}}
 " Awesome Macros {{{
 

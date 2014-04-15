@@ -1,0 +1,9 @@
+snippet %%% "Latex comment block"
+`!p l=72; w=len(t[1]); x=(l-w-2)/2; y=l-x-w-2; snip.rv=l*'%'` 
+%`!p snip.rv=x*" ";`${1:comment}`!p snip.rv=y*" ";`%
+`!p snip.rv=l*'%'`
+endsnippet
+
+snippet left "\left( \right)"
+\left${1:(} \right{$1}
+endsnippet
