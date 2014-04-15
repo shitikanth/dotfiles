@@ -93,6 +93,11 @@ nnoremap k gk
 ca Q q
 ca WQ wq
 ca Wq wq
+
+" refresh folds with <Space>
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+
 " Close current buffer
 map <leader>bd ;bunload<cr>
 " Close all the buffers
@@ -132,7 +137,7 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat='pdf'
 "let g:Tex_CompileRule_pdf = 'pdflatex -synctex=-1 -src-specials -interaction=nonstopmode $*'
-"let g:Tex_CompileRule_pdf = 'latexmk -pdf $*'
+let g:Tex_CompileRule_pdf = 'latexmk -pdf $*'
 let g:Tex_ViewRule_pdf = 'Skim'
 "let g:Tex_ViewRule_pdf = 'SumatraPDF -reuse-instance -inverse-search "gvim --servername LaTeX -c \":RemoteOpen +\%l \%f\" --remote-silent"'
 set iskeyword+=:
@@ -144,10 +149,35 @@ let g:Tex_IgnoredWarnings ='
    \"Missing number, treated as zero.\n".
    \"There were undefined references\n".
    \"Citation %.%# undefined\n".'
- 
+
+let g:Tex_FoldedEnvironments="proof,prop,lem,cor,verbatim,comment,eq,gather,align,figure,table,thebibliography,keywords,abstract,titlepage"
 " Ultisnips
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+
+" UltiSnips completion function that tries to expand a snippet. If there's no
+" snippet for expanding, it checks for completion window and if it's
+" shown, selects first element. If there's no completion window it tries to
+" jump to next placeholder. If there's no placeholder it just returns TAB key 
+function! g:UltiSnips_Complete()
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips#JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
+
+au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+
+
 " Haskell
 au BufEnter *.hs compiler ghc
 let g:haddock_browser="firefox"
