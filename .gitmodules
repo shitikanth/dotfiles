@@ -22,10 +22,6 @@
 [submodule "vimfiles/bundle/github-theme"]
 	path = vimfiles/bundle/github-theme
 	url = https://github.com/ricardovaleriano/vim-github-theme.git
-[submodule ".org"]
-	path = .org
-	url = https://github.com/shitikanth/org
-	branch = 2013_winter
 [submodule "vimfiles/bundle/fugitive"]
 	path = vimfiles/bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive
@@ -62,3 +58,6 @@
 [submodule "vimfiles/bundle/vim-surround"]
 	path = vimfiles/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule ".org"]
+	path = .org
+	url = git@github.com:shitikanth/org/

@@ -20,6 +20,9 @@ set sw=4
 set tabstop=4
 set expandtab
 
+"Backspace behaviour
+set backspace=indent,eol,start
+
 set nobackup
 set noswapfile
 
