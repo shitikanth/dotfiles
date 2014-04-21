@@ -134,7 +134,7 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 " }}}
 " Plugin specific settings {{{
-" eventually move these ftplugin 
+" eventually move these ftplugin
 
 " latex-suite
 let g:tex_flavor='latex'
@@ -154,6 +154,8 @@ let g:Tex_IgnoredWarnings ='
    \"Citation %.%# undefined\n".'
 
 let g:Tex_FoldedEnvironments="proof,prop,lem,cor,verbatim,comment,eq,gather,align,figure,table,thebibliography,keywords,abstract,titlepage"
+let g:Tex_FoldedSections="part,chapter,bibliography,section,subsection,subsubsection,paragraph"
+
 " Ultisnips
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -232,13 +234,13 @@ map <leader>d :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 
 set t_Co=256
 if has("gui_running")
-  colo distinguished
+  colo macvim
   if has("gui_gtk2")
     set guifont=Inconsolata\ 10
   elseif has("gui_win32")
     set guifont=Consolas:h11:cANSI
   elseif has("gui_macvim")
-    set guifont=Inconsolata:h15
+    set guifont=Inconsolata:h14
   endif
 else
   colo distinguished

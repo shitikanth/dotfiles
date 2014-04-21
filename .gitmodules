@@ -61,3 +61,12 @@
 [submodule ".org"]
 	path = .org
 	url = git@github.com:shitikanth/org/
+[submodule "vimfiles/bundle/flatui"]
+	path = vimfiles/bundle/flatui
+	url = https://github.com/john2x/flatui.vim.git
+[submodule "vimfiles/bundle/bclear"]
+	path = vimfiles/bundle/bclear
+	url = https://github.com/vim-scripts/bclear.git
+[submodule "vimfiles/bundle/tangoX"]
+	path = vimfiles/bundle/tangoX
+	url = https://github.com/iissnan/tangoX

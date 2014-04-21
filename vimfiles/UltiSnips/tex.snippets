@@ -5,5 +5,12 @@ snippet %%% "Latex comment block"
 endsnippet
 
 snippet left "\left( \right)"
-\left${1:(} \right{$1}
+\left${1:(} ${2} \right`!p 
+d = dict(zip("({[",")}]")); key=t[1];
+snip.rv = d[key] if key in d else key` <++>
 endsnippet
+
+snippet $ "\( formula\) <++>"
+\( ${1:formula} \) <++>
+endsnippet
+
