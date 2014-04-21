@@ -234,7 +234,7 @@ map <leader>d :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 
 set t_Co=256
 if has("gui_running")
-  colo macvim
+  colo distinguished
   if has("gui_gtk2")
     set guifont=Inconsolata\ 10
   elseif has("gui_win32")
@@ -247,5 +247,3 @@ else
 endif
 
 " }}}
-
-
