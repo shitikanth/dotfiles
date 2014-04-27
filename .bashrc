@@ -25,6 +25,7 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
 alias today='date "+%A, %B %-d, %Y"'
+unalias ls
 alias ll='ls -l'
 alias la='ls -A'
 alias lla='ls -lA'
