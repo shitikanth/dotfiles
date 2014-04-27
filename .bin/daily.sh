@@ -1,0 +1,1 @@
+$HOME/.org/sync.sh
