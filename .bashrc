@@ -11,9 +11,9 @@ OS='uname -s'
 # My aliases
 alias screen='screen -s /bin/bash'
 alias wee='weechat-curses'
-if [ "$OS" == 'Linux' ]; then
-    alias ls='ls --color=auto'
-fi
+# if [ "$OS" == 'Linux' ]; then
+#     alias ls='ls --color=auto'
+# fi
 alias cp='cp -iv'
 alias python='python2.7'
 alias cal='cal -3'
@@ -33,6 +33,7 @@ alias lls='ls -lS'
 alias llas='ls -lAS'
 alias l='ll'
 alias lals='llas'
+alias lc='ls --color=none'
 alias c='clear'
 alias brc='vim ~/.bashrc'
 alias reload='. ~/.bashrc'
@@ -100,6 +101,10 @@ export CPLUS_INCLUDE_PATH=/usr/local/UnitTest
 export EDITOR=vim
 export TERM=xterm-256color
 
+#added for amarok
+export PATH=$HOME/kde/bin:$PATH
+export PATH=/usr/lib/ccache:$PATH
+export LD_LIBRARY_PATH=$HOME/kde/lib:$LD_LIBRARY_PATH
 
 export GTEST=/usr/local/gtest
 alias gtest="g++ -g -I${GTEST}/include -L${GTEST} -lgtest -lpthread"
