@@ -6,6 +6,7 @@
 [ -z "$PS1" ] && return
 # [[ $- != *i* ]] && return
 
+PS1='\h:\w\$ '
 OS='uname -s'
 
 # My aliases
@@ -54,7 +55,6 @@ alias les='less'
 alias relaod='reload'
 alias yourt='yaourt'
 #PS1='[\u:\h \W]\$ '
-PS1='\h:\w\$ '
 
 # Useful functions
 
@@ -95,8 +95,8 @@ function cl () {
   cd "$@" && la;
 }
 
-export PATH=$HOME/.gem/ruby/2.0.0/bin:$PATH
-export PATH=/usr/local/bin:/usr/local/mysql/bin/:$PATH
+export PATH=/usr/local/mysql/bin/:$PATH
+export PATH=$HOME/.bin:$HOME/.gem/ruby/2.0.0/bin:$PATH
 export CPLUS_INCLUDE_PATH=/usr/local/UnitTest
 export EDITOR=vim
 export TERM=xterm-256color
