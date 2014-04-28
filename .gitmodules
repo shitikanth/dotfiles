@@ -73,3 +73,6 @@
 [submodule "vimfiles/bundle/cvim"]
 	path = vimfiles/bundle/cvim
 	url = https://github.com/HenningM/cvim-pathogen.git
+[submodule "vimfiles/bundle/tabular"]
+	path = vimfiles/bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
