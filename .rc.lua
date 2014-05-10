@@ -1,1 +1,0 @@
-/home/shiti/.config/awesome/rc.lua

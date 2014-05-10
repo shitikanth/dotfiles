@@ -121,8 +121,8 @@ map <leader>a ;A<cr>
 " filetype specific settings
 autocmd filetype c,cpp setl foldmethod=syntax
 " clean whitespace before save
-autocmd fileType c,cpp,java,php,haskell,python autocmd BufWritePre <buffer> :%s/\s\+$//e
-autocmd filetype html,haskell setl sw=2
+autocmd fileType c,cpp,java,php,tex,haskell,python autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd filetype tex,html,haskell setl sw=2
 
 " good indentation in C++
 autocmd filetype c,cpp setl cino=(0, 
@@ -142,6 +142,8 @@ let g:Tex_DefaultTargetFormat='pdf'
 "let g:Tex_CompileRule_pdf = 'pdflatex -synctex=-1 -src-specials -interaction=nonstopmode $*'
 let g:Tex_CompileRule_pdf = 'latexmk -pdf $*'
 let g:Tex_ViewRule_pdf = 'Skim'
+"let g:Tex_ViewRule_pdf = '/Applications/Skim.app/Contents/SharedSupport/displayline %l %f'
+"let g:Tex_TreatMacViewerAsUNIX = 1
 "let g:Tex_ViewRule_pdf = 'SumatraPDF -reuse-instance -inverse-search "gvim --servername LaTeX -c \":RemoteOpen +\%l \%f\" --remote-silent"'
 set iskeyword+=:
 let g:Tex_IgnoredWarnings ='
@@ -157,8 +159,6 @@ let g:Tex_FoldedEnvironments="proof,prop,lem,cor,verbatim,comment,eq,gather,alig
 let g:Tex_FoldedSections="part,chapter,bibliography,section,subsection,subsubsection,paragraph"
 
 " Ultisnips
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 
 " UltiSnips completion function that tries to expand a snippet. If there's no
@@ -179,6 +179,11 @@ function! g:UltiSnips_Complete()
     endif
     return ""
 endfunction
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsListTrigger="<c-l>"
 
 au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 
@@ -234,7 +239,7 @@ map <leader>d :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 
 set t_Co=256
 if has("gui_running")
-  colo distinguished
+  colo bclear
   if has("gui_gtk2")
     set guifont=Inconsolata\ 10
   elseif has("gui_win32")

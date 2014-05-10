@@ -96,7 +96,7 @@ function cl () {
   cd "$@" && la;
 }
 
-export PATH=/usr/local/mysql/bin/:$PATH
+export PATH=/usr/local/mysql/bin:$PATH
 export PATH=$HOME/.bin:$HOME/.gem/ruby/2.0.0/bin:$PATH
 export CPLUS_INCLUDE_PATH=/usr/local/UnitTest
 export EDITOR=vim
