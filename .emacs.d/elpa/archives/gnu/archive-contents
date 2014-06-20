@@ -29,7 +29,7 @@
        ((:url . "http://elpa.gnu.org/packages/all.html")
 	(:keywords "matching"))])
  (ascii-art-to-unicode .
-		       [(1 5)
+		       [(1 6)
 			nil "a small artist adjunct" single
 			((:url . "http://elpa.gnu.org/packages/ascii-art-to-unicode.html")
 			 (:keywords))])
