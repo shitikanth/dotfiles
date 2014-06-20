@@ -113,3 +113,6 @@ shopt -q -s extglob
 shopt -s histappend
 # Disable [CTRL-D] which is used to exit the shell
 set -o ignoreeof
+
+
+export PATH="$HOME/Library/Haskell/bin:$PATH"
