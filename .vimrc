@@ -189,13 +189,13 @@ au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:U
 
 
 " Haskell
-au BufEnter *.hs compiler ghc
-let g:haddock_browser="firefox"
-let g:haddock_docdir="/usr/share/doc/ghc/html/"
+" au BufEnter *.hs compiler ghc
+" let g:haddock_browser="firefox"
+" let g:haddock_docdir="/usr/share/doc/ghc/html/"
 
-if has("gui_running")
-  let g:haskell_conceal_wide = 1
-end
+"if has("gui_running")
+"  let g:haskell_conceal_wide = 1
+"end
 
 " syntastic
 
