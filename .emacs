@@ -22,8 +22,6 @@
 ;;
 ;; Use color scheme clues
 ;(load-theme 'clues t)
-(set-face-font
- 'mode-line "-apple-Inconsolata-medium-normal-normal-*-15-*-*-*-m-0-iso10646-1")
 
 ;; (custom-set-faces
 ;;  '(ido-subdir ((t (:foreground "#ccccaa"))))      
