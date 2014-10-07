@@ -43,6 +43,9 @@ syntax on
 set smartindent
 set autoindent
 
+"disable search highlights
+set nohls
+
 set ruler
 set textwidth=78
 set visualbell
@@ -80,7 +83,7 @@ set autoread
 " cnoremap <ESC>f <S-Right>
 " cnoremap <ESC><C-F> <S-Right>
 " cnoremap <ESC><C-H> <C-W>
-" 
+"
 
 " shortcuts {{{
 nmap <leader>ev ;e $MYVIMRC<CR>zi
@@ -88,11 +91,12 @@ nmap <leader>lv ;so $MYVIMRC<CR>zi
 nmap <silent> <leader>lcd ;cd %:h<CR>
 nmap <silent> <leader>s :set spell!<CRo
 nnoremap ; :
+nnoremap : ;
 vmap ; :
 vmap Q gq
 nmap Q gqap
-nnoremap j gj
-nnoremap k gk
+" nnoremap j gj
+" nnoremap k gk
 ca Q q
 ca WQ wq
 ca Wq wq
