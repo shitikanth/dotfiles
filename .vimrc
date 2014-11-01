@@ -193,7 +193,6 @@ au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:U
 
 
 " Haskell
-" au BufEnter *.hs compiler ghc
 " let g:haddock_browser="firefox"
 " let g:haddock_docdir="/usr/share/doc/ghc/html/"
 
@@ -249,7 +248,7 @@ if has("gui_running")
   elseif has("gui_win32")
     set guifont=Consolas:h11:cANSI
   elseif has("gui_macvim")
-    set guifont=Inconsolata:h14
+    set guifont=Inconsolata:h15
   endif
 else
   colo distinguished
