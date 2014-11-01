@@ -44,7 +44,9 @@ alias cu='cd ..'
 alias r='reload'
 alias b='back'
 alias aquamacs='open /Applications/Aquamacs.app/'
-
+if [ `$OS` == 'Darwin' ]; then
+    alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+fi
 # Mis-spelled commands
 alias gvb='gdb'
 alias gbim='gvim'
@@ -55,6 +57,7 @@ alias gbvim='gvim'
 alias les='less'
 alias relaod='reload'
 alias yourt='yaourt'
+alias mkdor='mkdir'
 #PS1='[\u:\h \W]\$ '
 
 # Useful functions
