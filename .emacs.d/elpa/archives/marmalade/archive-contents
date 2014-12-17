@@ -1,10 +1,7 @@
 (1
- (gotham-theme .
-	       [(1 0)
-		nil "A very dark Emacs color theme." single])
- (org-cliplink .
-	       [(0 1 1)
-		nil "a simple command that takes a URL from the clipboard and inserts an org-mode link with a title of a page found by the URL into the current buffer" single])
+ (shackle .
+	  [(0 1)
+	   nil "Enforce rules for popups" single])
  (zone-matrix .
 	      [(0 0 1)
 	       nil "Matrix themed Zone mode" tar])
@@ -119,7 +116,7 @@
    [(1 1)
     nil "Poor-man's namespaces for elisp" single])
  (wisp-mode .
-	    [(0 1 5)
+	    [(0 2)
 	     nil "Tools for wisp: the Whitespace-to-Lisp preprocessor" single])
  (wisp .
        [(0 1 4)
@@ -367,7 +364,7 @@
 	     [(0 1 1)
 	      nil "Major mode for editing typescript" single])
  (twittering-mode .
-		  [(2 0 0)
+		  [(3 0 1)
 		   nil "Major mode for Twitter" single])
  (twilight-theme .
 		 [(1 0 0)
@@ -406,6 +403,11 @@
  (tsql .
        [(1 0)
 	nil "customizes sql.el for T-SQL" single])
+ (try .
+   [(0 0 1)
+    ((emacs
+      (24)))
+    "Try out Emacs packages." single])
  (truthy .
 	 [(0 2 8)
 	  ((list-utils
@@ -889,6 +891,11 @@
 	      (sequences
 	       (0 1 0)))
 	     "A dead simple way to load sensitive information" single])
+ (seethru .
+	  [(0 2)
+	   ((shadchen
+	     (1 4)))
+	   "Easily change Emacs' transparency" single])
  (sedated .
 	  [(1 0)
 	   nil "A few extremely simple sed functions for familiar text manipulation" single])
@@ -896,7 +903,7 @@
 		 [(1 1 1)
 		  nil "Edit in seclusion. A Dark Room mode." single])
  (sea-before-storm-theme .
-			 [(0 3)
+			 [(0 4 20141114)
 			  nil "Sea Before Storm color theme for Emacs 24" single])
  (scss-mode .
 	    [(0 5 0)
@@ -1556,7 +1563,7 @@
 	       (6 1)))
 	     "basic support for magit links" single])
  (org-journal .
-	      [(1 5 3)
+	      [(1 6 1)
 	       nil "a simple org-mode based journaling mode" single])
  (org-gnome .
 	    [(0 1)
@@ -1566,7 +1573,7 @@
 	       (0 1)))
 	     "Orgmode integration with the GNOME desktop" single])
  (org-email .
-	    [(3 0 0)
+	    [(3 0 1)
 	     ((shadchen
 	       (1 2))
 	      (dash
@@ -1591,6 +1598,9 @@
  (org-cua-dwim .
 	       [(0 5)
 		nil "Org-mode and Cua mode compatibility layer" single])
+ (org-cliplink .
+	       [(0 2)
+		nil "insert org-mode links by URL from the clipboard" single])
  (org-blog .
 	   [(1 18 1 1)
 	    nil "create and publish a blog with org-mode" single])
@@ -1847,6 +1857,13 @@
  (mc-jump .
 	  [(1 0 0)
 	   nil "like \"jump-char\", but \"multiple-cursors\" friendly" single])
+ (mbe .
+      [(0 1)
+       ((emacs
+	 (24))
+	(cl-lib
+	 (0 5)))
+       "Macros by Example" single])
  (maxframe .
 	   [(0 5 1)
 	    nil "maximize the emacs frame based on display size" single])
@@ -2160,8 +2177,11 @@
 		(color-theme-emacs-revert-theme
 		 (0 1)))
 	       "Key Choices -- Also Viper has different colors in different modes" single])
+ (karma .
+	[(0 1 0)
+	 nil "Karma Test Runner Emacs Integration" single])
  (kanban .
-	 [(0 1 2)
+	 [(0 1 3)
 	  nil "Parse org-todo headlines to use org-tables as Kanban tables" single])
  (jump-dls .
 	   [(0 6)
@@ -2362,6 +2382,17 @@
  (idle-highlight .
 		 [(1 0)
 		  nil "highlight the word the point is on" single])
+ (ical-pull .
+	    [(0 0 2)
+	     ((shadchen
+	       (1 2))
+	      (dash
+	       (2 9 0))
+	      (s
+	       (1 9 0))
+	      (noflet
+	 (0 0 14)))
+	     "pull ical feeds into org-agenda" single])
  (ibuffer-vc .
 	     [(0 7)
 	      ((cl-lib
@@ -2539,7 +2570,7 @@
 		  [(1 3)
 		   nil "A major mode for editing Handlebars files." single])
  (haml-mode .
-	    [(3 1 5)
+	    [(3 1 8)
 	     ((ruby-mode
 	       (1 0)))
 	     "Major mode for editing Haml files" single])
@@ -2607,6 +2638,9 @@
  (goto-chg .
 	   [(1 6)
 	    nil "goto last change" single])
+ (gotham-theme .
+	       [(1 0)
+		nil "A very dark Emacs color theme." single])
  (gopher .
 	 [(0 0 2)
 	  nil "easily access and navigate Gopher servers" single])
@@ -2659,6 +2693,9 @@
  (gitconfig .
 	    [(1 0 0)
 	     nil "Emacs lisp interface to work with git-config variables" single])
+ (gitattributes-whitespace .
+			   [(1 20141128)
+			    nil "configure whitespace settings from gitattributes" single])
  (git-gutter-fringe .
 		    [(0 12)
 		     ((git-gutter
@@ -2782,6 +2819,9 @@
 		 ((emacs
 		   (24 1)))
 		 "Restore Emacs frame" single])
+ (fpaste .
+	 [(0 1 3)
+	  nil "Send text to http://fpaste.org" single])
  (fooddice .
 	   [(0 1)
 	    nil "Help me I am hungry and dont know what to eat!" single])
@@ -2966,13 +3006,13 @@
 			      (24 1)))
 			    "Change mode line color with Flycheck status" single])
  (flycheck-cask .
-		[(0 1)
-		 ((flycheck
+		[(0 2)
+		 ((emacs
+		   (24 1))
+		  (flycheck
 		   (0 14))
 		  (dash
-		   (2 0 0))
-		  (f
-		   (0 6 0)))
+		   (2 4 0)))
 		 "Cask support in Flycheck" single])
  (flycheck .
 	   [(0 21)
@@ -3102,11 +3142,9 @@
 	     (0 3 2)))
 	   "Alternatives to `message'" single])
  (expectations-mode .
-		    [(0 0 4)
-		     ((nrepl
-		       (0 1 5))
-		      (clojure-mode
-		       (1 11)))
+		    [(0 0 5)
+		     ((cider
+		       (0 7 0)))
 		     "Minor mode for expectations tests" single])
  (expand-region .
 		[(0 10 0)
@@ -3143,6 +3181,15 @@
 			  ((evil
 			    (0)))
 			  "evil textobjects based on indentation" single])
+ (evil-escape .
+	      [(1 6 0)
+	       ((emacs
+		 (24))
+		(evil
+		 (1 0 9))
+		(key-chord
+		 (0 6)))
+	       "Customizable key sequence to escape from insert state and everything else." single])
  (evil .
        [(1 0 8)
 	((undo-tree
@@ -3289,7 +3336,7 @@
 	  (0 8 0)))
 	"Emacs Python Development Environment" tar])
  (elpakit .
-	  [(2 0 2)
+	  [(2 0 4)
 	   ((dash
 	     (2 9 0))
 	    (shadchen
@@ -3336,7 +3383,7 @@
 		     (0 2)))
 		   "Make M-. and M-, work in elisp like they do in slime" single])
  (elisp-indexer .
-		[(0 0 8)
+		[(0 0 9)
 		 nil "indexing utils for emacslisp" single])
  (elisp-depend .
 	       [(1 0 2)
@@ -3904,9 +3951,16 @@
 		   ((project-mode
 		     (1 0)))
 		   "Extends project-mode for Clojure projects" single])
+ (clojure-mode-extra-font-locking .
+				  [(3 0 0)
+				   ((clojure-mode
+				     (3 0)))
+				   "Extra font-locking for Clojure mode" single])
  (clojure-mode .
-	       [(2 1 1)
-		nil "Major mode for Clojure code" single])
+	       [(3 0 1)
+		((emacs
+		  (24 1)))
+		"Major mode for Clojure code" single])
  (clojure-here .
 	       [(0 11)
 		nil "Clojure process in a buffer" single])
@@ -3920,7 +3974,7 @@
 	 [(0 1 0)
 	  nil "eldoc mode for clojure" single])
  (clj-refactor .
-	       [(0 10 0)
+	       [(0 13 0)
 		((s
 		  (1 8 0))
 		 (dash
@@ -3930,7 +3984,9 @@
 		 (paredit
 		  (22))
 		 (multiple-cursors
-		  (1 2 2)))
+		  (1 2 2))
+		 (cider
+		  (0 6 0)))
 		"A collection of clojure refactoring functions" single])
  (clj-mode .
 	   [(0 9)
@@ -3957,15 +4013,19 @@
 	   (1 1)))
 	 "Client for IRC in Emacs" tar])
  (cider .
-	[(0 6 0)
+	[(0 8 1)
 	 ((clojure-mode
-	   (2 0 0))
+	   (3 0 0))
 	  (cl-lib
-	   (0 3))
+	   (0 5))
 	  (dash
 	   (2 4 1))
 	  (pkg-info
-	   (0 4)))
+	   (0 4))
+	  (emacs
+	   (24))
+	  (queue
+	   (0 1 1)))
 	 "Clojure Integrated Development Environment and REPL" tar])
  (chm-view .
 	   [(0 2 2)
@@ -3973,6 +4033,13 @@
  (chicken-scheme .
 		 [(1 3 0)
 		  nil "Scheme-mode extensions for Chicken Scheme" single])
+ (checkbox .
+	   [(0 2 1)
+	    ((emacs
+	      (24))
+	     (cl-lib
+	      (0 5)))
+	    "Quick manipulation of textual checkboxes" single])
  (charmap .
 	  [(0 0 1)
 	   nil "Unicode table for Emacs" single])
@@ -4198,11 +4265,9 @@
 		  (1 11 5)))
 		"Space align various Clojure forms" single])
  (alchemist .
-	    [(0 6 0)
+	    [(0 8 0)
 	     ((emacs
-	       (24))
-	      (pkg-info
-	       (0 5)))
+	       (24)))
 	     "Elixir tooling integration into emacs" tar])
  (ahg .
       [(0 99)

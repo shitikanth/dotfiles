@@ -222,6 +222,10 @@ let g:NERDTreeDirArrows=0
 
 " NERDCommenter
 let NERDSpaceDelims=1
+
+" YouCompleteMe
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+
 " }}}
 " Awesome Macros {{{
 
