@@ -58,6 +58,8 @@ alias les='less'
 alias relaod='reload'
 alias yourt='yaourt'
 alias mkdor='mkdir'
+alias :ghci='ghci'
+alias cd..='cd ..'
 #PS1='[\u:\h \W]\$ '
 
 # Useful functions
@@ -100,7 +102,6 @@ function cl () {
 }
 
 export PATH=/usr/local/mysql/bin:$PATH
-export PATH=$HOME/.bin:$HOME/.gem/ruby/2.0.0/bin:$PATH
 export CPLUS_INCLUDE_PATH=/usr/local/UnitTest
 export EDITOR=vim
 export TERM=xterm-256color
@@ -117,5 +118,8 @@ shopt -s histappend
 # Disable [CTRL-D] which is used to exit the shell
 set -o ignoreeof
 
+# Specific for OSX
+if [ `hostname` == darwin ]
+then source ~/.bashrc.darwin
+fi
 
-export PATH="$HOME/Library/Haskell/bin:$PATH"
