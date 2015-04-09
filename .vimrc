@@ -1,4 +1,4 @@
-" Things to do if on windows {{{
+" Things to do if on windows/mac {{{
 
 if has('win32') || has('win64')
   set shell=powershell
@@ -29,9 +29,13 @@ set noswapfile
 set mouse=a
 set incsearch
 set showmatch
+set hlsearch
 set hidden
 set history=1000
 set undolevels=1000
+
+set timeout
+set timeoutlen=300
 
 set foldenable
 set foldmethod=marker
@@ -68,6 +72,8 @@ set showmode
 set ls=2
 set wildignore=*.swp,*.bak,*.pyc,*.o,*.pdf,*.aux,*.log,*.out,*.dvi,*.pdfsync,*.synctex
 
+"Interactive shell
+set shellcmdflag=-ic
 "Automatically read files changed on disk
 set autoread
 
@@ -90,6 +96,9 @@ nmap <leader>ev ;e $MYVIMRC<CR>zi
 nmap <leader>lv ;so $MYVIMRC<CR>zi
 nmap <silent> <leader>lcd ;cd %:h<CR>
 nmap <silent> <leader>s :set spell!<CRo
+" allow normal use of "," by pressing it twice
+nnoremap ,, ,
+" swap ; and : for fast access to command-line
 nnoremap ; :
 nnoremap : ;
 vmap ; :
@@ -114,7 +123,7 @@ map <leader>ba ;1,1000 bd!<cr>
 map <leader>tn ;tabnew<cr>
 map <leader>to ;tabonly<cr>
 map <leader>tc ;tabclose<cr>
-map <leader>tm ;tabmove
+map <leader>tm ;tabmove<space>
 
 " clear highlighted search
 nmap <silent> <leader>/ ;nohlsearch<CR>
@@ -127,7 +136,7 @@ autocmd filetype c,cpp setl foldmethod=syntax
 " clean whitespace before save
 autocmd fileType c,cpp,java,php,tex,haskell,python autocmd BufWritePre <buffer> :%s/\s\+$//e
 autocmd filetype tex,html,haskell setl sw=2
-
+autocmd FileType lhaskell setlocal formatoptions+=ro
 " good indentation in C++
 autocmd filetype c,cpp setl cino=(0, 
 autocmd filetype c,cpp set formatoptions-=ro
@@ -135,6 +144,8 @@ autocmd filetype c,cpp set formatoptions-=ro
 " mark whitespace
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
+
+" spell checking
 
 " }}}
 " Plugin specific settings {{{
@@ -184,17 +195,26 @@ function! g:UltiSnips_Complete()
     return ""
 endfunction
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsListTrigger="<c-l>"
-
 au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-e>"
 
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" let g:UltiSnipsListTrigger="<c-l>"
+" 
+
+" this mapping Enter key to <C-y> to chose the current highlight item 
+" and close the selection list, same as other IDEs.
+" CONFLICT with some plugins like tpope/Endwise
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Haskell
 " let g:haddock_browser="firefox"
 " let g:haddock_docdir="/usr/share/doc/ghc/html/"
+
+noremap <Leader>g :GhcModType<CR>
 
 "if has("gui_running")
 "  let g:haskell_conceal_wide = 1
@@ -206,15 +226,18 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11'
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_checkers = ['gcc']
 let g:syntastic_tex_checkers    = ['chktex']
-" c.vim
-let g:C_CplusCFlags = '-Wall -std=c++11 -g -O0 -c'
-let g:C_CplusLFlags = '-Wall -std=c++11 -g -O0'
+let g:syntastic_haskell_checkers =['hlint']
+noremap <silent> <Leader>e :Errors<CR>
+noremap <Leader>s :SyntasticToggleMode<CR>
+let g:syntastic_auto_loc_list=1
+
+" c.vim cvim
 
 " omnicppcomplete
 
 " shortcut to generate ctags
 set ofu=syntaxcomplete#Complete
-map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+noremap <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 set tags+=~/.vim/tags/cpp
 
 " NERDTree
@@ -223,8 +246,10 @@ let g:NERDTreeDirArrows=0
 " NERDCommenter
 let NERDSpaceDelims=1
 
-" YouCompleteMe
+" YouCompleteMe ycm youcompleteme
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_key_invoke_completion = '<C-Space>'
+let g:necoghc_enable_detailed_browse = 1
 
 " }}}
 " Awesome Macros {{{

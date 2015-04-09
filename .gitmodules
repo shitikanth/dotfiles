@@ -25,9 +25,6 @@
 [submodule "vimfiles/bundle/fugitive"]
     path = vimfiles/bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive
-[submodule "vimfiles/bundle/syntastic"]
-    path = vimfiles/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic
 [submodule "vimfiles/bundle/vim-javascript"]
     path = vimfiles/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
@@ -40,9 +37,6 @@
 [submodule "vimfiles/bundle/command-t"]
     path = vimfiles/bundle/command-t
 	url = https://github.com/wincent/Command-T.git
-[submodule "vimfiles/bundle/ycm"]
-    path = vimfiles/bundle/ycm
-	url = https://github.com/Valloric/YouCompleteMe
 [submodule "vimfiles/bundle/vim-ruby"]
     path = vimfiles/bundle/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby
@@ -76,9 +70,21 @@
 [submodule "vimfiles/bundle/emmet-vim"]
 	path = vimfiles/bundle/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
-[submodule "vimfiles/bundle/ghcmod-vim"]
-	path = vimfiles/bundle/ghcmod-vim
-	url = https://github.com/eagletmt/ghcmod-vim.git
 [submodule "vimfiles/bundle/vimproc"]
 	path = vimfiles/bundle/vimproc
 	url = https://github.com/Shougo/vimproc.vim.git
+[submodule "vimfiles/bundle/syntastic"]
+	path = vimfiles/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "vimfiles/bundle/ghcmod-vim"]
+	path = vimfiles/bundle/ghcmod-vim
+	url = https://github.com/eagletmt/ghcmod-vim
+[submodule "vimfiles/bundle/ycm"]
+	path = vimfiles/bundle/ycm
+	url = https://github.com/Valloric/YouCompleteMe
+[submodule "vimfiles/bundle/ack"]
+	path = vimfiles/bundle/ack
+	url = https://github.com/mileszs/ack.vim
+[submodule "vimfiles/bundle/ctrlp"]
+	path = vimfiles/bundle/ctrlp
+	url = https://github.com/kien/ctrlp.vim
