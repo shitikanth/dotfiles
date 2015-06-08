@@ -1,0 +1,10 @@
+#
+#~/.bashrc.darwin
+#
+
+# Copy current folder to clipboard
+alias cpwd='pwd | pbcopy'
+alias pwdc='pwd | pbcopy'
+alias pwdcp='pwd | pbcopy'
+alias aquamacs='open /Applications/Aquamacs.app/'
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
