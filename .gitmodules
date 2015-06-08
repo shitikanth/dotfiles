@@ -88,3 +88,6 @@
 [submodule "vimfiles/bundle/ctrlp"]
 	path = vimfiles/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim
+[submodule "vimfiles/bundle/python-mode"]
+	path = vimfiles/bundle/python-mode
+	url = git://github.com/klen/python-mode.git

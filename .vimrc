@@ -42,10 +42,10 @@ set foldmethod=marker
 
 "Turn on syntax highlighting, auto-indentation
 filetype plugin on
-filetype indent on
 syntax on
 set smartindent
 set autoindent
+filetype indent on
 
 "disable search highlights
 set nohls
@@ -134,8 +134,8 @@ map <leader>a ;A<cr>
 " filetype specific settings
 autocmd filetype c,cpp setl foldmethod=syntax
 " clean whitespace before save
-autocmd fileType c,cpp,java,php,tex,haskell,python autocmd BufWritePre <buffer> :%s/\s\+$//e
-autocmd filetype tex,html,haskell setl sw=2
+autocmd fileType c,cpp,java,php,tex,haskell,python,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd filetype tex,html,haskell,ruby setl sw=2
 autocmd FileType lhaskell setlocal formatoptions+=ro
 " good indentation in C++
 autocmd filetype c,cpp setl cino=(0, 
