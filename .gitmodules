@@ -51,7 +51,8 @@
 	url = https://github.com/tpope/vim-surround.git
 [submodule ".org"]
 	path = .org
-	url = ./.org
+    url = git@github.com:shitikanth/org
+    branch = 2015_summer
 [submodule "vimfiles/bundle/bclear"]
     path = vimfiles/bundle/bclear
 	url = https://github.com/vim-scripts/bclear.git
