@@ -1,6 +1,7 @@
 ;; osx.el
 ;; setting to use on Macbooks
 (provide 'osx)
+
 (defun aquamacs-settings()
   ;;
   ;; Make Aquamacs behave more like emacs
@@ -29,6 +30,8 @@
                '(font . "Inconsolata-15"))
 
   (global-set-key (kbd "C-M-f") 'aquamacs-toggle-full-frame)
+  (global-set-key (kbd "M-`") 'other-frame)
+  (global-set-key (kbd "M-w") 'delete-frame)
   (message "Loaded settings for osx")
 )
 
