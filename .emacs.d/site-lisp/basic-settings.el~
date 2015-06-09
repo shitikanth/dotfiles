@@ -32,8 +32,5 @@
     '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
-
-(setq make-backup-files nil) ; stop creating ~ files
-
 (provide 'basic-settings)
 ;;; basic-settings.el ends here
