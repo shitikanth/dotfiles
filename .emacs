@@ -8,16 +8,11 @@
    basic-settings
    misc-hacks
    ; keybindings
-   ; system
+   system
    org-settings
    plugin-settings)
 )
 
-
-;;
-;; Surround mode
-(require 'surround)
-(global-surround-mode 1)
 
 ;;
 ;; Use color scheme clues
