@@ -9,8 +9,8 @@
    misc-hacks
    ; keybindings
    system
-   org-settings
-   plugin-settings)
+   plugin-settings
+   org-settings)
 )
 
 
