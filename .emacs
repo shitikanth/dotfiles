@@ -7,8 +7,8 @@
  '(cl
    basic-settings
    misc-hacks
-   keybindings
-   system
+   ; keybindings
+   ; system
    org-settings
    plugin-settings)
 )
