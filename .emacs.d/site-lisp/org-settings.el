@@ -16,7 +16,7 @@
 ;(message "orgsettings: set agenda files")
 (setq org-agenda-files 
       (list "~/.org/work.org"
-            "~/.org/college.org"
+            "~/.org/research.org"
             "~/.org/personal.org"
 ;            "~/.org/hobbies.org"
             "~/.org/notes.org" ))
