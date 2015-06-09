@@ -3,7 +3,10 @@
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin
 PHP_AUTOCONF="/usr/local/bin/autoconf"
 export PATH=/usr/local/sbin:$PATH
-export PATH="$(brew --prefix homebrew/php/php55)/sbin:$HOME/.cabal/bin:$PATH"
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
+
+if [[ `uname -s` = Darwin ]]
+then export PATH="$(brew --prefix homebrew/php/php55)/sbin:$PATH"
+fi
