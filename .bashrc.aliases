@@ -1,0 +1,52 @@
+
+
+# My aliases
+alias screen='screen -s /bin/bash'
+alias wee='weechat-curses'
+# if [ "$OS" == 'Linux' ]; then
+#     alias ls='ls --color=auto'
+# fi
+alias cp='cp -iv'
+alias python='python2.7'
+alias cal='cal -3'
+alias sudo='sudo -E'
+alias reboot="sudo shutdown -r now"
+alias off="sudo shutdown -h now"
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias today='date "+%A, %B %-d, %Y"'
+unalias ls > /dev/null 2> /dev/null
+alias ll='ls -l'
+alias la='ls -A'
+alias lla='ls -lA'
+alias lS='ls -Ss'
+alias las='ls -aSs'
+alias lls='ls -lS'
+alias llas='ls -lAS'
+alias l='ll'
+alias lals='llas'
+alias lc='ls --color=none'
+alias c='clear'
+alias brc='vim ~/.bashrc'
+alias reload='. ~/.bashrc'
+alias back='cd "$OLDPWD"'
+alias cu='cd ..'
+alias r='reload'
+alias b='back'
+
+# Mis-spelled commands
+alias gvb='gdb'
+alias gbim='gvim'
+alias bim='vim'
+alias cim='vim'
+alias gvbim='gvim'
+alias gbvim='gvim'
+alias les='less'
+alias relaod='reload'
+alias yourt='yaourt'
+alias mkdor='mkdir'
+alias :ghci='ghci'
+alias cd..='cd ..'
+#PS1='[\u:\h \W]\$ '
+
