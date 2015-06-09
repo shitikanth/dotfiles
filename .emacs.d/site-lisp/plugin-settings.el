@@ -14,7 +14,7 @@
 	org-plus-contrib
 	undo-tree
 	evil
-	surround
+	evil-surround
 	))
 
 (package-initialize)
@@ -30,6 +30,6 @@
 
 ;;
 ;; Surround mode
-(require 'surround)
-(global-surround-mode 1)
+(require 'evil-surround)
+(global-evil-surround-mode 1)
 
