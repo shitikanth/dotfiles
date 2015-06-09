@@ -10,7 +10,7 @@ PS1='\h:\w\$ '
 OS='uname -s'
 
 # My aliases
-source ~/.bashrc.aliases
+source ~/.aliases
 
 # Useful functions
 source ~/.bashrc.functions
@@ -33,8 +33,5 @@ shopt -s histappend
 set -o ignoreeof
 
 # Specific for OSX
-if [ `uname -s` == Darwin ]
-then source ~/.bashrc.darwin
-fi
 
 

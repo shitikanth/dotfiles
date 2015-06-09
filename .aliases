@@ -50,3 +50,6 @@ alias :ghci='ghci'
 alias cd..='cd ..'
 #PS1='[\u:\h \W]\$ '
 
+if [ `uname -s` = Darwin ]
+then source ~/.aliases.darwin
+fi
