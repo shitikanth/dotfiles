@@ -1,7 +1,7 @@
 
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
-setlocal omnifunc=necoghc#omnifunc
 
+setlocal omnifunc=necoghc#omnifunc
 
 function! Haskell#FindImportPosition()
   let save_cursor = getpos(".")

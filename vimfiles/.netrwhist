@@ -1,3 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/Users/shiti/vimfiles/bundle/ycm/third_party/ycmd/third_party/sh'
+let g:netrw_dirhist_2='/Users/shiti/Documents/play/programming/haskell/parsing'
+let g:netrw_dirhist_3='/Users/shiti/Documents/play/programming/haskell'
+let g:netrw_dirhist_4='/Users/shiti/Documents/play/programming'
+let g:netrw_dirhist_5='/Users/shiti/Documents/play/programming/haskell/parsing'
