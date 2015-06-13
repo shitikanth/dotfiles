@@ -15,3 +15,5 @@ endfunction
 
 " limitation: this overwrites register 0
 nnoremap <buffer> <leader>h k/import<CR>"0d$:call append(Haskell#FindImportPosition(),@0)<CR>
+
+setlocal iskeyword=@,48-57,_,'

@@ -71,7 +71,8 @@ set showcmd
 set showmode
 set ls=2
 set wildignore=*.swp,*.bak,*.pyc,*.o,*.log,*.out,
-               \*.pdf,*.aux,*.dvi,*.pdfsync,*.synctex
+               \*.pdf,*.aux,*.dvi,*.pdfsync,*.synctex,
+               \.git/*,**/.git/*,_darcs/*,**/_darcs/*,**/.metadata/*
 
 "Interactive shell
 set shellcmdflag=-ic
@@ -135,8 +136,7 @@ map <leader>a ;A<cr>
 " filetype specific settings
 autocmd filetype c,cpp setl foldmethod=syntax
 " clean whitespace before save
-autocmd fileType c,cpp,java,php,tex,haskell,python,ruby
-   \autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd fileType c,cpp,java,php,tex,haskell,python,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
 autocmd filetype tex,html,haskell,ruby setl sw=2
 autocmd FileType lhaskell setlocal formatoptions+=ro
 " good indentation in C++
@@ -151,7 +151,7 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 " }}}
 " Plugin specific settings {{{
-" eventually move these ftplugin
+" eventually move most of these to ftplugin
 
 " latex-suite
 let g:tex_flavor='latex'
@@ -245,6 +245,7 @@ let g:syntastic_check_on_wq = 0
 
 " c.vim cvim
 
+
 " omnicppcomplete
 
 " shortcut to generate ctags
@@ -261,8 +262,14 @@ let NERDSpaceDelims=1
 " YouCompleteMe ycm youcompleteme
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_key_invoke_completion = '<C-Space>'
+
+" Neco-ghc neco-ghc
 let g:necoghc_enable_detailed_browse = 1
 
+" Command-t command-t commandt
+let g:CommandTFileScanner = 'find'
+let g:CommandTTraverseSCM = 'pwd'
+let g:CommandTMaxCachedDirectories = 3
 " }}}
 " Awesome Macros {{{
 
@@ -277,7 +284,8 @@ command! W call WriteCreatingDirs()
 map <leader>i magg=G`azz
 map <leader>gu ggi#ifndef
 map <leader>d :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
-
+" underline
+map <leader>ul yyp<c-v>$r
 " }}}
 "set Font and Color scheme {{{
 
