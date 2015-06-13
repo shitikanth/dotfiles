@@ -75,7 +75,8 @@ set wildignore=*.swp,*.bak,*.pyc,*.o,*.log,*.out,
                \.git/*,**/.git/*,_darcs/*,**/_darcs/*,**/.metadata/*
 
 "Interactive shell
-set shellcmdflag=-ic
+" set shellcmdflag=-ic
+
 "Automatically read files changed on disk
 set autoread
 
@@ -242,6 +243,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_shell = "/bin/bash" 
 
 " c.vim cvim
 
