@@ -75,6 +75,8 @@ set wildignore=*.swp,*.bak,*.pyc,*.o,*.log,*.out,
                \.git/*,**/.git/*,_darcs/*,**/_darcs/*,**/.metadata/*
 
 "Interactive shell
+"Cons- Enabling this will force vim to suspend after any external command.
+"Pros- You get to use your aliases etc from !
 " set shellcmdflag=-ic
 
 "Automatically read files changed on disk
