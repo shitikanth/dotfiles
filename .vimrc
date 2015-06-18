@@ -152,6 +152,8 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 " spell checking
 
+" exrc : load .vimrc from any folder you run vim from
+set exrc
 " }}}
 " Plugin specific settings {{{
 " eventually move most of these to ftplugin
