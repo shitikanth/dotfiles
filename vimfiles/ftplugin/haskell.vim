@@ -3,7 +3,7 @@ let g:ycm_semantic_triggers = {'haskell' : ['.']}
 
 setlocal omnifunc=necoghc#omnifunc
 
-function! Haskell#FindImportPosition()
+function! haskell#FindImportPosition()
   let save_cursor = getpos(".")
   let line1 = search('\%1c\(\<import\>\|\<module\>\|{-# OPTIONS\|{-# LANGUAGE\)','b')
   " jump over possible multiline statements
@@ -14,6 +14,6 @@ function! Haskell#FindImportPosition()
 endfunction
 
 " limitation: this overwrites register 0
-nnoremap <buffer> <leader>h k/import<CR>"0d$:call append(Haskell#FindImportPosition(),@0)<CR>
+nnoremap <buffer> <leader>h k/import<CR>"0d$:call append(haskell#FindImportPosition(),@0)<CR>
 
 setlocal iskeyword=@,48-57,_,'

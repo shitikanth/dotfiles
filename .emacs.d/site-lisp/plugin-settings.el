@@ -11,6 +11,7 @@
 (setq package-list
       '(helm
 	auctex
+	color-theme
 	org-plus-contrib
 	undo-tree
 	evil
@@ -33,3 +34,14 @@
 (require 'evil-surround)
 (global-evil-surround-mode 1)
 
+
+;;
+;; Ido mode
+(require 'ido)
+(ido-mode 1)
+
+(defun on-after-init ()
+  (unless (display-graphic-p (selected-frame))
+    (set-face-background 'default "unspecified-bg" (selected-frame))))
+
+(add-hook 'window-setup-hook 'on-after-init)
