@@ -1,4 +1,4 @@
-ZSH_THEME="daveverwer"
+ZSH_THEME="kolo"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
