@@ -2,37 +2,21 @@
 
 ;;
 ;; Load settings from config files in .emacs.d/site-lisp
-(require 'basic-settings)
-(require 'misc-hacks)
+(mapc
+ 'require 
+ '(cl
+   basic-settings
+   misc-hacks
+   ; keybindings
+   system
+   plugin-settings
+   org-settings)
+)
 
-;;
-;; Load system specific settings 
-(cond 
- ((eq system-type 'windows-nt) (load-library "nt"))
- ((eq system-type 'gnu/linux) (load-library "linux"))
- ((eq system-type 'darwin) (load-library "osx"))
- (t (load-library "default")))
-(system-specific-setup)
-
-
-;;
-;; Load org mode settings
-(require 'orgsettings)
-
-;;
-;; Surround mode
-(require 'surround)
-(global-surround-mode 1)
 
 ;;
 ;; Use color scheme clues
 ;(load-theme 'clues t)
-(set-face-font
- 'mode-line "-apple-Inconsolata-medium-normal-normal-*-15-*-*-*-m-0-iso10646-1")
-
-;;
-;; Ido-mode
-;; (ido-mode)
 
 ;; (custom-set-faces
 ;;  '(ido-subdir ((t (:foreground "#ccccaa"))))      

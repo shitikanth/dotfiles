@@ -778,8 +778,8 @@ if g:Tex_PromptedEnvironments != ''
 				let second = '$$'
 			endif
 		else
-			let first = '\\begin{' . a:env . '}'
-			let second = '\\end{' . a:env . '}'
+			let first = '\begin{' . a:env . '}'
+			let second = '\end{' . a:env . '}'
 		endif
 
 		if b:DoubleDollars == 0

@@ -1,16 +1,54 @@
+
+snippet %% "Separator"
+`!p snip.rv=72*'%'`
+endsnippet
+
 snippet %%% "Latex comment block"
 `!p l=72; w=len(t[1]); x=(l-w-2)/2; y=l-x-w-2; snip.rv=l*'%'` 
 %`!p snip.rv=x*" ";`${1:comment}`!p snip.rv=y*" ";`%
 `!p snip.rv=l*'%'`
 endsnippet
 
-snippet left "\left( \right)"
+snippet left "\left( ... \right)"
 \left${1:(} ${2} \right`!p 
 d = dict(zip("({[",")}]")); key=t[1];
 snip.rv = d[key] if key in d else key` <++>
 endsnippet
 
-snippet $ "\( formula\) <++>"
+snippet emp "\emph{ ... }"
+\emph{$0} <++>
+endsnippet
+
+snippet item "Itemize" b
+\begin{itemize}
+\item $0
+\end{itemize}
+endsnippet
+
+snippet ifdraft "macros for drafts"
+\newif\ifdraft\drafttrue
+
+\ifdraft
+\overfullrule3pt
+\fi
+endsnippet
+
+snippet $ "\( ... \) <++>"
 \( ${1:formula} \) <++>
+endsnippet
+
+snippet "b(egin)?" "\begin{} / \end{}" br
+\begin{${1:environment}}
+\end{$1}`!p snip.rv = "" if t[1]=='document' else "\n<++>"`
+endsnippet
+
+snippet usep "\usepackage{...}"
+\usepackage{${1:package-list}}
+<++>
+endsnippet
+
+snippet "bibl(liography)?" "\bibliography{...}" br
+\bibliography{${1:`!p snip.rv = snip.fn.split('.')[0]`}}
+\bibliographystyle{${2:alpha}}
 endsnippet
 

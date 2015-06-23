@@ -25,12 +25,6 @@
 [submodule "vimfiles/bundle/fugitive"]
 	path = vimfiles/bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive
-[submodule "vimfiles/bundle/snipmate"]
-	path = vimfiles/bundle/snipmate
-	url = https://github.com/msanders/snipmate.vim.git
-[submodule "vimfiles/bundle/syntastic"]
-	path = vimfiles/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic
 [submodule "vimfiles/bundle/vim-javascript"]
 	path = vimfiles/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
@@ -43,9 +37,6 @@
 [submodule "vimfiles/bundle/command-t"]
 	path = vimfiles/bundle/command-t
 	url = https://github.com/wincent/Command-T.git
-[submodule "vimfiles/bundle/ycm"]
-	path = vimfiles/bundle/ycm
-	url = https://github.com/Valloric/YouCompleteMe
 [submodule "vimfiles/bundle/vim-ruby"]
 	path = vimfiles/bundle/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby
@@ -57,13 +48,12 @@
 	url = https://github.com/scrooloose/nerdcommenter.git
 [submodule "vimfiles/bundle/vim-surround"]
 	path = vimfiles/bundle/vim-surround
-	url = https://github.com/tpope/vim-surround.git
+    url = https://github.com/tpope/vim-surround.git
+    branch = master
 [submodule ".org"]
 	path = .org
-	url = git@github.com:shitikanth/org/
-[submodule "vimfiles/bundle/flatui"]
-	path = vimfiles/bundle/flatui
-	url = https://github.com/john2x/flatui.vim.git
+    url = git@github.com:shitikanth/org
+    branch = 2015_summer
 [submodule "vimfiles/bundle/bclear"]
 	path = vimfiles/bundle/bclear
 	url = https://github.com/vim-scripts/bclear.git
@@ -76,3 +66,42 @@
 [submodule "vimfiles/bundle/tabular"]
 	path = vimfiles/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
+[submodule "vimfiles/bundle/vim2hs"]
+	path = vimfiles/bundle/vim2hs
+	url = https://github.com/dag/vim2hs.git
+[submodule "vimfiles/bundle/emmet-vim"]
+	path = vimfiles/bundle/emmet-vim
+	url = https://github.com/mattn/emmet-vim.git
+[submodule "vimfiles/bundle/vimproc"]
+	path = vimfiles/bundle/vimproc
+	url = https://github.com/Shougo/vimproc.vim.git
+[submodule "vimfiles/bundle/syntastic"]
+	path = vimfiles/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "vimfiles/bundle/ghcmod-vim"]
+	path = vimfiles/bundle/ghcmod-vim
+	url = https://github.com/eagletmt/ghcmod-vim
+[submodule "vimfiles/bundle/ycm"]
+	path = vimfiles/bundle/ycm
+	url = https://github.com/Valloric/YouCompleteMe
+[submodule "vimfiles/bundle/ack"]
+	path = vimfiles/bundle/ack
+	url = https://github.com/mileszs/ack.vim
+[submodule "vimfiles/bundle/ctrlp"]
+	path = vimfiles/bundle/ctrlp
+	url = https://github.com/kien/ctrlp.vim
+[submodule "vimfiles/bundle/python-mode"]
+	path = vimfiles/bundle/python-mode
+	url = git://github.com/klen/python-mode.git
+[submodule "vimfiles/bundle/neco-ghc"]
+	path = vimfiles/bundle/neco-ghc
+	url = https://github.com/eagletmt/neco-ghc.git
+[submodule "vimfiles/bundle/vim-markdown"]
+	path = vimfiles/bundle/vim-markdown
+    url = https://github.com/plasticboy/vim-markdown.git
+[submodule ".oh-my-zsh"]
+	path = .oh-my-zsh
+	url = git://github.com/robbyrussell/oh-my-zsh.git
+[submodule "vimfiles/bundle/vim-airline"]
+	path = vimfiles/bundle/vim-airline
+	url = https://github.com/bling/vim-airline
