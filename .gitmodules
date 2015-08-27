@@ -105,3 +105,6 @@
 [submodule "vimfiles/bundle/vim-airline"]
 	path = vimfiles/bundle/vim-airline
 	url = https://github.com/bling/vim-airline
+[submodule "vimfiles/bundle/vim-go"]
+	path = vimfiles/bundle/vim-go
+	url = https://github.com/fatih/vim-go.git

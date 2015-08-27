@@ -4,7 +4,7 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbi
 PHP_AUTOCONF="/usr/local/bin/autoconf"
 export PATH=/usr/local/sbin:$PATH
 export PATH="$HOME/Library/Haskell/bin:$PATH"
-export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/.bin:$HOME/local/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 
 if [[ `uname -s` = Darwin ]]
