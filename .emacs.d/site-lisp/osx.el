@@ -13,6 +13,7 @@
    )
   (aquamacs-autoface-mode -1)
   (tabbar-mode -1)
+  (tool-bar-mode -1)
   (one-buffer-one-frame-mode -1)
   (set-face-attribute 'echo-area nil :family 'unspecified)  ; show echo area in Monaco
   (set-face-attribute 'mode-line nil :inherit 'unspecified) ; show modeline in Monaco

@@ -5,6 +5,7 @@ PHP_AUTOCONF="/usr/local/bin/autoconf"
 export PATH=/usr/local/sbin:$PATH
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/.gem/ruby/2.0.0/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 
 if [[ `uname -s` = Darwin ]]

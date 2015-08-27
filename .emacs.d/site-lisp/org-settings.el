@@ -8,6 +8,8 @@
 ;;
 
 (provide 'org-settings)
+
+(require 'org)
 (require 'org-install)
 
 
@@ -90,6 +92,9 @@
         ("IMPORTANT" :foreground "red" :weight bold)
         ))
 
+;; Enable Habits
+(add-to-list 'org-modules 'org-habit)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Org-mode contrib
@@ -119,10 +124,10 @@
 (setq org-log-done t)
 
 ;(setq org-agenda-show-all-dates t)
-(setq org-agenda-sorting-strategy
-      '((agenda habit-down time-up user-defined-up priority-down effort-up category-keep)
-              (todo priority-down)
-              (tags priority-down)))
+;(setq org-agenda-sorting-strategy
+;      '((agenda habit-down time-up priority-down effort-up category-keep)
+;              (todo priority-down)
+;              (tags priority-down)))
 
 (setq org-agenda-time-grid 
       '((daily require-timed)

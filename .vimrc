@@ -97,7 +97,7 @@ set autoread
 "
 
 " shortcuts {{{
-nmap <leader>ev ;e $MYVIMRC<CR>zi
+nmap <leader>ev ;tabe $MYVIMRC<CR>zi
 nmap <leader>lv ;so $MYVIMRC<CR>zi
 nmap <silent> <leader>lcd ;cd %:h<CR>
 nmap <silent> <leader>s :set spell!<CRo
@@ -135,11 +135,17 @@ nmap <silent> <leader>/ ;nohlsearch<CR>
 
 " shortcut for switching between source/header files
 map <leader>a ;A<cr>
+
+" insert mode shortcuts
+imap <c-j> <down>
+imap <c-k> <up>
+imap <c-h> <left>
+imap <c-l> <right>
 " }}}
 " filetype specific settings
 autocmd filetype c,cpp setl foldmethod=syntax
 " clean whitespace before save
-autocmd fileType c,cpp,java,php,tex,haskell,python,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd fileType asm,c,cpp,java,php,tex,haskell,python,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
 autocmd filetype tex,html,haskell,ruby setl sw=2
 autocmd FileType lhaskell setlocal formatoptions+=ro
 " good indentation in C++
@@ -212,6 +218,7 @@ au BufEnter * exec "inoremap <silent> "
    \. g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-e>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " let g:UltiSnipsExpandTrigger="<tab>"
 " let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -247,7 +254,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_shell = "/bin/bash" 
+let g:syntastic_shell = "/bin/bash"
 
 " c.vim cvim
 
@@ -276,6 +283,8 @@ let g:necoghc_enable_detailed_browse = 1
 let g:CommandTFileScanner = 'find'
 let g:CommandTTraverseSCM = 'pwd'
 let g:CommandTMaxCachedDirectories = 3
+
+" Tabular  
 " }}}
 " Awesome Macros {{{
 
