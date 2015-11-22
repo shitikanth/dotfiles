@@ -47,19 +47,9 @@ set encoding=utf-8
 set pastetoggle=<F2>
 
 "Load plugins
+"disable some plugins for faster speedup
+let g:pathogen_disabled = ['ycm']
 execute pathogen#infect()
-
-"}}}
-" Things to do if on windows {{{
-
-if has('win32') || has('win64')
-  set shell=powershell
-  set shellcmdflag=-command
-  set shellpipe=>
-  set shellredir=>
-  set bs=2
-  set shellslash
-endif
 
 "}}}
 " {{{ Intermediate
@@ -70,7 +60,7 @@ set wildmenu
 set showcmd
 set showmode
 set ls=2
-set wildignore=*.swp,*.bak,*.pyc,*.o,*.log,*.out,
+set wildignore=*.swp,*.bak,*.pyc,*.o,*.out,
                \*.pdf,*.aux,*.dvi,*.pdfsync,*.synctex,
                \.git/*,**/.git/*,_darcs/*,**/_darcs/*,**/.metadata/*
 
@@ -97,16 +87,16 @@ set autoread
 "
 
 " shortcuts {{{
-nmap <leader>ev ;tabe $MYVIMRC<CR>zi
-nmap <leader>lv ;so $MYVIMRC<CR>zi
-nmap <silent> <leader>lcd ;cd %:h<CR>
+" swap ; and : for fast access to command-line
+nnoremap ; :
+" nnoremap : ; " this breaks some plugins
+" vmap ; :
+nmap <leader>ev :tabe $MYVIMRC<CR>zi
+nmap <leader>lv :so $MYVIMRC<CR>zi
+nmap <silent> <leader>lcd :cd %:h<CR>
 nmap <silent> <leader>s :set spell!<CRo
 " allow normal use of "," by pressing it twice
 nnoremap ,, ,
-" swap ; and : for fast access to command-line
-nnoremap ; :
-nnoremap : ;
-vmap ; :
 vmap Q gq
 nmap Q gqap
 " nnoremap j gj
@@ -124,6 +114,9 @@ map <leader>bd ;bunload<cr>
 " Close all the buffers
 map <leader>ba ;1,1000 bd!<cr>
 
+" Break a line in normal mode
+nnoremap <NL> i<CR><ESC>
+
 " Useful mappings for managing tabs
 map <leader>tn ;tabnew<cr>
 map <leader>to ;tabonly<cr>
@@ -133,7 +126,7 @@ map <leader>tm ;tabmove<space>
 " clear highlighted search
 nmap <silent> <leader>/ ;nohlsearch<CR>
 
-" shortcut for switching between source/header files
+" shortcut for switching between source/header files using a.vim
 map <leader>a ;A<cr>
 
 " insert mode shortcuts
@@ -143,14 +136,14 @@ imap <c-h> <left>
 imap <c-l> <right>
 " }}}
 " filetype specific settings
-autocmd filetype c,cpp setl foldmethod=syntax
+autocmd filetype c,cpp,go setl foldmethod=syntax
 " clean whitespace before save
 autocmd fileType asm,c,cpp,java,php,tex,haskell,python,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
 autocmd filetype tex,html,haskell,ruby setl sw=2
 autocmd FileType lhaskell setlocal formatoptions+=ro
 " good indentation in C++
 autocmd filetype c,cpp setl cino=(0,
-autocmd filetype c,cpp set formatoptions-=ro
+" autocmd filetype c,cpp set formatoptions-=ro
 
 " mark whitespace
 set list
@@ -214,9 +207,10 @@ function! g:UltiSnips_Complete()
     return ""
 endfunction
 
+let g:UltiSnipsExpandTrigger="<Tab>"
 au BufEnter * exec "inoremap <silent> "
    \. g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-e>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
@@ -251,7 +245,7 @@ noremap <silent> <Leader>e :Errors<CR>
 noremap <Leader>s :SyntasticToggleMode<CR>
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_shell = "/bin/bash"
@@ -284,7 +278,7 @@ let g:CommandTFileScanner = 'find'
 let g:CommandTTraverseSCM = 'pwd'
 let g:CommandTMaxCachedDirectories = 3
 
-" Tabular  
+" Tabular
 " }}}
 " Awesome Macros {{{
 
@@ -319,3 +313,15 @@ else
 endif
 
 " }}}
+" Things to do if on windows {{{
+
+if has('win32') || has('win64')
+  set shell=powershell
+  set shellcmdflag=-command
+  set shellpipe=>
+  set shellredir=>
+  set bs=2
+  set shellslash
+endif
+
+"}}}
