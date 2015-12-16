@@ -1,4 +1,4 @@
-ZSH_THEME="wezm+"
+ZSH_THEME="kennethreitz"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -83,3 +83,5 @@ source ~/.bashrc.functions
 source ~/.aliases
 alias reload='source ~/.zshrc'
 alias zrc='vim ~/.zshrc'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
