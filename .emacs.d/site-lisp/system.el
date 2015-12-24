@@ -1,6 +1,6 @@
 
-; Load system-specific library and setup system-specific things that 
-; must be setup before main setup 
+; Load system-specific library and setup system-specific things that
+; must be setup before main setup
 
 
 (cond ((eq system-type 'windows-nt) (load-library "nt"))
@@ -10,5 +10,4 @@
 
 
 (system-specific-setup)
-
 (provide 'system)

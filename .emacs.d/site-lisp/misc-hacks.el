@@ -3,7 +3,7 @@
 ;; Copyright (C) 2014  Shitikanth Kashyap
 
 ;; Author: Shitikanth Kashyap <shitikanth1@gmail.com>
-;; Keywords: 
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -68,7 +68,7 @@ the character typed."
     ;; from the screen height (for panels, menubars and
     ;; whatnot), then divide by the height of a char to
     ;; get the height we want
-    (add-to-list 'default-frame-alist 
+    (add-to-list 'default-frame-alist
          (cons 'height (/ (- (x-display-pixel-height) 200)
                              (frame-char-height)))))))
 
@@ -111,6 +111,3 @@ the character typed."
 
 (provide 'misc-hacks)
 ;;; misc-hacks.el ends here
-
-
-

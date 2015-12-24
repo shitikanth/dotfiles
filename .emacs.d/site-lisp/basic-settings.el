@@ -4,5 +4,7 @@
 (defvar autosave-dir (expand-file-name "~/.emacs.d/autosave/"))
 (setq auto-save-list-file-prefix autosave-dir)
 
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 (provide 'basic-settings)
 ;;; basic-settings.el ends here

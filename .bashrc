@@ -35,3 +35,5 @@ set -o ignoreeof
 # Specific for OSX
 
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

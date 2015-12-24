@@ -16,7 +16,7 @@
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
 ;(message "orgsettings: set agenda files")
-(setq org-agenda-files 
+(setq org-agenda-files
       (list "~/.org/work.org"
             "~/.org/research.org"
             "~/.org/personal.org"
@@ -25,15 +25,49 @@
 
 (setq org-default-notes-file "~/.org/notes.org")
 
+
+; http://www.andrew.cmu.edu/user/cgliu/howto.html
+(setq org-publish-project-alist
+      '(("www"
+         :components ("www-org" "www-static"))
+        ("www-org"
+         :base-directory "~/www/org-src/"
+         :base-extension "org"
+         :publishing-directory "~/www"
+         :recursive t
+         :publishing-function org-html-publish-to-html
+         :section-numbers nil
+         :with-toc nil
+         :htmlized-source t
+         :auto-sitemap t
+         :html-preamble "<div id=\"header\" class=\"container\">
+  <h1 class=\"banner\"> Shitikanth Kashyap </h1>
+  <hr class=\"thin\">
+  <div class=\"navbar navbar-invert\" role=\"navigation\">
+  <ul id=\"menu\" class=\"nav navbar-nav navbar-center\">
+    <li><a href=\"/\">About me</a></li>
+    <li><a href=\"/research.html\">Research</a></li>
+    <li><a href=\"/blog/\">Blog</a></li>
+  </ul>
+  </div>
+</div>"
+         :html-postamble nil)
+        ("www-static"
+         :base-directory "~/www/org-src/"
+         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|otf"
+         :publishing-directory "~/www"
+         :recursive t
+         :publishing-function org-publish-attachment)))
+
+(setq org-html-htmlize-output-type 'css)
 (setq org-file-apps
       '((auto-mode . emacs)
 	("\\.mm\\'" . default)
 	("\\.x?html?\\'" . default)
 	("\\.pdf\\'" . "/Applications/Skim.app/Contents/MacOS/Skim %s")))
 
-
-;(message "orgsettings: set todo keywords")
-(setq org-todo-keywords 
+;(MESSAGE "orgsettings: set todo keywords")
+(setq org-todo-keywords
   '((sequence "TODO(t!)" "STARTED(z!)" "NEXT(n!)" "|" "DONE(d!/!)")
     (sequence "WAITING(w@/!)" "MAYBE(m!)" "SOMEDAY(s!)" "|" "CANCELLED(c@/!)")
     ;(sequence "QUOTE(q!)" "QUOTED(Q!)" "|" "APPROVED(A@)" "EXPIRED(E@)" "REJECTED(R@)")
@@ -59,7 +93,7 @@
               ("CLOSED"    :foreground "#758837"      :weight bold))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 
+;;
 ;; Tags
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -100,7 +134,7 @@
 ;; Org-mode contrib
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- 
+
 (require 'org-checklist)
 
 ;; Google calendar sync
@@ -129,7 +163,7 @@
 ;              (todo priority-down)
 ;              (tags priority-down)))
 
-(setq org-agenda-time-grid 
+(setq org-agenda-time-grid
       '((daily require-timed)
         "--------------------"
         (800 1000 1200 1400 1600 1800 2000 2200)))
@@ -141,7 +175,7 @@
                       (org-deadline-warning-days 31)
                       (org-agenda-entry-types '(:deadline))))
           ))
-        
+
 ))
 
 (setq org-stuck-projects
@@ -152,10 +186,10 @@
   "Identical search to `org-match-sparse-tree', but shows the content of the matches."
   (interactive "P")
   (org-prepare-agenda-buffers (list (current-buffer)))
-  (org-overview) 
-  (org-remove-occur-highlights) 
-  (org-scan-tags '(progn (org-show-entry) 
-                         (org-show-context)) 
+  (org-overview)
+  (org-remove-occur-highlights)
+  (org-scan-tags '(progn (org-show-entry)
+                         (org-show-context))
                  (cdr (org-make-tags-matcher match)) todo-only))
 
 (global-set-key (kbd "<f9> m") 'org-tag-match-context)
@@ -180,8 +214,8 @@
         ("" "fixltx2e" t)
         ("" "graphicx" t)
         "\\tolerance=1000"))
-      
-(setq org-latex-classes 
+
+(setq org-latex-classes
 '(("article" "\\documentclass[11pt]{article}"
   ("\\section{%s}" . "\\section*{%s}")
   ("\\subsection{%s}" . "\\subsection*{%s}")
@@ -201,12 +235,12 @@
   ("\\subsection{%s}" . "\\subsection*{%s}")
   ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))))
 
-(add-to-list 
+(add-to-list
  'org-latex-classes
  '("org-article"
    "\\documentclass{article}
 [NO-DEFAULT-PACKAGES]
-[PACKAGES] 
+[PACKAGES]
 [EXTRA]"
     ("\\section{%s}" . "\\section*{%s}")
     ("\\subsection{%s}" . "\\subsection*{%s}")
@@ -214,7 +248,7 @@
     ("\\paragraph{%s}" . "\\paragraph*{%s}")
     ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-(add-to-list 
+(add-to-list
  'org-latex-classes
  '("org-math"
    "\\documentclass[11pt]{article}
@@ -472,4 +506,3 @@ the default task."
 
 
 (setq org-treat-S-cursor-todo-selection-as-state-change nil)
-

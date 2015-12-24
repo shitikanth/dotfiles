@@ -47,10 +47,11 @@ set encoding=utf-8
 set pastetoggle=<F2>
 
 "Load plugins
-"disable some plugins for faster speedup
-let g:pathogen_disabled = ['ycm']
+if !has("gui_running")
+    "disable some plugins inside terminal for faster load times
+    let g:pathogen_disabled = ['ycm']
+endif
 execute pathogen#infect()
-
 "}}}
 " {{{ Intermediate
 
@@ -157,7 +158,7 @@ set exrc
 " Plugin specific settings {{{
 " eventually move most of these to ftplugin
 
-" latex-suite
+" latex-suite {{{
 let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat='pdf'
 "let g:Tex_CompileRule_pdf =
@@ -184,8 +185,8 @@ let g:Tex_FoldedEnvironments =
 
 let g:Tex_FoldedSections=
    \"part,chapter,bibliography,section,subsection,subsubsection,paragraph"
-
-" Ultisnips
+" }}}
+" Ultisnips {{{
 
 
 " UltiSnips completion function that tries to expand a snippet. If there's no
@@ -219,6 +220,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " let g:UltiSnipsListTrigger="<c-l>"
 "
+"}}}
 
 " this mapping Enter key to <C-y> to chose the current highlight item
 " and close the selection list, same as other IDEs.
@@ -236,6 +238,7 @@ noremap <Leader>g :GhcModType<CR>
 
 " syntastic
 
+let g:syntastic_c_compiler_options = ' -std=gnu99'
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_checkers = ['gcc']
