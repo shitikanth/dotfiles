@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ -z $WALLPAPERS ]; then
+    WALLPAPERS=~/.wallpapers
+fi
+
+pushd $WALLPAPERS > /dev/null
+find . -not -path '*/\.*' | shuf -n 1 | xargs -I % sh -c 'feh --bg-max %; echo % > ~/.change-wallpaper.log'
+popd > /dev/null
