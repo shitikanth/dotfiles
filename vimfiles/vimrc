@@ -28,13 +28,6 @@ set timeoutlen=300
 set foldenable
 set foldmethod=marker
 
-"Turn on syntax highlighting, auto-indentation
-filetype plugin on
-syntax on
-set smartindent
-set autoindent
-filetype indent on
-
 "disable search highlights
 set nohls
 
@@ -46,14 +39,29 @@ set encoding=utf-8
 "Paste after F2
 set pastetoggle=<F2>
 
+"}}}
+" {{{ Intermediate
+"keep setup simple if vim launched in restricted mode
+silent! call writefile([], '')
+let isRestricted = (v:errmsg =~# '^E145:')
+if isRestricted
+    finish
+endif
+
 "Load plugins
 if !has("gui_running")
     "disable some plugins inside terminal for faster load times
-    let g:pathogen_disabled = ['ycm']
+    let g:pathogen_disabled = ['ycm', 'vim-airline', 'nerdtree', 'vim2hs', 'nerd-commenter', 'python-mode']
 endif
 execute pathogen#infect()
-"}}}
-" {{{ Intermediate
+
+"Turn on syntax highlighting, auto-indentation
+filetype plugin on
+syntax on
+set smartindent
+set autoindent
+filetype indent on
+
 
 "Better command-line completion
 set wildmenu
@@ -157,35 +165,6 @@ set exrc
 " }}}
 " Plugin specific settings {{{
 " eventually move most of these to ftplugin
-
-" latex-suite {{{
-let g:tex_flavor='latex'
-let g:Tex_DefaultTargetFormat='pdf'
-"let g:Tex_CompileRule_pdf =
-"   \'pdflatex -synctex=-1 -src-specials -interaction=nonstopmode $*'
-let g:Tex_CompileRule_pdf = 'latexmk -pdf $*'
-let g:Tex_ViewRule_pdf = 'Skim'
-"let g:Tex_ViewRule_pdf =
-"   \'/Applications/Skim.app/Contents/SharedSupport/displayline %l %f'
-"let g:Tex_TreatMacViewerAsUNIX = 1
-"let g:Tex_ViewRule_pdf =
-"   \'SumatraPDF -reuse-instance -inverse-search
-"   \"gvim --servername LaTeX -c \":RemoteOpen +\%l \%f\" --remote-silent"'
-let g:Tex_IgnoredWarnings ='
-   \"Underfull\n".
-   \"Overfull\n".
-   \"specifier changed to\n".
-   \"You have requested\n".
-   \"Missing number, treated as zero.\n".
-   \"There were undefined references\n".
-   \"Citation %.%# undefined\n".'
-
-let g:Tex_FoldedEnvironments =
-   \"proof,prop,lem,cor,verbatim,comment,eq,gather,align,figure,table,thebibliography,keywords,abstract,titlepage"
-
-let g:Tex_FoldedSections=
-   \"part,chapter,bibliography,section,subsection,subsubsection,paragraph"
-" }}}
 " Ultisnips {{{
 
 
@@ -226,16 +205,9 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " and close the selection list, same as other IDEs.
 " CONFLICT with some plugins like tpope/Endwise
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Haskell
-" let g:haddock_browser="firefox"
-" let g:haddock_docdir="/usr/share/doc/ghc/html/"
 
-noremap <Leader>g :GhcModType<CR>
-
-"if has("gui_running")
-"  let g:haskell_conceal_wide = 1
-"end
-
+" Enable just for html/css
+autocmd FileType html,css EmmetInstall
 " syntastic
 
 let g:syntastic_c_compiler_options = ' -std=gnu99'
@@ -260,8 +232,6 @@ let g:syntastic_shell = "/bin/bash"
 
 " shortcut to generate ctags
 set ofu=syntaxcomplete#Complete
-noremap <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-set tags+=~/.vim/tags/cpp
 
 " NERDTree
 let g:NERDTreeDirArrows=0

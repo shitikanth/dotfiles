@@ -1,4 +1,10 @@
 
+" Haskell
+" let g:haddock_browser="firefox"
+" let g:haddock_docdir="/usr/share/doc/ghc/html/"
+
+noremap <Leader>g :GhcModType<CR>
+
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
 
 setlocal omnifunc=necoghc#omnifunc
