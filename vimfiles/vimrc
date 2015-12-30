@@ -49,9 +49,10 @@ if isRestricted
 endif
 
 "Load plugins
+let g:pathogen_disabled = ['command-t']
 if !has("gui_running")
     "disable some plugins inside terminal for faster load times
-    let g:pathogen_disabled = ['ycm', 'vim-airline', 'nerdtree', 'vim2hs', 'nerd-commenter', 'python-mode']
+    let g:pathogen_disabled = g:pathogen_disabled + ['ycm', 'vim-airline', 'nerdtree', 'vim2hs', 'nerd-commenter', 'python-mode']
 endif
 execute pathogen#infect()
 
@@ -81,29 +82,16 @@ set wildignore=*.swp,*.bak,*.pyc,*.o,*.out,
 "Automatically read files changed on disk
 set autoread
 
-" allow command line editing like emacs
-" cnoremap <C-A> <Home>
-" cnoremap <C-B> <Left>
-" cnoremap <C-E> <End>
-" cnoremap <C-F> <Right>
-" cnoremap <C-N> <End>
-" cnoremap <C-P> <Up>
-" cnoremap <ESC>b <S-Left>
-" cnoremap <ESC><C-B> <S-Left>
-" cnoremap <ESC>f <S-Right>
-" cnoremap <ESC><C-F> <S-Right>
-" cnoremap <ESC><C-H> <C-W>
-"
-
 " shortcuts {{{
 " swap ; and : for fast access to command-line
 nnoremap ; :
 " nnoremap : ; " this breaks some plugins
 " vmap ; :
 nmap <leader>ev :tabe $MYVIMRC<CR>zi
-nmap <leader>lv :so $MYVIMRC<CR>zi
-nmap <silent> <leader>lcd :cd %:h<CR>
-nmap <silent> <leader>s :set spell!<CRo
+nmap <leader>lv :so $MYVIMRC<CR>
+nmap <silent> <leader>cd :cd %:h<CR>
+nmap <silent> <leader>lcd :lcd %:h<CR>
+nmap <silent> <leader>s :set spell!<CR>
 " allow normal use of "," by pressing it twice
 nnoremap ,, ,
 vmap Q gq
@@ -119,8 +107,13 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
 " Close current buffer
+map <leader>bc ;close<cr>
+if has('gui_running')
+    map <C-z> ;close<cr>
+endif
+" Delete current buffer
 map <leader>bd ;bunload<cr>
-" Close all the buffers
+" Delete all the buffers
 map <leader>ba ;1,1000 bd!<cr>
 
 " Break a line in normal mode
@@ -139,10 +132,10 @@ nmap <silent> <leader>/ ;nohlsearch<CR>
 map <leader>a ;A<cr>
 
 " insert mode shortcuts
-imap <c-j> <down>
-imap <c-k> <up>
-imap <c-h> <left>
-imap <c-l> <right>
+" imap <c-j> <down>
+" imap <c-k> <up>
+" imap <c-h> <left>
+" imap <c-l> <right>
 " }}}
 " filetype specific settings
 autocmd filetype c,cpp,go setl foldmethod=syntax
@@ -225,12 +218,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_shell = "/bin/bash"
 
-" c.vim cvim
-
-
-" omnicppcomplete
-
-" shortcut to generate ctags
 set ofu=syntaxcomplete#Complete
 
 " NERDTree
@@ -247,9 +234,9 @@ let g:ycm_key_invoke_completion = '<C-Space>'
 let g:necoghc_enable_detailed_browse = 1
 
 " Command-t command-t commandt
-let g:CommandTFileScanner = 'find'
-let g:CommandTTraverseSCM = 'pwd'
-let g:CommandTMaxCachedDirectories = 3
+" let g:CommandTFileScanner = 'find'
+" let g:CommandTTraverseSCM = 'pwd'
+" let g:CommandTMaxCachedDirectories = 3
 
 " Tabular
 " }}}
@@ -273,13 +260,13 @@ map <leader>ul yyp<c-v>$r
 
 set t_Co=256
 if has("gui_running")
-  colo bclear
+  colo wombat256mod
   if has("gui_gtk2")
     set guifont=Inconsolata\ 10
   elseif has("gui_win32")
     set guifont=Consolas:h11:cANSI
   elseif has("gui_macvim")
-    set guifont=Inconsolata:h15
+    set guifont=Monaco:h11
   endif
 else
   colo ir_black

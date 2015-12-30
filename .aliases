@@ -34,6 +34,8 @@ alias back='cd "$OLDPWD"'
 alias cu='cd ..'
 alias r='reload'
 alias b='back'
+alias vimr='vim --remote-silent'
+alias vimrt='vim --remote-tab-silent'
 
 # Mis-spelled commands
 alias gvb='gdb'
