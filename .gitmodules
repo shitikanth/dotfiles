@@ -111,3 +111,6 @@
 [submodule "vimfiles/bundle/a.vim"]
 	path = vimfiles/bundle/a.vim
 	url = https://github.com/vim-scripts/a.vim.git
+[submodule "vimfiles/bundle/vim-slime"]
+	path = vimfiles/bundle/vim-slime
+	url = https://github.com/jpalardy/vim-slime.git

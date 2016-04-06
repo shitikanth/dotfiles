@@ -36,6 +36,7 @@ alias r='reload'
 alias b='back'
 alias vimr='vim --remote-silent'
 alias vimrt='vim --remote-tab-silent'
+alias c++11='g++-5 -std=c++11'
 
 # Mis-spelled commands
 alias gvb='gdb'

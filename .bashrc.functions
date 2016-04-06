@@ -36,7 +36,6 @@ function cl () {
   cd "$@" && la;
 }
 
-
 man() {
     env \
     LESS_TERMCAP_mb=$(printf "\e[1;36m") \
