@@ -1,0 +1,10 @@
+#!/bin/sh
+
+tmux new-session -d 'vim'
+tmux split-window -h -p 40 'top -o -cpu'
+tmux split-window -b -p 25
+tmux clock-mode
+tmux select-pane -t 0
+tmux new-window 'weechat'
+tmux -2 attach-session -d 
+tmux rename-window -t 0 'home'
