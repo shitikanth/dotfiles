@@ -68,3 +68,7 @@
     (set-face-background 'default "unspecified-bg" (selected-frame))))
 
 (add-hook 'window-setup-hook 'on-after-init)
+
+;; start server if not running
+(require 'server)
+(unless (server-running-p) (server-start))
