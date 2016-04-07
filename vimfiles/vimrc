@@ -1,4 +1,4 @@
-source vimrc.tiny
+source ~/.vim/rcfiles/tiny
 " {{{ Intermediate
 
 "Load plugins {{{
