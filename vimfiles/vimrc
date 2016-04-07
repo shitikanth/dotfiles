@@ -212,7 +212,7 @@ if has("gui_running")
     set guifont=Monaco:h11
   endif
 else
-  colo wombat256mod
+  colo distinguished
 endif
 
 " }}}
