@@ -1,0 +1,16 @@
+SOUNDFONT="$HOME/play/soundfonts/FluidR3 GM2-2.SF2"
+
+if [ -e "$SOUNDFONT" ]
+then 
+    for i in "$@"
+    do 
+        if [ -e "$i" ]
+        then
+            (fluidsynth -i "$SOUNDFONT" "$i"  2>&1) >/dev/null
+        else
+            echo "[playmidi]: cannot find file at $i"   
+        fi
+    done
+else
+    echo "[playmidi]: SOUNDFONT file not found at $SOUNDFONT"
+fi  
