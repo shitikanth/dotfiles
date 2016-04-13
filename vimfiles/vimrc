@@ -172,6 +172,7 @@ let g:NERDTreeDirArrows=0
 let NERDSpaceDelims=1
 
 " YouCompleteMe ycm youcompleteme
+let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_key_invoke_completion = '<C-Space>'
 
@@ -215,6 +216,245 @@ else
   colo distinguished
 endif
 
+augroup PreviewOnBottom
+    autocmd InsertEnter * set splitbelow
+    autocmd InsertLeave * set splitbelow!
+augroup END
+source ~/.vim/rcfiles/tiny
+" {{{ Intermediate
+
+"Load plugins {{{
+"unless vim launched in restricted mode, in which case ignore rest of vimrc
+silent! call writefile([], '')
+let isRestricted = (v:errmsg =~# '^E145:')
+if isRestricted
+    finish
+endif
+
+let g:pathogen_disabled = ['command-t']
+if !has("gui_running")
+    "disable some plugins inside terminal for faster load times
+    let g:pathogen_disabled = g:pathogen_disabled + ['ycm', 'vim-airline', 'nerdtree', 'vim2hs', 'nerd-commenter', 'python-mode']
+endif
+execute pathogen#infect()
+" }}}
+"Turn on syntax highlighting, auto-indentation {{{
+filetype plugin on
+syntax on
+set smartindent
+set autoindent
+filetype indent on
+" }}}
+"Better command-line completion {{{
+set wildmenu
+set wildmode=list:longest
+set showcmd
+set showmode
+set ls=2
+set wildignore=*.swp,*.bak,*.pyc,*.o,*.out,
+               \*.pdf,*.aux,*.dvi,*.pdfsync,*.synctex,
+               \.git/*,**/.git/*,_darcs/*,**/_darcs/*,**/.metadata/*
+" }}}
+" shortcuts keybindings keymaps {{{
+" swap ; and : for fast access to command-line
+nnoremap ; :
+" nnoremap : ; " this breaks some plugins
+" vmap ; :
+nmap <leader>ev :tabe $MYVIMRC<CR>zi
+nmap <leader>lv :so $MYVIMRC<CR>
+nmap <silent> <leader>cd :cd %:h<CR>
+nmap <silent> <leader>lcd :lcd %:h<CR>
+nmap <silent> <leader>s :set spell!<CR>
+" allow normal use of "," by pressing it twice
+nnoremap ,, ,
+vmap Q gq
+nmap Q gqap
+" nnoremap j gj
+" nnoremap k gk
+ca Q q
+ca WQ wq
+ca Wq wq
+
+" refresh folds with <Space>
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+
+" Close current buffer
+map <leader>bc ;close<cr>
+if has('gui_running')
+    map <C-z> ;close<cr>
+endif
+" Delete current buffer
+map <leader>bd ;bdelete<cr>
+" Delete all the buffers
+map <leader>ba ;1,1000 bd!<cr>
+
+" Break a line in normal mode
+nnoremap <NL> i<CR><ESC>
+
+" Useful mappings for managing tabs
+map <leader>tn ;tabnew<cr>
+map <leader>to ;tabonly<cr>
+map <leader>tc ;tabclose<cr>
+map <leader>tm ;tabmove<space>
+
+" clear highlighted search
+nmap <silent> <leader>/ ;nohlsearch<CR>
+
+" shortcut for switching between source/header files using a.vim
+map <leader>a ;A<cr>
+
+" insert mode shortcuts
+" imap <c-j> <down>
+" imap <c-k> <up>
+" imap <c-h> <left>
+" imap <c-l> <right>
+" }}}
+" filetype specific settings {{{
+" clean whitespace before save
+autocmd fileType asm,c,cpp,java,php,tex,haskell,python,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd filetype tex,html,haskell,ruby setl sw=2
+" good indentation in C++
+" }}}
+
+" }}}
+" Plugin specific settings {{{
+
+" CtrlP ctrlp ctrl-p {{{
+nnoremap <C-x><C-f> :CtrlP<cr>
+nnoremap <C-x><C-b> :CtrlPBuffer<cr>
+" }}}
+" Slime slime {{{
+let g:slime_target = "tmux"
+let g:slime_python_ipython = 1
+map <C-c><C-l> <Plug>SlimeLineSend
+" }}}
+" Ultisnips {{{
+
+
+" UltiSnips completion function that tries to expand a snippet. If there's no
+" snippet for expanding, it checks for completion window and if it's
+" shown, selects first element. If there's no completion window it tries to
+" jump to next placeholder. If there's no placeholder it just returns TAB key
+function! g:UltiSnips_Complete()
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips#JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
+
+au BufEnter * exec "inoremap <silent> "
+   \. g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-e>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" let g:UltiSnipsListTrigger="<c-l>"
+"
+"}}}
+
+" enable Emmet just for html/css
+autocmd FileType html,css EmmetInstall
+
+" syntastic {{{
+
+let g:syntastic_c_compiler_options = ' -std=gnu99'
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_checkers = ['gcc']
+let g:syntastic_tex_checkers    = ['chktex']
+let g:syntastic_haskell_checkers =['hlint']
+noremap <silent> <Leader>e :Errors<CR>
+noremap <Leader>s :SyntasticToggleMode<CR>
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_shell = "/bin/bash"
+
+" }}} 
+
+set ofu=syntaxcomplete#Complete
+
+" NERDTree
+let g:NERDTreeDirArrows=0
+
+" NERDCommenter
+let NERDSpaceDelims=1
+
+" YouCompleteMe ycm youcompleteme
+let g:ycm_server_python_interpreter = '/usr/bin/python'
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_key_invoke_completion = '<C-Space>'
+
+" Neco-ghc neco-ghc
+let g:necoghc_enable_detailed_browse = 1
+
+" Command-t command-t commandt
+" let g:CommandTFileScanner = 'find'
+" let g:CommandTTraverseSCM = 'pwd'
+" let g:CommandTMaxCachedDirectories = 3
+
+" }}}
+" Awesome Macros {{{
+
+cmap w!! w !sudo tee % >/dev/null
+imap <F3> <F2><C-R>+<F2>
+nmap <F3> o<F2><C-R>+<F2><Esc>
+function! WriteCreatingDirs()
+  execute ':silent !mkdir -p %:h'
+  write
+endfunction
+command! W call WriteCreatingDirs()
+map <leader>i magg=G`azz
+map <leader>d :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
+" underline
+map <leader>ul yyp<c-v>$r
+" }}}
+"set Font and Color scheme {{{
+
+set t_Co=256
+if has("gui_running")
+  colo wombat256mod
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ 10
+  elseif has("gui_win32")
+    set guifont=Consolas:h11:cANSI
+  elseif has("gui_macvim")
+    set guifont=Monaco:h11
+  endif
+else
+  colo distinguished
+endif
+
+augroup PreviewOnBottom
+    autocmd InsertEnter * set splitbelow
+    autocmd InsertLeave * set splitbelow!
+augroup END
+" }}}
+" Things to do if on windows {{{
+
+if has('win32') || has('win64')
+  set shell=powershell
+  set shellcmdflag=-command
+  set shellpipe=>
+  set shellredir=>
+  set bs=2
+  set shellslash
+endif
+
+"}}}
 " }}}
 " Things to do if on windows {{{
 

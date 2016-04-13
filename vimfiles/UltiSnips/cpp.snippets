@@ -43,23 +43,50 @@ int inv(int x, int p = MOD) {
     int phi = p-1;
     return pow(x, phi-1, p);
 }
-
 endsnippet
 snippet __topcoder_primes
-    vector<int> primes;
-    // generate_primes upto n
-    void generate_primes(int n) {
-        primes.push_back(2);
-        int s = (n-1)/2;
-        bool flags[s];
-        fill_n(flags, s, true);
-        for(int i=3; i*i <= n; i+=2)
-            if (flags[(i-3)/2])
-                for(int j=i; i*j <= n; j+=2)
-                    flags[(i*j - 3)/2] = false;
-        for(int i=0; i<s; i++)
-            if(flags[i])
-                primes.push_back(2*i+3);
+vector<int> primes;
+// generate_primes upto n
+void generate_primes(int n) {
+    primes.push_back(2);
+    int s = (n-1)/2;
+    bool flags[s];
+    fill_n(flags, s, true);
+    for(int i=3; i*i <= n; i+=2)
+        if (flags[(i-3)/2])
+            for(int j=i; i*j <= n; j+=2)
+                flags[(i*j - 3)/2] = false;
+    for(int i=0; i<s; i++)
+        if(flags[i])
+            primes.push_back(2*i+3);
+}
+bool is_prime(int n) {
+    if (n == 1) return false;
+    for(int p: primes) {
+        if (p*p >= n) return true;
+        if (n % p == 0) return false;
+    }
+    return true;
+}
+endsnippet
+snippet __topcoder_median
+    int median(vector<int> x) {
+        sort(ALL(x));
+        int n = x.size();
+        int mid = n/2;
+        if (n%2 == 1) return x[mid];
+        return (x[mid]+x[mid-1])/2;
+    }
+endsnippet
+snippet __topcoder_tree
+    int n;
+    VVI tree;
+    void gen_tree(const vector<int>& parent) {
+        n = parent.size()+1;
+        tree = VVI(n);
+        REP(i, n-1) {
+            tree[parent[i]].push_back(i+1);
+        }
     }
 endsnippet
 snippet __codejam

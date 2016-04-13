@@ -36,7 +36,8 @@ alias b='back'
 alias vimr='vim --remote-silent'
 alias vimrt='vim --remote-tab-silent'
 alias ec='emacsclient --nw -c'
-alias c++11='g++-5 -std=c++11'
+alias c++11='clang++ -std=c++11'
+alias cpp='c++11 -g'
 
 # Mis-spelled commands
 alias gvb='gdb'
