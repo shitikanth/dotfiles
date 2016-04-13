@@ -147,7 +147,7 @@ autocmd FileType html,css EmmetInstall
 " syntastic {{{
 
 let g:syntastic_c_compiler_options = ' -std=gnu99'
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
+let g:syntastic_cpp_compiler_options = ''
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_checkers = ['gcc']
 let g:syntastic_tex_checkers    = ['chktex']
