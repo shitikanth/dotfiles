@@ -1,0 +1,103 @@
+snippet __topcoder
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class ${1:`!p snip.rv = snip.basename or "ClassName"`}{
+public:
+    ${2};
+};
+
+$1::$2 {
+    ${0}
+}
+endsnippet
+snippet __topcoder_modular
+const int MOD = 1000000007;
+int mul(int x, int y, int m = MOD) {
+    long long pro = x;
+    pro *= y;
+    return (int)(pro % m);
+}
+int add(int x, int y, int m = MOD) {
+    long long sum = x;
+    sum += y;
+    return (int)(sum % m);
+}
+int pow(int a, int n, int m = MOD) {
+    int ans = 1;
+    int a_pow = a;
+    while(n > 0) {
+        if(n%2) {
+            ans = mul(ans, a_pow, m);
+        }
+        n >>= 1;
+        a_pow = mul(a_pow, a_pow, m);
+    }
+    return ans;
+}
+int inv(int x, int p = MOD) {
+    // assume that p is prime
+    int phi = p-1;
+    return pow(x, phi-1, p);
+}
+
+endsnippet
+snippet __topcoder_primes
+    vector<int> primes;
+    // generate_primes upto n
+    void generate_primes(int n) {
+        primes.push_back(2);
+        int s = (n-1)/2;
+        bool flags[s];
+        fill_n(flags, s, true);
+        for(int i=3; i*i <= n; i+=2)
+            if (flags[(i-3)/2])
+                for(int j=i; i*j <= n; j+=2)
+                    flags[(i*j - 3)/2] = false;
+        for(int i=0; i<s; i++)
+            if(flags[i])
+                primes.push_back(2*i+3);
+    }
+endsnippet
+snippet __codejam
+#include <cstdio>
+
+#define getcx getchar_unlocked
+#define min(a,b) (a<b?a:b)
+
+using namespace std;
+
+typedef long long LL;
+typedef unsigned long long ULL;
+
+inline void inp(int &n){
+    n=0;
+    int ch=getcx(); int sign=1;
+    while(ch<'0'||ch>'9'){
+        if(ch=='-')
+            sign=-1;
+        ch=getcx();
+    }
+    while(ch>='0'&&ch<='9'){
+        n=(n<<3)+(n<<1)+ch-'0';
+        ch=getcx();
+    }
+    n=n*sign;
+}
+
+void solve(int t) {
+    printf ("Case #%d: ", t);
+    ${1}
+}
+int main() {
+    int T;
+    inp(T);
+    for(int t; t<T; t++) solve(t);
+}
+endsnippet
+snippet beginend "$1.begin(), $1.end() (beginend)" w
+${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}begin(), $1${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}end()
+endsnippet

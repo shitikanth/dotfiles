@@ -1,109 +1,48 @@
-"Basic settings {{{
-
-set nocompatible
-let mapleader=","
-
-"Tab behaviour
-set sw=4
-set tabstop=4
-set expandtab
-
-"Backspace behaviour
-set backspace=indent,eol,start
-
-set nobackup
-set noswapfile
-
-set mouse=a
-set incsearch
-set showmatch
-set hlsearch
-set hidden
-set history=1000
-set undolevels=1000
-
-set timeout
-set timeoutlen=300
-
-set foldenable
-set foldmethod=marker
-
-"disable search highlights
-set nohls
-
-set ruler
-set textwidth=78
-set visualbell
-set guioptions=m
-set encoding=utf-8
-"Paste after F2
-set pastetoggle=<F2>
-
-"}}}
+source ~/.vim/rcfiles/tiny
 " {{{ Intermediate
-"keep setup simple if vim launched in restricted mode
+
+"Load plugins {{{
+"unless vim launched in restricted mode, in which case ignore rest of vimrc
 silent! call writefile([], '')
 let isRestricted = (v:errmsg =~# '^E145:')
 if isRestricted
     finish
 endif
 
-"Load plugins
+let g:pathogen_disabled = ['command-t']
 if !has("gui_running")
     "disable some plugins inside terminal for faster load times
-    let g:pathogen_disabled = ['ycm', 'vim-airline', 'nerdtree', 'vim2hs', 'nerd-commenter', 'python-mode']
+    let g:pathogen_disabled = g:pathogen_disabled + ['ycm', 'vim-airline', 'nerdtree', 'vim2hs', 'nerd-commenter', 'python-mode']
 endif
 execute pathogen#infect()
-
-"Turn on syntax highlighting, auto-indentation
+" }}}
+"Turn on syntax highlighting, auto-indentation {{{
 filetype plugin on
 syntax on
 set smartindent
 set autoindent
 filetype indent on
-
-
-"Better command-line completion
+" }}}
+"Better command-line completion {{{
 set wildmenu
-"set wildmode=list:longest
+set wildmode=list:longest
 set showcmd
 set showmode
 set ls=2
 set wildignore=*.swp,*.bak,*.pyc,*.o,*.out,
                \*.pdf,*.aux,*.dvi,*.pdfsync,*.synctex,
                \.git/*,**/.git/*,_darcs/*,**/_darcs/*,**/.metadata/*
-
-"Interactive shell
-"Cons- Enabling this will force vim to suspend after any external command.
-"Pros- You get to use your aliases etc from !
-" set shellcmdflag=-ic
-
-"Automatically read files changed on disk
-set autoread
-
-" allow command line editing like emacs
-" cnoremap <C-A> <Home>
-" cnoremap <C-B> <Left>
-" cnoremap <C-E> <End>
-" cnoremap <C-F> <Right>
-" cnoremap <C-N> <End>
-" cnoremap <C-P> <Up>
-" cnoremap <ESC>b <S-Left>
-" cnoremap <ESC><C-B> <S-Left>
-" cnoremap <ESC>f <S-Right>
-" cnoremap <ESC><C-F> <S-Right>
-" cnoremap <ESC><C-H> <C-W>
-"
-
-" shortcuts {{{
+" }}}
+" shortcuts keybindings keymaps {{{
 " swap ; and : for fast access to command-line
 nnoremap ; :
 " nnoremap : ; " this breaks some plugins
 " vmap ; :
 nmap <leader>ev :tabe $MYVIMRC<CR>zi
-nmap <leader>lv :so $MYVIMRC<CR>zi
-nmap <silent> <leader>lcd :cd %:h<CR>
-nmap <silent> <leader>s :set spell!<CRo
+nmap <leader>lv :so $MYVIMRC<CR>
+nmap <silent> <leader>cd :cd %:h<CR>
+nmap <silent> <leader>lcd :lcd %:h<CR>
+nmap <silent> <leader>s :set spell!<CR>
 " allow normal use of "," by pressing it twice
 nnoremap ,, ,
 vmap Q gq
@@ -119,8 +58,13 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
 " Close current buffer
-map <leader>bd ;bunload<cr>
-" Close all the buffers
+map <leader>bc ;close<cr>
+if has('gui_running')
+    map <C-z> ;close<cr>
+endif
+" Delete current buffer
+map <leader>bd ;bdelete<cr>
+" Delete all the buffers
 map <leader>ba ;1,1000 bd!<cr>
 
 " Break a line in normal mode
@@ -139,32 +83,30 @@ nmap <silent> <leader>/ ;nohlsearch<CR>
 map <leader>a ;A<cr>
 
 " insert mode shortcuts
-imap <c-j> <down>
-imap <c-k> <up>
-imap <c-h> <left>
-imap <c-l> <right>
+" imap <c-j> <down>
+" imap <c-k> <up>
+" imap <c-h> <left>
+" imap <c-l> <right>
 " }}}
-" filetype specific settings
-autocmd filetype c,cpp,go setl foldmethod=syntax
+" filetype specific settings {{{
 " clean whitespace before save
 autocmd fileType asm,c,cpp,java,php,tex,haskell,python,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
 autocmd filetype tex,html,haskell,ruby setl sw=2
-autocmd FileType lhaskell setlocal formatoptions+=ro
 " good indentation in C++
-autocmd filetype c,cpp setl cino=(0,
-" autocmd filetype c,cpp set formatoptions-=ro
+" }}}
 
-" mark whitespace
-set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
-
-" spell checking
-
-" exrc : load .vimrc from any folder you run vim from
-set exrc
 " }}}
 " Plugin specific settings {{{
-" eventually move most of these to ftplugin
+
+" CtrlP ctrlp ctrl-p {{{
+nnoremap <C-x><C-f> :CtrlP<cr>
+nnoremap <C-x><C-b> :CtrlPBuffer<cr>
+" }}}
+" Slime slime {{{
+let g:slime_target = "tmux"
+let g:slime_python_ipython = 1
+map <C-c><C-l> <Plug>SlimeLineSend
+" }}}
 " Ultisnips {{{
 
 
@@ -187,28 +129,22 @@ function! g:UltiSnips_Complete()
     return ""
 endfunction
 
-let g:UltiSnipsExpandTrigger="<Tab>"
 au BufEnter * exec "inoremap <silent> "
    \. g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-e>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
 " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " let g:UltiSnipsListTrigger="<c-l>"
 "
 "}}}
 
-" this mapping Enter key to <C-y> to chose the current highlight item
-" and close the selection list, same as other IDEs.
-" CONFLICT with some plugins like tpope/Endwise
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Enable just for html/css
+" enable Emmet just for html/css
 autocmd FileType html,css EmmetInstall
-" syntastic
+
+" syntastic {{{
 
 let g:syntastic_c_compiler_options = ' -std=gnu99'
 let g:syntastic_cpp_compiler_options = ''
@@ -225,12 +161,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_shell = "/bin/bash"
 
-" c.vim cvim
+" }}} 
 
-
-" omnicppcomplete
-
-" shortcut to generate ctags
 set ofu=syntaxcomplete#Complete
 
 " NERDTree
@@ -247,11 +179,10 @@ let g:ycm_key_invoke_completion = '<C-Space>'
 let g:necoghc_enable_detailed_browse = 1
 
 " Command-t command-t commandt
-let g:CommandTFileScanner = 'find'
-let g:CommandTTraverseSCM = 'pwd'
-let g:CommandTMaxCachedDirectories = 3
+" let g:CommandTFileScanner = 'find'
+" let g:CommandTTraverseSCM = 'pwd'
+" let g:CommandTMaxCachedDirectories = 3
 
-" Tabular
 " }}}
 " Awesome Macros {{{
 
@@ -264,7 +195,6 @@ function! WriteCreatingDirs()
 endfunction
 command! W call WriteCreatingDirs()
 map <leader>i magg=G`azz
-map <leader>gu ggi#ifndef
 map <leader>d :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 " underline
 map <leader>ul yyp<c-v>$r
@@ -273,16 +203,16 @@ map <leader>ul yyp<c-v>$r
 
 set t_Co=256
 if has("gui_running")
-  colo bclear
+  colo wombat256mod
   if has("gui_gtk2")
     set guifont=Inconsolata\ 10
   elseif has("gui_win32")
     set guifont=Consolas:h11:cANSI
   elseif has("gui_macvim")
-    set guifont=Inconsolata:h15
+    set guifont=Monaco:h11
   endif
 else
-  colo ir_black
+  colo distinguished
 endif
 
 " }}}

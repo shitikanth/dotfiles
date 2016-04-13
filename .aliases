@@ -7,7 +7,6 @@ alias wee='weechat-curses'
 #     alias ls='ls --color=auto'
 # fi
 alias cp='cp -iv'
-alias python='python2.7'
 alias cal='cal -3'
 alias sudo='sudo -E'
 alias reboot="sudo shutdown -r now"
@@ -34,6 +33,10 @@ alias back='cd "$OLDPWD"'
 alias cu='cd ..'
 alias r='reload'
 alias b='back'
+alias vimr='vim --remote-silent'
+alias vimrt='vim --remote-tab-silent'
+alias ec='emacsclient --nw -c'
+alias c++11='g++-5 -std=c++11'
 
 # Mis-spelled commands
 alias gvb='gdb'
