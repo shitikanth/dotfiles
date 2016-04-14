@@ -50,10 +50,6 @@
 	path = vimfiles/bundle/vim-surround
     url = https://github.com/tpope/vim-surround.git
     branch = master
-[submodule ".org"]
-	path = .org
-    url = git@github.com:shitikanth/org
-    branch = 2015_summer
 [submodule "vimfiles/bundle/bclear"]
 	path = vimfiles/bundle/bclear
 	url = https://github.com/vim-scripts/bclear.git
@@ -114,3 +110,6 @@
 [submodule "vimfiles/bundle/vim-slime"]
 	path = vimfiles/bundle/vim-slime
 	url = https://github.com/jpalardy/vim-slime.git
+[submodule ".org"]
+	path = .org
+	url = ssh://git@github.com/shitikanth/org.git
