@@ -599,7 +599,7 @@ class StdBitsetPrinter:
             tsize = wtype.target ().sizeof
         else:
             words = [words]
-            tsize = wtype.sizeof 
+            tsize = wtype.sizeof
 
         nwords = wtype.sizeof / tsize
         result = []
@@ -733,7 +733,7 @@ class Tr1HashtableIterator(Iterator):
             self.node = self.buckets[self.bucket]
             if self.node:
                 break
-            self.bucket = self.bucket + 1        
+            self.bucket = self.bucket + 1
 
     def __iter__ (self):
         return self
@@ -834,7 +834,7 @@ class Tr1UnorderedMapPrinter:
         data = self.flatten (imap (self.format_one, StdHashtableIterator (self.hashtable())))
         # Zip the two iterators together.
         return izip (counter, data)
-        
+
 
     def display_hint (self):
         return 'map'
