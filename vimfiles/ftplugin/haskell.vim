@@ -1,7 +1,10 @@
 
 " Haskell
-" let g:haddock_browser="firefox"
-" let g:haddock_docdir="/usr/share/doc/ghc/html/"
+
+" List of plugins used for Haskell and their functions
+"   1. ghc-mod  : display type information, errors/warnings
+"   2. neco-ghc : auto-completion
+"   3. vim2hs   : syntax highlighting, hpaste, unicode conceals
 
 noremap <Leader>g :GhcModType<CR>
 
@@ -23,3 +26,8 @@ endfunction
 nnoremap <buffer> <leader>h k/import<CR>"0d$:call append(haskell#FindImportPosition(),@0)<CR>
 
 setlocal iskeyword=@,48-57,_,'
+
+" automatically keep the tags file up to date
+" NOTE: Disabling because makes file save slow. Generate tags manually!
+" au BufWritePost *.hs            silent !init-tags %
+" au BufWritePost *.hsc           silent !init-tags %
