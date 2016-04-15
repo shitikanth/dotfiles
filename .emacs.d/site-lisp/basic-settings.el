@@ -6,5 +6,6 @@
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+(tool-bar-mode -1)
 (provide 'basic-settings)
 ;;; basic-settings.el ends here

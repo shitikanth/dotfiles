@@ -4,8 +4,15 @@
 ;; Use package manager
 (require 'package)
 (setq package-user-dir "~/.emacs.d/elpa")
-;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+(package-initialize)
+
+; fetch the list of packages available
+(unless package-archive-contents
+  (package-refresh-contents))
+
 
 ; List of packages I want to install automatically
 (setq package-list
@@ -17,12 +24,6 @@
 	evil
 	evil-surround
 	))
-
-(package-initialize)
-
-; fetch the list of packages available
-(unless package-archive-contents
-  (package-refresh-contents))
 
 ; install the missing packages
 (dolist (package package-list)

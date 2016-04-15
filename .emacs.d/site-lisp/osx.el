@@ -36,6 +36,8 @@
   ;; (add-to-list 'default-frame-alist
   ;;              '(font . "Inconsolata-14"))
 
+  (set-default-font "Monaco-11")
+
   (global-set-key (kbd "C-M-f") 'aquamacs-toggle-full-frame)
   (global-set-key (kbd "M-`") 'other-frame)
   (global-set-key (kbd "M-w") 'delete-frame)
