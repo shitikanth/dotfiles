@@ -1,10 +1,20 @@
-#!/bin/sh
+#!/bin/bash
+
+PLATFORM=`uname`
+USERNAME=`whoami`
+IRC_CLIENT='weechat'
+hash $IRC_CLIENT 2> /dev/null || IRC_CLIENT='irssi'
+
+TOP='top -o -cpu'
+if [[ $PLATFORM == "Linux" ]]
+then TOP='top -o +%CPU -u $USERNAME'
+fi
 
 tmux new-session -d 'vim'
-tmux split-window -h -p 40 'top -o -cpu'
-tmux split-window -b -p 25
+tmux split-window -h -p 40
 tmux clock-mode
+tmux split-window -p 75 "$TOP"
 tmux select-pane -t 0
-tmux new-window 'weechat'
+tmux new-window "$IRC_CLIENT"
 tmux -2 attach-session -d
 tmux rename-window -t 0 'home'
