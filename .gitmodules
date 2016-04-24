@@ -34,9 +34,6 @@
 [submodule "vimfiles/bundle/vim-snippets"]
 	path = vimfiles/bundle/vim-snippets
 	url = https://github.com/honza/vim-snippets
-[submodule "vimfiles/bundle/command-t"]
-	path = vimfiles/bundle/command-t
-	url = https://github.com/wincent/Command-T.git
 [submodule "vimfiles/bundle/vim-ruby"]
 	path = vimfiles/bundle/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby
