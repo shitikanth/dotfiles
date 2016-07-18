@@ -10,11 +10,16 @@ if [[ $PLATFORM == "Linux" ]]
 then TOP='top -o +%CPU -u $USERNAME'
 fi
 
-tmux new-session -d 'vim'
-tmux split-window -h -p 40
-tmux clock-mode
-tmux split-window -p 75 "$TOP"
-tmux select-pane -t 0
-tmux new-window "$IRC_CLIENT"
-tmux -2 attach-session -d
-tmux rename-window -t 0 'home'
+start_tmux_session () {
+    tmux new-session -s dev-tmux -d 'vim'
+    tmux split-window -h -p 40
+    tmux clock-mode
+    tmux split-window -p 75 "$TOP"
+    tmux setw monitor-activity off
+    tmux select-pane -t 0
+    tmux new-window "$IRC_CLIENT"
+    tmux -2 attach-session -d
+    tmux rename-window -t 0 'home'
+}
+
+tmux attach -t dev-tmux || start_tmux_session

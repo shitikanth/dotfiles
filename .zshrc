@@ -1,4 +1,10 @@
-ZSH_THEME="kennethreitz"
+#ZSH_THEME="kennethreitz"
+#ZSH_THEME="miloshadzic"
+#ZSH_THEME="superjarin"
+ZSH_THEME="pmcgee"
+#ZSH_THEME="edvardm"
+#ZSH_THEME="robbyrussell"
+#ZSH_THEME=mh
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -46,8 +52,8 @@ plugins=(git)
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-# export MANPATH="/usr/local/man:$MANPATH"
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 

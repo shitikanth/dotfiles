@@ -89,6 +89,14 @@ snippet __topcoder_tree
         }
     }
 endsnippet
+snippet __topcoder_prefix_sum
+VVI prefix_sum(n+1,VI(m+1,0));
+REP(i, n) REP(j, m) {
+	int cur = chocolate[i][j]-'0';
+	prefix_sum[i+1][j+1] = cur + prefix_sum[i][j+1] +
+	prefix_sum[i+1][j] - prefix_sum[i][j];
+}
+endsnippet
 snippet __codejam
 #include <cstdio>
 
@@ -123,6 +131,22 @@ int main() {
     int T;
     inp(T);
     for(int t; t<T; t++) solve(t);
+}
+endsnippet
+snippet __codechef
+#include<iostream>
+#include<vector>
+#include<string>
+#include<set>
+
+using namespace std;
+
+int main() {
+	int T;
+	cin >> T;
+	while(T--) {
+		${1}
+	}
 }
 endsnippet
 snippet beginend "$1.begin(), $1.end() (beginend)" w
