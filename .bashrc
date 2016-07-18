@@ -4,7 +4,6 @@
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
-# [[ $- != *i* ]] && return
 
 PS1='\h:\w\$ '
 OS='uname -s'
@@ -15,8 +14,6 @@ source ~/.aliases
 # Useful functions
 source ~/.bashrc.functions
 
-export PATH=/usr/local/mysql/bin:$PATH
-export CPLUS_INCLUDE_PATH=/usr/local/UnitTest
 export EDITOR=vim
 export TERM=xterm-256color
 
@@ -31,8 +28,6 @@ shopt -q -s extglob
 shopt -s histappend
 # Disable [CTRL-D] which is used to exit the shell
 set -o ignoreeof
-
-# Specific for OSX
 
 
 

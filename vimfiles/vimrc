@@ -1,4 +1,4 @@
-source ~/.vim/rcfiles/tiny
+source ~/.vim/rcfiles/tiny.vim
 " {{{ Intermediate
 
 "Load plugins {{{
@@ -12,7 +12,7 @@ endif
 let g:pathogen_disabled = ['command-t']
 if !has("gui_running")
     "disable some plugins inside terminal for faster load times
-    let g:pathogen_disabled = g:pathogen_disabled + ['ycm', 'vim-airline', 'nerdtree', 'vim2hs', 'nerd-commenter', 'python-mode']
+    let g:pathogen_disabled = g:pathogen_disabled + ['ycm', 'vim-airline', 'nerdtree', 'vim2hs', 'nerd-commenter']
 endif
 execute pathogen#infect()
 " }}}
@@ -101,6 +101,7 @@ autocmd filetype tex,html,haskell,ruby setl sw=2
 " CtrlP ctrlp ctrl-p {{{
 nnoremap <C-x><C-f> :CtrlP<cr>
 nnoremap <C-x><C-b> :CtrlPBuffer<cr>
+nnoremap <C-x>b     :CtrlPBuffer<cr>
 " }}}
 " Slime slime {{{
 let g:slime_target = "tmux"
@@ -184,6 +185,10 @@ let g:necoghc_enable_detailed_browse = 1
 " let g:CommandTTraverseSCM = 'pwd'
 " let g:CommandTMaxCachedDirectories = 3
 
+" Ack
+if executable('ag')
+    let g:ackprg = "ag --vimgrep --ignore tags"
+endif
 " }}}
 " Awesome Macros {{{
 
@@ -213,7 +218,7 @@ if has("gui_running")
     set guifont=Monaco:h11
   endif
 else
-  colo distinguished
+  colo ir_black
 endif
 
 augroup PreviewOnBottom

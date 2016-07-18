@@ -1,14 +1,14 @@
-"Basic settings {{{
+"basic settings {{{
 
 set nocompatible
 let mapleader=","
 
-"Tab behaviour
+"tab behaviour
 set sw=4
 set tabstop=4
 set expandtab
 
-"Backspace behaviour
+"backspace behaviour
 set backspace=indent,eol,start
 
 set nobackup
@@ -34,13 +34,13 @@ set visualbell
 set guioptions=m
 set encoding=utf-8
 
-"Paste after F2
+"paste after f2
 set pastetoggle=<F2>
 
-"Automatically read files changed on disk
+"automatically read files changed on disk
 set autoread
 
-" mark whitespace
+"mark whitespace
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 

@@ -1,4 +1,6 @@
 ;;; basic-settings.el --- My basic customizations and settings
+(setq user-full-name "Shitikanth Kashyap")
+(setq user-mail-address "shitikanth1@gmail.com")
 
 (setq make-backup-files nil) ; stop creating ~ files
 (defvar autosave-dir (expand-file-name "~/.emacs.d/autosave/"))
@@ -7,5 +9,6 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (tool-bar-mode -1)
+
 (provide 'basic-settings)
 ;;; basic-settings.el ends here

@@ -1,3 +1,4 @@
+
 (provide 'plugin-settings)
 
 ;;
@@ -6,30 +7,32 @@
 (setq package-user-dir "~/.emacs.d/elpa")
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-
 (package-initialize)
 
-; fetch the list of packages available
-(unless package-archive-contents
-  (package-refresh-contents))
-
-
-; List of packages I want to install automatically
+;; List of packages I want to install automatically
 (setq package-list
       '(helm
 	auctex
-	color-theme
 	org-plus-contrib
 	undo-tree
 	evil
 	evil-surround
 	))
 
-; install the missing packages
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
+(require 'cl-lib)
+;; check if all packages are installed already
+(defun packages-installed-p ()
+  (cl-loop for pkg in package-list
+        when (not (package-installed-p pkg)) do (cl-return nil)
+        finally (cl-return t)))
 
+;; install the missing packages
+(unless (packages-installed-p)
+  (message "%s" "Refreshing package database...")
+  (package-refresh-contents)
+  (dolist (package package-list)
+    (unless (package-installed-p package)
+      (package-install package))))
 ;;
 ;; Package settings
 
@@ -69,6 +72,17 @@
     (set-face-background 'default "unspecified-bg" (selected-frame))))
 
 (add-hook 'window-setup-hook 'on-after-init)
+
+
+;; Gnus
+(setq gnus-select-method '(nntp "news.gwene.org"))
+
+;; w3m
+(eval-after-load "w3m-search"
+        '(add-to-list 'w3m-search-engine-alist
+                      '("Qt Docs"
+                        "http://doc.qt.io/qt-5/search-results.html?q=%s"
+                        nil)))
 
 ;; start server if not running
 (require 'server)
