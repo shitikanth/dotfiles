@@ -44,4 +44,7 @@ set autoread
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
+"enable project specific rc files
+set exrc
+set secure
 "}}}
