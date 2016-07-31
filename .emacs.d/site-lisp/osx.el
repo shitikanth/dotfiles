@@ -33,10 +33,8 @@
   (add-to-list 'exec-path "/usr/local/bin/")
   (add-to-list 'exec-path "~/.cabal/bin/")
 
-  ;; (add-to-list 'default-frame-alist
-  ;;              '(font . "Inconsolata-14"))
-
-  (set-default-font "DejaVuSans-13")
+  (add-to-list 'default-frame-alist
+               '(font . "Source Code Pro-13"))
 
   (global-set-key (kbd "C-M-f") 'aquamacs-toggle-full-frame)
   (global-set-key (kbd "M-`") 'other-frame)
