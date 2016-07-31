@@ -1,0 +1,22 @@
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+[user]
+    email = shitikanth1@gmail.com
+	name = Shitikanth Kashyap
+[pager]
+    status = true
+[core]
+	autocrlf = input
+[color]
+	ui = auto
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
