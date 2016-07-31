@@ -43,7 +43,7 @@ the character typed."
   (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
     ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
     (t                    (self-insert-command (or arg 1))) ))
-(global-set-key (kbd "C-%") `goto-match-paren)
+(global-set-key (kbd "C-%") 'goto-match-paren)
 
 
 (defun toggle-fullscreen ()
@@ -52,7 +52,7 @@ the character typed."
   (set-frame-parameter
      nil 'fullscreen
      (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
-
+(global-set-key (kbd "M-F") 'toggle-fullscreen)
 
 (defun set-frame-size-according-to-resolution ()
   (interactive)
