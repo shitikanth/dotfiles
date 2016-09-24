@@ -71,6 +71,13 @@ source $ZSH/oh-my-zsh.sh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 
+# History settings
+
+export HISTSIZE=200000
+export SAVEHIST=$HISTSIZE
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+
 # Load my functions
 source ~/.bashrc.functions
 
