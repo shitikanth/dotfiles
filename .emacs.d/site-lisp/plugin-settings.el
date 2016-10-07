@@ -1,4 +1,3 @@
-
 (provide 'plugin-settings)
 
 ;;
@@ -23,8 +22,8 @@
 ;; check if all packages are installed already
 (defun packages-installed-p ()
   (cl-loop for pkg in package-list
-        when (not (package-installed-p pkg)) do (cl-return nil)
-        finally (cl-return t)))
+	   when (not (package-installed-p pkg)) do (cl-return nil)
+	   finally (cl-return t)))
 
 ;; install the missing packages
 (unless (packages-installed-p)
@@ -36,7 +35,7 @@
 ;;
 ;; Package settings
 
-; Load Paredit automatically
+;; Load Paredit automatically
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
 (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
@@ -75,14 +74,49 @@
 
 
 ;; Gnus
-(setq gnus-select-method '(nntp "news.gwene.org"))
 
+(setq gnus-select-method '(nntp "news.gmane.org"))
 ;; w3m
+(setq w3m-user-agent "Mozilla/5.0 (Linux; U; Android 2.3.3; zh-tw; HTC_Pyramid Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.")
+(setq w3m-home-page "http://en.m.wikipedia.org")
+(setq w3m-default-display-inline-images t)
 (eval-after-load "w3m-search"
-        '(add-to-list 'w3m-search-engine-alist
-                      '("Qt Docs"
-                        "http://doc.qt.io/qt-5/search-results.html?q=%s"
-                        nil)))
+  '(progn (add-to-list 'w3m-search-engine-alist
+		       '("Qt Docs"
+			 "http://doc.qt.io/qt-5/search-results.html?q=%s"
+			 nil))
+	  (add-to-list 'w3m-uri-replace-alist
+		       '("\\`wi:" w3m-search-uri-replace "en.wikipedia"))
+	  (add-to-list 'w3m-search-engine-alist
+		       '("DuckDuckGo"
+			 "https://duckduckgo.com/html/?q=%s"))
+	  (add-to-list 'w3m-uri-replace-alist
+		       '("\\`dd:" w3m-search-uri-replace "DuckDuckGo"))
+	  (setq w3m-search-default-engine "DuckDuckGo")))
+(setq w3m-content-type-alist
+      (quote
+       (("text/plain" "\\.\\(?:txt\\|tex\\|el\\)\\'" nil nil)
+	("text/html" "\\.s?html?\\'" browse-url nil)
+	("text/sgml" "\\.sgml?\\'" nil "text/plain")
+	("text/xml" "\\.xml\\'" nil "text/plain")
+	("image/jpeg" "\\.jpe?g\\'" nil nil)
+	("image/png" "\\.png\\'" nil nil)
+	("image/gif" "\\.gif\\'" nil nil)
+	("image/tiff" "\\.tif?f\\'" nil nil)
+	("image/x-xwd" "\\.xwd\\'" nil nil)
+	("image/x-xbm" "\\.xbm\\'" nil nil)
+	("image/x-xpm" "\\.xpm\\'" nil nil)
+	("image/x-bmp" "\\.bmp\\'" nil nil)
+	("video/mpeg" "\\.mpe?g\\'" nil nil)
+	("video/quicktime" "\\.mov\\'" nil nil)
+	("application/dvi" "\\.dvi\\'" nil nil)
+	("application/postscript" "\\.e?ps\\'" ("gs" file) nil)
+	("application/pdf" "\\.pdf\\'" nil nil)
+	("application/x-pdf" "\\.pdf\\'" nil nil)
+	("application/xml" "\\.xml\\'" nil w3m-detect-xml-type)
+	("application/rdf+xml" "\\.rdf\\'" nil "text/plain")
+	("application/rss+xml" "\\.rss\\'" nil "text/plain")
+	("application/xhtml+xml" nil nil "text/html"))))
 
 ;; start server if not running
 (require 'server)

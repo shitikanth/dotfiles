@@ -1,11 +1,11 @@
 #ZSH_THEME="kennethreitz"
-#ZSH_THEME="miloshadzic"
+#ZSH_THEME="pure"
 #ZSH_THEME="superjarin"
-ZSH_THEME="pmcgee"
 #ZSH_THEME="edvardm"
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME=mh
 
+ZSH_THEME="pmcgee"
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -48,7 +48,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z virtualenv)
+plugins=(z virtualenv)
 
 # User configuration
 
