@@ -74,8 +74,7 @@
 
 
 ;; Gnus
-
-(setq gnus-select-method '(nntp "news.gmane.org"))
+(setq gnus-select-method '(nntp "news.cs.uwaterloo.ca"))
 ;; w3m
 (setq w3m-user-agent "Mozilla/5.0 (Linux; U; Android 2.3.3; zh-tw; HTC_Pyramid Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.")
 (setq w3m-home-page "http://en.m.wikipedia.org")
