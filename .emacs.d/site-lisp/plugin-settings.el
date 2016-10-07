@@ -75,7 +75,7 @@
 
 
 ;; Gnus
-(setq gnus-select-method '(nntp "news.gwene.org"))
+(setq gnus-select-method '(nntp "news.cs.uwaterloo.ca"))
 
 ;; w3m
 (eval-after-load "w3m-search"
