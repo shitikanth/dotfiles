@@ -7,17 +7,21 @@ export PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.0.0/bin:$PATH"
 
 export GOPATH="$HOME/.go"
-if [[ -d $GOPATH ]]
-then export PATH="$GOPATH/bin:$PATH"
+if [ -d "$GOPATH" ]; then
+    export PATH="$GOPATH/bin:$PATH"
 fi
 
-if [ $HOST = "darwin" ]; then
+if [ -z "$HOST" ]; then
+    HOST=`hostname`
+fi
+
+if [ "$HOST" = "darwin" ]; then
     export PATH="$PATH:/usr/local/texlive/2016basic/bin/x86_64-darwin"
     export INFOPATH="$INFOPATH:/usr/local/texlive/2016basic/texmf-dist/doc/info"
     export MANPATH="$MANPATH:/usr/local/texlive/2016basic/texmf-dist/doc/man"
 fi
 
-if [ $HOST = "ubuntu1404-102" ]; then
+if [ "$HOST" = "ubuntu1404-102" ]; then
     export PATH="$HOME/.local/octave-xeon/bin:$PATH"
 fi
 

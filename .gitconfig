@@ -3,6 +3,7 @@
     ci = commit
     st = status
     br = branch
+    cm = commit -am
 [user]
     email = shitikanth1@gmail.com
 	name = Shitikanth Kashyap
