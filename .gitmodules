@@ -7,3 +7,6 @@
 [submodule ".org"]
 	path = .org
 	url = ssh://git@github.com/shitikanth/org.git
+[submodule "bundle/Vundle.vim"]
+	path = vimfiles/bundle/Vundle.vim
+	url = https://github.com/gmarik/Vundle.vim.git
