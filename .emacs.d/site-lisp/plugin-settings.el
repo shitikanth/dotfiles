@@ -16,6 +16,9 @@
 	undo-tree
 	evil
 	evil-surround
+	paredit
+	projectile
+	helm-projectile
 	))
 
 (require 'cl-lib)
@@ -32,18 +35,19 @@
   (dolist (package package-list)
     (unless (package-installed-p package)
       (package-install package))))
+
 ;;
 ;; Package settings
 
 ;; Load Paredit automatically
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
-(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
-(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
-(add-hook 'lisp-mode-hook             #'enable-paredit-mode)
-(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
-(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
-
+(when (require 'paredit nil :noerror)
+  (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+  (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+  (add-hook 'ielm-mode-hook             #'enable-paredit-mode)
+  (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
+  (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+  (add-hook 'scheme-mode-hook           #'enable-paredit-mode))
 
 ;; Surround mode
 (require 'evil-surround)
