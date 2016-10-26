@@ -9,12 +9,19 @@ if isRestricted
     finish
 endif
 
-let g:pathogen_disabled = ['command-t']
-if !has("gui_running")
-    "disable some plugins inside terminal for faster load times
-    let g:pathogen_disabled = g:pathogen_disabled + ['ycm', 'vim-airline', 'nerdtree', 'vim2hs', 'nerd-commenter']
-endif
-execute pathogen#infect()
+"Vundle Setup
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'godlygeek/tabular'
+Plugin 'Sirver/ultisnips'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'wesgibbs/vim-irblack'
+call vundle#end()
+filetype plugin indent on
 " }}}
 "Turn on syntax highlighting, auto-indentation {{{
 syntax on
