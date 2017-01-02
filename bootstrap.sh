@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-git pull origin master
+git pull origin migrate-to-vundle
 
 DIR=`pwd`
 

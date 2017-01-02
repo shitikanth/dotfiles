@@ -2,7 +2,7 @@
 	path = vimfiles/bundle/cvim
 	url = https://github.com/HenningM/cvim-pathogen.git
 [submodule ".oh-my-zsh"]
-	path = .oh-my-zsh
+	path = _oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh.git
 [submodule ".org"]
 	path = _org
