@@ -11,3 +11,5 @@ alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 alias gvim='mvim'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
+
+alias agc='ag --color'

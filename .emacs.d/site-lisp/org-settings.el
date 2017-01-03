@@ -241,7 +241,15 @@
    "\\documentclass{article}
 [NO-DEFAULT-PACKAGES]
 [PACKAGES]
-[EXTRA]"
+[EXTRA]
+
+\\setlength{\\topmargin}{0in}
+\\setlength{\\headheight}{0in}
+\\setlength{\\headsep}{0in}
+\\setlength{\\textheight}{8.9in}
+\\setlength{\\oddsidemargin}{0in}
+\\setlength{\\textwidth}{6.5in}"
+
     ("\\section{%s}" . "\\section*{%s}")
     ("\\subsection{%s}" . "\\subsection*{%s}")
     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
