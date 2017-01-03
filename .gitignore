@@ -1,8 +1,8 @@
 .netrwhist
-.emacs.d/elpa
-.emacs.d/autosave
-.emacs.d/auto-save-list
-.emacs.d/ido.last
-.emacs.d/url
+_emacs.d/elpa
+_emacs.d/autosave
+_emacs.d/auto-save-list
+_emacs.d/ido.last
+_emacs.d/url
 .\#*
 \#*\#
