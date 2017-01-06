@@ -20,7 +20,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'ctrlpvim/ctrlp.vim'
 if has('python') || has('python3')
     Plugin 'Sirver/ultisnips'
-    Plugin 'Valloric/YouCompleteMe'
+    "Plugin 'Valloric/YouCompleteMe'
 endif
 "colors
 Plugin 'wesgibbs/vim-irblack'
