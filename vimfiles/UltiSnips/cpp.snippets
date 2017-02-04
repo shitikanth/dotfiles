@@ -152,3 +152,29 @@ endsnippet
 snippet beginend "$1.begin(), $1.end() (beginend)" w
 ${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}begin(), $1${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}end()
 endsnippet
+snippet __hackerrank
+#include<iostream>
+#include<vector>
+#include<string>
+#include<set>
+using namespace std;
+
+using VI = vector<int>;
+using VVI = vector<vector<int>>;
+#define REP2(i, n) REP3(i, 0, n)
+#define REP3(i, m, n) for(int i= (int) (m); i<(int)(n); ++i)
+#define GET_REP(a, b, c, F, ... ) F
+#define REP( ... ) GET_REP(__VA_ARGS__, REP3, REP2)(__VA_ARGS__)
+#define FOR(e, c) for (auto &e : c)
+#define ALL(c) begin(c), end(c)
+
+int main() {
+	int T;
+	cin >> T;
+	for(int t=1; t<=T; t++) {
+		${1}
+
+		cout << "Case #" << t << ": " << ans << '\n';
+	}
+}
+endsnippet

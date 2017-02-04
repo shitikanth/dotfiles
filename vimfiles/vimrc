@@ -17,9 +17,16 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'godlygeek/tabular'
-Plugin 'Sirver/ultisnips'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+if has('python') || has('python3')
+    Plugin 'honza/vim-snippets'
+    Plugin 'Sirver/ultisnips'
+    "Plugin 'Valloric/YouCompleteMe'
+endif
+"colors
 Plugin 'wesgibbs/vim-irblack'
+Plugin 'lokaltog/vim-distinguished'
 call vundle#end()
 filetype plugin indent on
 " }}}
@@ -215,7 +222,7 @@ map <leader>ul yyp<c-v>$r
 
 set t_Co=256
 if has("gui_running")
-  colo wombat256mod
+  colo distinguished
   if has("gui_gtk2")
     set guifont=Inconsolata\ 10
   elseif has("gui_win32")

@@ -1,11 +1,19 @@
 #!/usr/bin/env bash
 
-git pull origin master
+git pull origin migrate-to-vundle
 
-DIR=`pwd`
+DIR=$(pwd)
+FIND=find
+
+
+if [ "$(uname -s)" = "Darwin" ]
+then FIND="gfind"
+fi
 
 function create_symlinks() {
-    for file_name in `ls -A | egrep -v '.git*|bootstrap.sh|tmp'`; do ln -s $DIR/$file_name ~; done
+  for file_name in $($FIND . -maxdepth 1 -name '_*' -printf '%f\n')
+  do ln -sTf $PWD/$file_name $HOME/$(echo $file_name | sed s/_/./1)
+  done
 }
 
 git submodule update --init --recursive

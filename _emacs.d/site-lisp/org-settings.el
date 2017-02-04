@@ -204,8 +204,7 @@
 ;(require 'org-latex)
 ;(message "loading org-mode latex settings")
 
-(setq org-latex-pdf-process (list "/usr/texbin/latexmk -pdf -outdir=%o %b"))
-
+(setq org-latex-pdf-process (list "latexmk -pdf -outdir=%o %b"))
 (setq org-latex-with-hyperref nil)
 
 (setq org-latex-packages-alist
