@@ -4,5 +4,6 @@ _emacs.d/autosave
 _emacs.d/auto-save-list
 _emacs.d/ido.last
 _emacs.d/url
+vimfiles/bundle
 .\#*
 \#*\#
