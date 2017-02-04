@@ -10,3 +10,6 @@
 [submodule "bundle/Vundle.vim"]
 	path = vimfiles/bundle/Vundle.vim
 	url = https://github.com/gmarik/Vundle.vim.git
+[submodule "_emacs.d"]
+	path = _emacs.d
+	url = https://github.com/syl20bnr/spacemacs
