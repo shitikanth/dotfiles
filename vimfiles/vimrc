@@ -19,6 +19,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'godlygeek/tabular'
 Plugin 'ctrlpvim/ctrlp.vim'
 if has('python') || has('python3')
+    Plugin 'honza/vim-snippets'
     Plugin 'Sirver/ultisnips'
     Plugin 'Valloric/YouCompleteMe'
 endif
