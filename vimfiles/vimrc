@@ -18,7 +18,18 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'godlygeek/tabular'
 Plugin 'Sirver/ultisnips'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'honza/vim-snippets'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-syntastic/syntastic'
+"Completion
+Plugin 'Shougo/neocomplete.vim'
+"Haskell
+Plugin 'Shougo/vimproc.vim'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'neovimhaskell/haskell-vim'
+"Plugin 'Valloric/YouCompleteMe'
+"Themes
 Plugin 'wesgibbs/vim-irblack'
 call vundle#end()
 filetype plugin indent on
@@ -56,6 +67,7 @@ nmap Q gqap
 " nnoremap j gj
 " nnoremap k gk
 ca Q q
+ca W w
 ca WQ wq
 ca Wq wq
 

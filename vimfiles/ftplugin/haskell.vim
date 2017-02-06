@@ -31,3 +31,10 @@ setlocal iskeyword=@,48-57,_,'
 " NOTE: Disabling because makes file save slow. Generate tags manually!
 " au BufWritePost *.hs            silent !init-tags %
 " au BufWritePost *.hsc           silent !init-tags %
+
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
