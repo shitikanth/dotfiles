@@ -21,3 +21,7 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
+[url "git://anongit.kde.org/"]
+   insteadOf = kde:
+[url "ssh://git@git.kde.org/"]
+   pushInsteadOf = kde:
