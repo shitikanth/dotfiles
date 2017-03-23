@@ -31,6 +31,8 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     javascript
+     html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -40,7 +42,7 @@ values."
      auto-completion
      ;; better-defaults
      emacs-lisp
-     ;; git
+     git
      latex
      ;; markdown
      org
@@ -50,6 +52,7 @@ values."
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
+     pdf-tools
      sk-org
      )
    ;; List of additional packages that will be installed without being
