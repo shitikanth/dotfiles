@@ -61,3 +61,5 @@ alias cd..='cd ..'
 if [ `uname -s` = Darwin ]
 then source ~/.aliases.darwin
 fi
+
+alias uwdev='ssh uwlinux -t dev-tmux'

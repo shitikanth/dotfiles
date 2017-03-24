@@ -3,13 +3,14 @@
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 export PATH=/usr/local/sbin:$PATH
 export PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
-
 export PATH="$HOME/.gem/ruby/2.0.0/bin:$PATH"
 
 export GOPATH="$HOME/.go"
 if [ -d "$GOPATH" ]; then
     export PATH="$GOPATH/bin:$PATH"
 fi
+
+export MANPATH="$HOME/.local/share/man:$MANPATH"
 
 if [ -z "$HOST" ]; then
     HOST=`hostname`
@@ -26,3 +27,4 @@ if [ "$HOST" = "ubuntu1404-102" ]; then
 fi
 
 PHP_AUTOCONF="/usr/local/bin/autoconf"
+export LD_LIBRARY_PATH="$HOME/.local/lib"
