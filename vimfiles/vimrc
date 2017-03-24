@@ -22,7 +22,7 @@ Plugin 'mileszs/ack.vim'
 if has('python') || has('python3')
     Plugin 'honza/vim-snippets'
     Plugin 'Sirver/ultisnips'
-    "Plugin 'Valloric/YouCompleteMe'
+    Plugin 'Valloric/YouCompleteMe'
 endif
 "colors
 Plugin 'wesgibbs/vim-irblack'

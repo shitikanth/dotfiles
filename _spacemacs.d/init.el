@@ -306,6 +306,7 @@ you should place your code here."
 
   (defvar autosave-dir "~/.emacs.d/private/autosave/")
   (setq auto-save-list-file-prefix autosave-dir)
+  (setq confirm-kill-emacs 'yes-or-no-p)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

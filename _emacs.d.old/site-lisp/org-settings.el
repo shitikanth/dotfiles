@@ -48,7 +48,7 @@
     <li><a href=\"/\">About me</a></li>
     <li><a href=\"/research.html\">Research</a></li>
     <li><a href=\"/blog/\">Blog</a></li>
-  </ul>
+ </ul>
   </div>
 </div>"
          :html-postamble nil)
