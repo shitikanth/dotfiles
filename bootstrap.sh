@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-git pull origin migrate-to-vundle
+git pull
 
 DIR=$(pwd)
 FIND=find
