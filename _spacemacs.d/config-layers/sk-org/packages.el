@@ -17,6 +17,8 @@
           (sequence "OPEN(O!)" "|" "CLOSED(C!)")))
 
   (setq org-use-fast-todo-selection t)
+  (setq org-bullets-bullet-list
+        '("◉" "✸" "►" "○" "◇" "✿"))
 
   (global-set-key (kbd "<f12>") 'org-agenda)
 
