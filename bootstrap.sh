@@ -16,5 +16,10 @@ function create_symlinks() {
   done
 }
 
+function vim_plugin_install() {
+    vim +PluginInstall +qall
+}
+
 git submodule update --init --recursive
 create_symlinks
+# vim_plugin_install
