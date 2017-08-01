@@ -47,4 +47,12 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 "enable project specific rc files
 set exrc
 set secure
+
+"Turn on syntax highlighting, auto-indentation {{{
+syntax on
+set smartindent
+set autoindent
+filetype indent on
+
+" }}}
 "}}}

@@ -30,12 +30,6 @@ Plugin 'lokaltog/vim-distinguished'
 call vundle#end()
 filetype plugin indent on
 " }}}
-"Turn on syntax highlighting, auto-indentation {{{
-syntax on
-set smartindent
-set autoindent
-filetype indent on
-" }}}
 "Better command-line completion {{{
 set wildmenu
 set wildmode=list:longest
