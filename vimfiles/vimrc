@@ -27,6 +27,8 @@ endif
 "colors
 Plugin 'wesgibbs/vim-irblack'
 Plugin 'lokaltog/vim-distinguished'
+"html
+Plugin 'mattn/emmet-vim'
 call vundle#end()
 filetype plugin indent on
 " }}}

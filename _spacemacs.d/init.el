@@ -132,19 +132,16 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(adwaita
-                         spacemacs-light
-                         spacemacs-dark)
+   dotspacemacs-themes '(dracula adwaita)
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Monospace"
-                               :size 14
+                               :size 17
                                :weight normal
-                               :width normal
-                               :powerline-scale 1.1)
+                               :width normal)
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands `M-x' (after pressing on the leader key).
@@ -180,13 +177,13 @@ values."
    ;; (default nil)
    dotspacemacs-ex-substitute-global nil
    ;; Name of the default layout (default "Default")
-   dotspacemacs-default-layout-name "Default"
+   dotspacemacs-default-layout-name "ALL"
    ;; If non-nil the default layout name is displayed in the mode-line.
    ;; (default nil)
-   dotspacemacs-display-default-layout nil
+   dotspacemacs-display-default-layout t
    ;; If non-nil then the last auto saved layouts are resumed automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts nil
+   dotspacemacs-auto-resume-layouts t
    ;; If non-nil, auto-generate layout name when creating new layouts. Only has
    ;; effect when using the "jump to layout by number" commands. (default nil)
    dotspacemacs-auto-generate-layout-names nil
@@ -249,7 +246,7 @@ values."
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-active-transparency 90
+   dotspacemacs-active-transparency 95
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -257,7 +254,7 @@ values."
    ;; If non-nil show the titles of transient states. (default t)
    dotspacemacs-show-transient-state-title t
    ;; If non-nil show the color guide hint for transient state keys. (default t)
-   dotspacemacs-show-transient-state-color-guide t
+   dotspacemacs-show-transient-state-color-guide nil
    ;; If non-nil unicode symbols are displayed in the mode line. (default t)
    dotspacemacs-mode-line-unicode-symbols t
    ;; If non-nil smooth scrolling (native-scrolling) is enabled. Smooth
@@ -340,7 +337,14 @@ you should place your code here."
   (setq auto-save-list-file-prefix autosave-dir)
   (setq-default
    dotspacemacs-distinguish-gui-tab t
-   global-hl-line-mode nil)
+   global-hl-line-mode nil
+   browse-url-browser-function 'browse-url-xdg-open)
+  (global-set-key (kbd "M-`") 'other-frame)
+
+  ;; (defun sk/set-flycheck-checker-pylint ()
+  ;;   (setq flycheck-checker 'python-pylint))
+  ;; (add-hook 'python-mode-hook
+  ;;           'sk/set-flycheck-checker-pylint)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

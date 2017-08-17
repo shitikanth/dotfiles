@@ -47,3 +47,8 @@ man() {
     LESS_TERMCAP_us=$(printf "\e[1;33m") \
     man "$@"
 }
+
+function swap() {
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE $2
+}

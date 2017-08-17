@@ -28,3 +28,5 @@ fi
 
 PHP_AUTOCONF="/usr/local/bin/autoconf"
 export LD_LIBRARY_PATH="$HOME/.local/lib"
+
+export FZF_CTRL_R_OPT="-e"
