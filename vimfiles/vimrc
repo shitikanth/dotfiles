@@ -227,7 +227,7 @@ if has("gui_running")
     set guifont=Monaco:h11
   endif
 else
-  colo ir_black
+  colo default
 endif
 
 augroup PreviewOnBottom
