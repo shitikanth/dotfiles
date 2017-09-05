@@ -534,6 +534,15 @@ in the terminal.")
 ;;;; linum-mode
      (linum                                        :foreground base03 :background base01)
 
+;;;; magit-mode
+     (magit-diff-context-highlight :background base02 :foreground base05)
+     (magit-diff-file-header :background base02 :foreground base05)
+     (magit-hunk-heading :background base02)
+     (magit-hunk-heading-highlight :background base02)
+     (magit-item-highlight :background base02)
+     (magit-hash :foreground base0F)
+     (magit-log-author :foreground base0F)
+     (magit-section-highlight :background base02)
 ;;;; mark-multiple
      (mm/master-face                               :foreground nil :background nil :inherit region)
      (mm/mirror-face                               :foreground nil :background nil :inherit region)
