@@ -196,10 +196,8 @@ in the terminal.")
      (line-number-current-line                     :inverse-video t)
 
 ;;;; mode-line
-     (mode-line                                    :foreground base04 :background base02 :box nil)
-     (mode-line-buffer-id                          :foreground base0B :background nil)
-     (mode-line-emphasis                           :foreground base06 :slant italic)
-     (mode-line-highlight                          :foreground base0E :box nil :weight bold)
+     (mode-line                                    :foreground base04 :background base01 :box nil)
+     (mode-line-buffer-id                          :foreground base0B :weight bold)
      (mode-line-inactive                           :foreground base03 :background base01 :box nil)
 
 ;;; Third-party
@@ -611,10 +609,10 @@ in the terminal.")
      (popup-menu-selection-face                    :foreground base00 :background base0C)
 
 ;;;; powerline
-     (powerline-active1                            :foreground base09 :background base00)
-     (powerline-active2                            :foreground base08 :background base01)
-     (powerline-inactive1                          :foreground base06 :background base01)
-     (powerline-inactive2                          :foreground base07 :background base02)
+     (powerline-active1                            :foreground base06 :background base00)
+     (powerline-active2                            :foreground base07 :background base01)
+     (powerline-inactive1                          :foreground base04 :background base01)
+     (powerline-inactive2                          :foreground base04 :background base01)
 
 ;;;; python-mode
      (py-builtins-face                             :foreground base09 :weight normal)

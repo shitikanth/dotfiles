@@ -338,9 +338,23 @@ you should place your code here."
   (setq-default
    dotspacemacs-distinguish-gui-tab t
    global-hl-line-mode nil
+   evil-search-highlight-persist nil
    browse-url-browser-function 'browse-url-xdg-open)
   (global-set-key (kbd "M-`") 'other-frame)
+  (setq-default
+   python-shell-interpreter "python3")
 
+  ;; "half-width" fringe-mode
+  (fringe-mode 4)
+  (when (eq system-type 'windows-nt)
+      (setenv "PATH"
+              (concat
+               "C:\\tools\\msys64\\usr\\bin;"
+               (getenv "PATH")))
+      (setq
+       projectile-enable-caching t
+       shell-file-name "C:/Program Files/Git/bin/bash.exe"))
+  ;; persistent search highlights are annoying!
   ;; (defun sk/set-flycheck-checker-pylint ()
   ;;   (setq flycheck-checker 'python-pylint))
   ;; (add-hook 'python-mode-hook
