@@ -663,7 +663,7 @@ in the terminal.")
      (slime-repl-prompt-face                       :foreground base0E :underline nil :weight bold)
      (slime-repl-result-face                       :foreground base0B)
      (slime-repl-output-face                       :foreground base0D :background base01)
-
+     (slime-repl-inputed-output-face :foreground base0D)
 ;;;; spaceline
      (spaceline-evil-emacs                         :foreground base01 :background base0D)
      (spaceline-evil-insert                        :foreground base01 :background base0D)
