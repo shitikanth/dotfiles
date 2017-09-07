@@ -700,6 +700,11 @@ in the terminal.")
      (utop-prompt                                  :foreground base0E)
      (utop-error                                   :underline (:style wave :color base08) :inherit error)
 
+;;;; w3m-mode
+     (w3m-anchor :underline nil :inherit link)
+     (w3m-anchor-visited :underline nil :inherit link-visited)
+     (w3m-header-line-location-title :foreground base0D)
+
 ;;;; which-func-mode
      (which-func                                   :foreground base0D :background nil :weight bold)
 
