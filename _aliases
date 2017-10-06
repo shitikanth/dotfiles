@@ -1,5 +1,4 @@
-
-
+#!/bin/sh
 # My aliases
 alias screen='screen -s /bin/bash'
 alias wee='weechat-curses'
@@ -39,10 +38,17 @@ alias c++14='clang++ -std=c++14'
 alias cpp='c++14 -g -Wall'
 
 # Git
-alias gdf='git diff'
-alias gca='git commit -a'
 alias gt='git --no-pager'
-alias gst='gt status --porcelain'
+alias gdf='git diff'
+alias gad='git add'
+alias gadd='git add'
+alias gca='git commit -a'
+alias gcm='git commit -m'
+alias gst='gt status -s'
+alias gpl='git pull'
+alias glog='git log'
+alias gbr='git branch'
+alias gco='git checkout'
 
 # Mis-spelled commands
 alias gvb='gdb'
