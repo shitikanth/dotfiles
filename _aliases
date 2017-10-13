@@ -63,6 +63,7 @@ alias yourt='yaourt'
 alias mkdor='mkdir'
 alias :ghci='ghci'
 alias cd..='cd ..'
+alias udo='sudo'
 #PS1='[\u:\h \W]\$ '
 
 if [ `uname -s` = Darwin ]
