@@ -6,26 +6,30 @@
     cm = commit -am
 [user]
     email = shitikanth1@gmail.com
-	name = Shitikanth Kashyap
+    name = Shitikanth Kashyap
 [pager]
     status = true
 [core]
-	autocrlf = input
+    autocrlf = input
 [color]
-	ui = auto
+    ui = auto
 [filter "media"]
-	required = true
-	clean = git media clean %f
-	smudge = git media smudge %f
+    required = true
+    clean = git media clean %f
+    smudge = git media smudge %f
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
 [url "git://anongit.kde.org/"]
-   insteadOf = kde:
+    insteadOf = kde:
 [url "ssh://git@git.kde.org/"]
-   pushInsteadOf = kde:
+    pushInsteadOf = kde:
 [url "git@git.kde.org:"]
-	pushInsteadOf = kde:
+    pushInsteadOf = kde:
+[url "git@github.com:shitikanth/"]
+    insteadOf = sk:
+[url "git@github.com:shitikanth/"]
+    pushInsteadOf = sk:
 [push]
-	default = simple
+    default = simple
