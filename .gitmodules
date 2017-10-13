@@ -13,3 +13,6 @@
 [submodule "_emacs.d"]
 	path = _emacs.d
 	url = https://github.com/syl20bnr/spacemacs
+[submodule "w3m"]
+	path = _spacemacs.d/layers/w3m
+	url = sk:w3m-layer
