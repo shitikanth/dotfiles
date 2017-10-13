@@ -541,6 +541,9 @@ in the terminal.")
      (magit-hash :foreground base0F)
      (magit-log-author :foreground base0F)
      (magit-section-highlight :background base02)
+
+     (magit-blame-culprit :background base02)
+     (magit-diff-context-highlight :background base08)
 ;;;; mark-multiple
      (mm/master-face                               :foreground nil :background nil :inherit region)
      (mm/mirror-face                               :foreground nil :background nil :inherit region)
@@ -663,7 +666,7 @@ in the terminal.")
      (slime-repl-prompt-face                       :foreground base0E :underline nil :weight bold)
      (slime-repl-result-face                       :foreground base0B)
      (slime-repl-output-face                       :foreground base0D :background base01)
-     (slime-repl-inputed-output-face :foreground base0D)
+     (slime-repl-inputed-output-face               :foreground base0D)
 ;;;; spaceline
      (spaceline-evil-emacs                         :foreground base01 :background base0D)
      (spaceline-evil-insert                        :foreground base01 :background base0D)
