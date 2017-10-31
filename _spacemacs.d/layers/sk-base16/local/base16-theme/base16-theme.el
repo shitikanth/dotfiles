@@ -147,7 +147,7 @@ in the terminal.")
      (region                                       :background base02)
      (secondary-selection                          :background base03)
      (trailing-whitespace                          :foreground base0A :background base0C)
-     (widget-button                                :underline t)
+     (widget-button                                :foreground base0C :underline t)
      (widget-field                                 :background base03 :box (:line-width 1 :color base06))
 
      (error                                        :foreground base08 :weight bold)
