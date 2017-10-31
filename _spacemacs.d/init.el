@@ -30,13 +30,15 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     javascript
-     html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     markdown
+     javascript
+     html
+     bibtex
      auto-completion
      common-lisp
      emacs-lisp
@@ -46,6 +48,9 @@ This function should only modify configuration layer settings."
      org
      pdf-tools
      python
+     (shell :variables
+      shell-default-shell 'eshell
+      shell-default-term-shell "/bin/zsh")
      syntax-checking
      version-control
      ;; my-own
