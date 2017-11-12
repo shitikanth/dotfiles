@@ -652,6 +652,9 @@ in the terminal.")
      (erb-comment-face                             :background base03 :weight bold :slant italic)
      (erb-comment-delim-face                       :background base03)
 
+;;;; rst-mode
+     (rst-level-1                                  :background base00 :weight bold)
+
 ;;;; sh-mode
      (sh-heredoc                                   :foreground nil :weight normal :inherit font-lock-string-face)
      (sh-quoted-exec                               :foreground nil :inherit font-lock-preprocessor-face)
