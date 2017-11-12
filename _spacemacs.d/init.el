@@ -363,6 +363,12 @@ you should place your code here."
       (other-window 1)
       (w3m-browse-url url newwin)))
 
+  ;; org
+  (with-eval-after-load 'org
+    (add-to-list
+     'org-file-apps
+     '("\\.html?\\'" . w3m-goto-url))
+    (org-defkey org-mode-map [(meta return)] 'org-meta-return))
   (when (eq system-type 'windows-nt)
       (setq projectile-enable-caching t))
 )
