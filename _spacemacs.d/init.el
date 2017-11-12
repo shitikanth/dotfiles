@@ -351,6 +351,18 @@ you should place your code here."
   ;; "half-width" fringe-mode
   (fringe-mode '(5 . 0))
   (spacemacs/load-theme 'base16-eighties)
+  ;; w3m
+  (setq-default
+   browse-url-browser-function 'w3m-browse-url-other-window
+   w3m-fill-column 100
+   w3m-search-default-engine "duckduckgo")
+
+  (defun w3m-browse-url-other-window (url &optional newwin)
+    (let ((w3m-pop-up-windows t))
+      (if (one-window-p) (split-window))
+      (other-window 1)
+      (w3m-browse-url url newwin)))
+
   (when (eq system-type 'windows-nt)
       (setq projectile-enable-caching t))
 )
