@@ -335,22 +335,23 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq user-full-name "Shitikanth Kashyap")
   (setq user-mail-address "shitikanth1@gmail.com")
-
   (defvar autosave-dir "~/.emacs.d/private/autosave/")
   (setq auto-save-list-file-prefix autosave-dir)
+
   (setq-default
-   dotspacemacs-distinguish-gui-tab t
+   dotspacemacs-distinguish-gui-tab t ; needed to make <C-i> work (evil-jump-forward)
    global-hl-line-mode nil
    evil-search-highlight-persist nil
-   browse-url-browser-function 'browse-url-xdg-open)
-  (global-set-key (kbd "M-`") 'other-frame)
+   )
+
   (setq-default
    python-shell-interpreter "python3"
    inferior-lisp-program "sbcl")
 
-  ;; "half-width" fringe-mode
+  ;; Appearance settings
   (fringe-mode '(5 . 0))
-  (spacemacs/load-theme 'base16-eighties)
+  (spacemacs/load-theme 'base16-breeze)
+
   ;; w3m
   (setq-default
    browse-url-browser-function 'w3m-browse-url-other-window
@@ -369,6 +370,11 @@ you should place your code here."
      'org-file-apps
      '("\\.html?\\'" . w3m-goto-url))
     (org-defkey org-mode-map [(meta return)] 'org-meta-return))
+
+  ;; reason: slow git implementation on windows
   (when (eq system-type 'windows-nt)
       (setq projectile-enable-caching t))
+
+  ;; global keybindings
+  (global-set-key (kbd "M-`") 'other-frame)
 )
