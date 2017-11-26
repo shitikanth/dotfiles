@@ -3,23 +3,22 @@
 ;;
 ;; Use package manager
 (require 'package)
-(setq package-user-dir "~/.emacs.d/elpa")
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
 ;; List of packages I want to install automatically
 (setq package-list
-      '(helm
-	auctex
-	org-plus-contrib
-	undo-tree
-	evil
-	evil-surround
-	paredit
-	projectile
-	helm-projectile
-	))
+  '(helm
+    auctex
+    org-plus-contrib
+    undo-tree
+    evil
+    evil-surround
+    paredit
+    projectile
+    helm-projectile
+    ))
 
 (require 'cl-lib)
 ;; check if all packages are installed already
@@ -70,12 +69,13 @@
 (require 'ido)
 (ido-mode 1)
 
-(defun on-after-init ()
-  (unless (display-graphic-p (selected-frame))
-    (set-face-background 'default "unspecified-bg" (selected-frame))))
+;; Recentf mode
+(require 'recentf)
+(recentf-mode 1)
 
-(add-hook 'window-setup-hook 'on-after-init)
-
+;; Projectile mode
+(require 'projectile)
+(projectile-mode 1)
 
 ;; Gnus
 (setq gnus-select-method '(nntp "news.cs.uwaterloo.ca"))
@@ -96,31 +96,3 @@
 	  (add-to-list 'w3m-uri-replace-alist
 		       '("\\`dd:" w3m-search-uri-replace "DuckDuckGo"))
 	  (setq w3m-search-default-engine "DuckDuckGo")))
-(setq w3m-content-type-alist
-      (quote
-       (("text/plain" "\\.\\(?:txt\\|tex\\|el\\)\\'" nil nil)
-	("text/html" "\\.s?html?\\'" browse-url nil)
-	("text/sgml" "\\.sgml?\\'" nil "text/plain")
-	("text/xml" "\\.xml\\'" nil "text/plain")
-	("image/jpeg" "\\.jpe?g\\'" nil nil)
-	("image/png" "\\.png\\'" nil nil)
-	("image/gif" "\\.gif\\'" nil nil)
-	("image/tiff" "\\.tif?f\\'" nil nil)
-	("image/x-xwd" "\\.xwd\\'" nil nil)
-	("image/x-xbm" "\\.xbm\\'" nil nil)
-	("image/x-xpm" "\\.xpm\\'" nil nil)
-	("image/x-bmp" "\\.bmp\\'" nil nil)
-	("video/mpeg" "\\.mpe?g\\'" nil nil)
-	("video/quicktime" "\\.mov\\'" nil nil)
-	("application/dvi" "\\.dvi\\'" nil nil)
-	("application/postscript" "\\.e?ps\\'" ("gs" file) nil)
-	("application/pdf" "\\.pdf\\'" nil nil)
-	("application/x-pdf" "\\.pdf\\'" nil nil)
-	("application/xml" "\\.xml\\'" nil w3m-detect-xml-type)
-	("application/rdf+xml" "\\.rdf\\'" nil "text/plain")
-	("application/rss+xml" "\\.rss\\'" nil "text/plain")
-	("application/xhtml+xml" nil nil "text/html"))))
-
-;; start server if not running
-(require 'server)
-(unless (server-running-p) (server-start))
