@@ -56,6 +56,7 @@ This function should only modify configuration layer settings."
      ;; my-own
      sk-org
      sk-base16
+     sk-python
      w3m
      )
    ;; List of additional packages that will be installed without being
