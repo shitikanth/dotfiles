@@ -80,4 +80,5 @@ source ~/.aliases
 alias reload='source ~/.zshrc'
 alias zrc='vim ~/.zshrc'
 
+[ -f ~/.local/bin/virtualenvwrapper_lazy.sh ] && source ~/.local/bin/virtualenvwrapper_lazy.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
