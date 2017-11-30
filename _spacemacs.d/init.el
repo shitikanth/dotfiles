@@ -373,9 +373,12 @@ before packages are loaded."
    )
 
   (setq-default
-   python-shell-interpreter "python3"
+   python-shell-interpreter "ipython3"
+   python-shell-interpreter-args "--simple-prompt -i"
    inferior-lisp-program "sbcl")
 
+  (with-eval-after-load 'pytest
+    (add-to-list 'pytest-project-root-files ".projectile"))
   ;; Appearance settings
   (fringe-mode '(5 . 0))
   (spacemacs/load-theme 'base16-breeze)
