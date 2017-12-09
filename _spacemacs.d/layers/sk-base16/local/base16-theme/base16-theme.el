@@ -458,6 +458,10 @@ in the terminal.")
 ;;;; hl-sexp-mode
      (hl-sexp-face                                 :background base03)
 
+;;;; hydra
+     (hydra-face-red                               :foreground base09)
+     (hydra-face-blue                              :foreground base0D)
+
 ;;;; ido-mode
      (ido-subdir                                   :foreground base04)
      (ido-first-match                              :foreground base09 :weight bold)
@@ -476,6 +480,9 @@ in the terminal.")
      (idris-colon-face                             :inherit font-lock-keyword-face)
      (idris-equals-face                            :inherit font-lock-keyword-face)
      (idris-operator-face                          :inherit font-lock-keyword-face)
+
+;;;; info
+     (info-menu-star                               :inherit default)
 
 ;;;; ivy-mode
      (ivy-current-match                            :foreground base09 :background base01)
@@ -509,12 +516,12 @@ in the terminal.")
      (jabber-activity-personal-face                :foreground base0C)
 
 ;;;; js2-mode
-     (js2-warning-face                             :underline base09)
-     (js2-error-face                               :foreground nil :underline base08)
-     (js2-external-variable-face                   :foreground base0E)
-     (js2-function-param-face                      :foreground base0D)
-     (js2-instance-member-face                     :foreground base0D)
-     (js2-private-function-call-face               :foreground base08)
+     (js2-warning                                  :underline base09)
+     (js2-error                                    :foreground nil :underline base08)
+     (js2-external-variable                        :foreground base0E)
+     (js2-function-param                           :foreground base0D)
+     (js2-instance-member                          :foreground base0D)
+     (js2-private-function-call                    :foreground base08)
 
 ;;;; js3-mode
      (js3-warning-face                             :underline base09)
