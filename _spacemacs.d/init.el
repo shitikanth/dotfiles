@@ -402,6 +402,11 @@ before packages are loaded."
      '("\\.html?\\'" . w3m-goto-url))
     (org-defkey org-mode-map [(meta return)] 'org-meta-return))
 
+  ;; multiple-cursors
+  (use-package mutliple-cursors
+    :bind (("C->" . mc/mark-next-like-this)
+           ("C-<" . mc/mark-previous-like-this)))
+
   ;; reason: slow git implementation on windows
   (when (eq system-type 'windows-nt)
       (setq projectile-enable-caching t))
