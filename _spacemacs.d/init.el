@@ -376,7 +376,9 @@ before packages are loaded."
   (setq-default
    python-shell-interpreter "ipython3"
    python-shell-interpreter-args "--simple-prompt -i"
-   inferior-lisp-program "sbcl")
+   inferior-lisp-program "sbcl"
+   js2-basic-offset 2
+   )
 
   (with-eval-after-load 'pytest
     (add-to-list 'pytest-project-root-files ".projectile"))
@@ -403,6 +405,19 @@ before packages are loaded."
      '("\\.html?\\'" . w3m-goto-url))
     (org-defkey org-mode-map [(meta return)] 'org-meta-return))
 
+  ;; smart-parens bindings
+  (with-eval-after-load 'smartparens
+    (define-key smartparens-mode-map (kbd "C-)") 'sp-forward-slurp-sexp)
+    (define-key smartparens-mode-map (kbd "C-(") 'sp-backward-slurp-sexp)
+    (define-key smartparens-mode-map (kbd "C-}") 'sp-forward-barf-sexp)
+    (define-key smartparens-mode-map (kbd "C-{") 'sp-backward-barf-sexp))
+
+  (defun gitconfig-mode-post-init ()
+    (setq tab-width 4
+          indent-tabs-mode nil))
+
+  (add-hook 'gitconfig-mode-hook 'gitconfig-mode-post-init)
+
   ;; multiple-cursors
   (use-package mutliple-cursors
     :bind (("C->" . mc/mark-next-like-this)
@@ -414,4 +429,38 @@ before packages are loaded."
 
   ;; global keybindings
   (global-set-key (kbd "M-`") 'other-frame)
+
+  ;; new leader keys for spacemacs
+  (spacemacs/set-leader-keys
+    "oo" 'helm-themes
+    "ov" 'describe-variable
+    "of" 'describe-function)
+
+  ;; overridden leader keys
+  (defun sk/layout-two-windows()
+    "Set the layout to double columns and populate them with
+    three recent buffers."
+    (interactive)
+    (delete-other-windows)
+    (split-window-right)
+    (switch-to-buffer-other-window (other-buffer))
+    (other-window 1)
+    )
+
+  (defun sk/layout-three-windows ()
+    "Set the layout to three windows in a T and populate them
+    with three recent buffers."
+    (interactive)
+    (delete-other-windows)
+    (split-window-right)
+    (other-window 1)
+    (switch-to-buffer (other-buffer))
+    (split-window-vertically)
+    (other-window 1)
+    (switch-to-buffer (other-buffer))
+    (other-window 1))
+
+  (spacemacs/set-leader-keys
+    "w2" 'sk/layout-two-windows
+    "w3" 'sk/layout-three-windows)
 )
