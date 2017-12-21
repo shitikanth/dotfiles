@@ -4,6 +4,12 @@ _emacs.d/autosave
 _emacs.d/auto-save-list
 _emacs.d/ido.last
 _emacs.d/url
+_emacs.d.old/elpa
+_emacs.d.old/custom.el
+_emacs.d.old/ido.last
+_emacs.d.old/projectile-bookmarks.eld
+_emacs.d.old/recentf
+_spacemacs.d/custom.el
 vimfiles/bundle
 .\#*
 \#*\#
