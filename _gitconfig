@@ -4,6 +4,7 @@
     st = status
     br = branch
     cm = commit -am
+    graph = log --oneline --graph --decorate
 [user]
     email = shitikanth1@gmail.com
     name = Shitikanth Kashyap
