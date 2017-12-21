@@ -370,6 +370,7 @@ before packages are loaded."
    dotspacemacs-distinguish-gui-tab t ; needed to make <C-i> work (evil-jump-forward)
    global-hl-line-mode nil
    evil-search-highlight-persist nil
+   helm-echo-input-in-header-line nil
    )
 
   (setq-default
