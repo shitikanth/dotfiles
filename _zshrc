@@ -67,7 +67,7 @@ source $ZSH/oh-my-zsh.sh
 
 # History settings
 
-export HISTSIZE=200000
+export HISTSIZE=2000000
 export SAVEHIST=$HISTSIZE
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
