@@ -5,13 +5,12 @@
 
 (defun sk-org/post-init-org ()
   (setq-default
-   org-agenda-files
-   '("~/.org/work.org"
-     "~/.org/personal.org"
-     "~/.org/research.org"
-     "~/.org/notes.org")
-    org-default-notes-file
-    "~/.org/notes.org"
+   org-agenda-files '("~/.org/work.org"
+                      "~/.org/personal.org"
+                      "~/.org/research.org"
+                      "~/.org/notes.org")
+   org-default-notes-file "~/.org/notes.org"
+   org-occur-case-fold-search 'smart
    )
 
   (setq org-todo-keywords
