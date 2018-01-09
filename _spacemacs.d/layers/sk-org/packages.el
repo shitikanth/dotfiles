@@ -1,4 +1,7 @@
-(setq sk-org-packages '(org))
+(setq sk-org-packages
+      '(org
+        ox-reveal))
+
 
 (defun sk-org/post-init-org ()
   (setq-default
@@ -26,3 +29,9 @@
   (global-set-key (kbd "<f12>") 'org-agenda)
 
   )
+
+(defun sk-org/post-init-ox-reveal ()
+  (setq-default
+   org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/"
+   org-reveal-mathjax t
+   org-reveal-title-slide "<h1>%t</h1><small><p>Created by %a</p></small>"))
