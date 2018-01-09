@@ -490,6 +490,9 @@ in the terminal.")
 
 ;;;; info
      (info-menu-star                               :inherit default)
+     (info-string                                  :foreground base0B)
+     (info-quoted-name                             :foreground base0D)
+     (info-double-quoted-name                      :foreground base09)
 
 ;;;; ivy-mode
      (ivy-current-match                            :foreground base09 :background base01)
