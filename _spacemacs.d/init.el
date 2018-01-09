@@ -410,7 +410,13 @@ before packages are loaded."
     (define-key smartparens-mode-map (kbd "C-)") 'sp-forward-slurp-sexp)
     (define-key smartparens-mode-map (kbd "C-(") 'sp-backward-slurp-sexp)
     (define-key smartparens-mode-map (kbd "C-}") 'sp-forward-barf-sexp)
-    (define-key smartparens-mode-map (kbd "C-{") 'sp-backward-barf-sexp))
+    (define-key smartparens-mode-map (kbd "C-{") 'sp-backward-barf-sexp)
+    (define-key smartparens-mode-map (kbd "C-M-k") 'sp-kill-sexp)
+    (define-key smartparens-mode-map (kbd "C-M-DEL") 'sp-backward-kill-sexp))
+
+  ;; override C-w behavior in company map
+  (with-eval-after-load 'company-mode
+    (define-key company-active-map (kbd "C-w") nil))
 
   (defun gitconfig-mode-post-init ()
     (setq tab-width 4
@@ -429,12 +435,14 @@ before packages are loaded."
 
   ;; global keybindings
   (global-set-key (kbd "M-`") 'other-frame)
+  (global-set-key (kbd "C-x C-b") 'ibuffer-list-buffers)
 
   ;; new leader keys for spacemacs
   (spacemacs/set-leader-keys
     "oo" 'helm-themes
     "ov" 'describe-variable
-    "of" 'describe-function)
+    "of" 'describe-function
+    "ob" 'ibuffer-list-buffers)
 
   ;; overridden leader keys
   (defun sk/layout-two-windows()
