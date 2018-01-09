@@ -27,6 +27,9 @@
 
   (global-set-key (kbd "<f12>") 'org-agenda)
 
+  ;; enable man links
+  (with-eval-after-load 'org
+    (require 'org-man))
   )
 
 (defun sk-org/post-init-ox-reveal ()
