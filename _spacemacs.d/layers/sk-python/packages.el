@@ -1,9 +1,10 @@
 (setq sk-python-packages
   '(
     (python :location built-in)
+    traad
     ))
 
-(defun sk-python/init-python ()
+(defun sk-python/post-init-python ()
   (use-package python
     :defer t
     :config
@@ -20,6 +21,16 @@
       (define-key inferior-python-mode-map
         (kbd "C-c C-z") 'sk/python-switch-last-python-buffer)
       )))
+
+(defun sk-python/init-traad ()
+  (use-package traad
+    :defer t
+    :config
+    (progn
+
+      )
+    )
+  )
 
 (defun sk/python-shell-switch-to-shell (&optional msg)
   "Switch to inferior Python process buffer using
