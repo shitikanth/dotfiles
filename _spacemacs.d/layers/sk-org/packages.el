@@ -11,6 +11,7 @@
                       "~/.org/notes.org")
    org-default-notes-file "~/.org/notes.org"
    org-occur-case-fold-search 'smart
+   org-highlight-sparse-tree-matches nil
    )
 
   (setq org-todo-keywords
