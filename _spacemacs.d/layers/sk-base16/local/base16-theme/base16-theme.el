@@ -169,7 +169,7 @@ in the terminal.")
 
 ;;;; font-lock
      (font-lock-builtin-face                       :foreground base0C)
-     (font-lock-comment-delimiter-face             :foreground base03)
+     (font-lock-comment-delimiter-face             :foreground base00)
      (font-lock-comment-face                       :foreground base03)
      (font-lock-constant-face                      :foreground base09)
      (font-lock-doc-face                           :foreground base04)
