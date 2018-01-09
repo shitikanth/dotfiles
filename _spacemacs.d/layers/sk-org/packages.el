@@ -20,6 +20,9 @@
   (setq org-bullets-bullet-list
         '("◉" "✸" "►" "○" "◇" "✿"))
 
+  ;; globally turn on org-indent-mode for all files
+  (setq org-startup-indented t)
+
   (global-set-key (kbd "<f12>") 'org-agenda)
 
   )
