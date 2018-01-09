@@ -388,10 +388,12 @@ before packages are loaded."
    python-shell-interpreter-args "--simple-prompt -i"
    inferior-lisp-program "sbcl"
    js2-basic-offset 2
+   web-mode-markup-indent-offset 2
    )
 
   (with-eval-after-load 'pytest
     (add-to-list 'pytest-project-root-files ".projectile"))
+
   ;; Appearance settings
   (fringe-mode '(5 . 0))
   (spacemacs/load-theme 'base16-breeze)
@@ -399,7 +401,6 @@ before packages are loaded."
   ;; w3m
   (setq-default
    browse-url-browser-function 'w3m-browse-url-other-window
-   w3m-fill-column 100
    w3m-search-default-engine "duckduckgo")
 
   (defun w3m-browse-url-other-window (url &optional newwin)
