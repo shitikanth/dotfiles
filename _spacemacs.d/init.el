@@ -373,6 +373,16 @@ before packages are loaded."
    helm-echo-input-in-header-line nil
    )
 
+  ;; enable motion state by default for view mode
+  (defun sk/view-mode-hook ()
+    (evil-motion-state))
+
+  (add-hook 'view-mode-hook 'sk/view-mode-hook)
+
+  (setq
+   evil-emacs-state-modes
+   (append '(pdf-view-mode) evil-emacs-state-modes))
+
   (setq-default
    python-shell-interpreter "ipython3"
    python-shell-interpreter-args "--simple-prompt -i"
