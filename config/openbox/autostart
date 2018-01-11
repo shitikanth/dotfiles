@@ -1,0 +1,12 @@
+#!/bin/sh
+
+setxkbmap -option ctrl:nocaps
+
+xrdb -merge ~/.Xresources
+
+compton &
+
+lxqt-policykit-agent &
+
+sleep .5 && $HOME/.fehbg &
+
