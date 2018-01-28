@@ -72,4 +72,8 @@ if [ `uname -s` = Darwin ]
 then source ~/.aliases.darwin
 fi
 
+if [[ $SHELL = *zsh ]]
+then source ~/.aliases.zsh
+fi
+
 alias uwdev='ssh uwlinux -t dev-tmux'
