@@ -1,0 +1,8 @@
+! vim: ft=xdefaults
+urxvt.scrollBar: False
+
+URxvt*font: xft:Terminus:size=12:antialias=true:hinting=true
+URxvt*boldFont: xft:Terminus:size=12:antialias=true:hinting=true
+URxvt*italicFont: xft:Terminus:style=Oblique:size=12:antialias=true:hinting=true
+URxvt*boldItalicFont: xft:Terminus:style=Bold Oblique:size=12:antialias=true:hinting=true
+
