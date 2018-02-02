@@ -1,2 +1,4 @@
+#define FONT_SIZE 12
+
 #include ".Xresources.d/rxvt-unicode"
 #include ".Xresources.d/colors/base16"
