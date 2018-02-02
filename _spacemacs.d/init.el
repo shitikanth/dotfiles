@@ -484,7 +484,7 @@ before packages are loaded."
 
   ;; Appearance settings
   (fringe-mode '(5 . 0))
-  (spacemacs/load-theme 'base16-breeze)
+  (spacemacs/load-theme 'base16-oceanicnext)
 
   ;; w3m
   (setq-default
