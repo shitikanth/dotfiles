@@ -540,7 +540,18 @@ before packages are loaded."
     "oo" 'helm-themes
     "ov" 'describe-variable
     "of" 'describe-function
-    "ob" 'ibuffer-list-buffers)
+    "ob" 'ibuffer-list-buffers
+    "on" 'sk/emacs-notes
+    "oN" 'sk/find-notes)
+
+  (defun sk/emacs-notes ()
+    (interactive)
+    (find-file "~/Dropbox/Notes/programming/emacs.org"))
+
+  (defun sk/find-notes ()
+    (interactive)
+    (find-file "~/Dropbox/Notes")
+    (call-interactively 'helm-projectile-find-file))
 
   ;; overridden leader keys
   (defun sk/layout-two-windows()
