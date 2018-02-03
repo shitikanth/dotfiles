@@ -440,6 +440,7 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq custom-file "~/.spacemacs.d/custom.el")
+  (load custom-file)
   )
 
 (defun dotspacemacs/user-config ()
@@ -523,7 +524,7 @@ before packages are loaded."
   (add-hook 'gitconfig-mode-hook 'gitconfig-mode-post-init)
 
   ;; multiple-cursors
-  (use-package mutliple-cursors
+  (use-package multiple-cursors
     :bind (("C->" . mc/mark-next-like-this)
            ("C-<" . mc/mark-previous-like-this)))
 
