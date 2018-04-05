@@ -585,7 +585,14 @@ before packages are loaded."
   (spacemacs/set-leader-keys
     "w2" 'sk/layout-two-windows
     "w3" 'sk/layout-three-windows)
-)
+
+  ;; eshell smart shell
+  (require 'eshell)
+  (require 'em-smart)
+  (setq eshell-where-to-jump 'begin)
+  (setq eshell-review-quick-commands nil)
+  (setq eshell-smart-space-goes-to-end t)
+
   ;; patch PATH on windows
   (if (eq system-type 'windows-nt)
       (progn
