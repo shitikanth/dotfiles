@@ -456,7 +456,7 @@ the default task."
 (global-set-key (kbd "<f9> t") 'bh/insert-inactive-timestamp)
 (global-set-key (kbd "<f9> SPC") 'bh/clock-in-last-task)
 (global-set-key (kbd "C-<f9>") 'previous-buffer)
-(global-set-key (kbd "C-x r") 'narrow-to-region)
+; (global-set-key (kbd "C-x r") 'narrow-to-region)
 (global-set-key (kbd "C-<f10>") 'next-buffer)
 (global-set-key (kbd "<f11>") 'org-clock-goto)
 (global-set-key (kbd "C-<f11>") 'org-clock-in)

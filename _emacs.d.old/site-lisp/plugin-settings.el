@@ -96,3 +96,6 @@
 	  (add-to-list 'w3m-uri-replace-alist
 		       '("\\`dd:" w3m-search-uri-replace "DuckDuckGo"))
 	  (setq w3m-search-default-engine "DuckDuckGo")))
+
+;; which-key
+(which-key-mode 1)
