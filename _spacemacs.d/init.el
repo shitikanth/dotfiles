@@ -507,9 +507,13 @@ before packages are loaded."
   ;; smart-parens bindings
   (with-eval-after-load 'smartparens
     (define-key smartparens-mode-map (kbd "C-)") 'sp-forward-slurp-sexp)
+    (define-key smartparens-mode-map (kbd "C-M-<right>") 'sp-forward-slurp-sexp)
     (define-key smartparens-mode-map (kbd "C-(") 'sp-backward-slurp-sexp)
+    (define-key smartparens-mode-map (kbd "C-M-<left>") 'sp-forward-slurp-sexp)
     (define-key smartparens-mode-map (kbd "C-}") 'sp-forward-barf-sexp)
+    (define-key smartparens-mode-map (kbd "C-<right>") 'sp-forward-barf-sexp)
     (define-key smartparens-mode-map (kbd "C-{") 'sp-backward-barf-sexp)
+    (define-key smartparens-mode-map (kbd "C-<left>") 'sp-backward-barf-sexp)
     (define-key smartparens-mode-map (kbd "C-M-k") 'sp-kill-sexp)
     (define-key smartparens-mode-map (kbd "C-M-DEL") 'sp-backward-kill-sexp))
 
