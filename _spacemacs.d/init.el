@@ -586,3 +586,10 @@ before packages are loaded."
     "w2" 'sk/layout-two-windows
     "w3" 'sk/layout-three-windows)
 )
+  ;; patch PATH on windows
+  (if (eq system-type 'windows-nt)
+      (progn
+        (push "c:/tools/msys64/usr/bin/" exec-path)
+        (setenv "PATH" (concat "C:\\tools\\msys64\\usr\\bin;" (getenv "PATH")))
+        (setq find-program "c:/tools/msys64/usr/bin/find.exe")))
+  )
