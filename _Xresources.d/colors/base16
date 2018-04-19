@@ -1,39 +1,44 @@
-! special
-urxvt.foreground:   #C0C5CE
-urxvt.background:   #1B2B34
-urxvt.cursorColor:  #C0C5CE
+! Base16 Tomorrow
+! Scheme: Chris Kempson (http://chriskempson.com)
 
-! black
-*.color0:       #1B2B34
-*.color8:       #65737E
+#define base00 #1e1e1e
+#define base01 #323537
+#define base02 #464b50
+#define base03 #5f5a60
+#define base04 #838184
+#define base05 #a7a7a7
+#define base06 #c3c3c3
+#define base07 #ffffff
+#define base08 #cf6a4c
+#define base09 #cda869
+#define base0A #f9ee98
+#define base0B #8f9d6a
+#define base0C #afc4db
+#define base0D #7587a6
+#define base0E #9b859d
+#define base0F #9b703f
 
-! red
-*.color1:       #EC5f67
-*.color9:       #EC5f67
+urxvt.foreground:   base05
+#ifdef background_opacity
+urxvt.background:   [background_opacity]base00
+#else
+urxvt.background:   base00
+#endif
+urxvt.cursorColor:  base05
 
-! green
-*.color2:       #99C794
-*.color10:      #99C794
-
-! yellow
-*.color3:       #FAC863
-*.color11:      #FAC863
-
-! blue
-*.color4:       #6699CC
-*.color12:      #6699CC
-
-! magenta
-*.color5:       #C594C5
-*.color13:      #C594C5
-
-! cyan
-*.color6:       #5FB3B3
-*.color14:      #5FB3B3
-
-! white
-*.color7:       #C0C5CE
-*.color15:      #D8DEE9
-
-! credits: https://github.com/voronianski/oceanic-next-color-scheme
-
+*color0:       base00
+*color1:       base08
+*color2:       base0B
+*color3:       base0A
+*color4:       base0D
+*color5:       base0E
+*color6:       base0C
+*color7:       base05
+*color8:       base03
+*color9:       base09
+*color10:      base01
+*color11:      base02
+*color12:      base04
+*color13:      base06
+*color14:      base0F
+*color15:      base07
