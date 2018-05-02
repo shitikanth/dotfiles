@@ -39,13 +39,15 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     markdown
+     clojure
      javascript
      html
      bibtex
      auto-completion
      common-lisp
      emacs-lisp
+     (elfeed :variables
+      rmh-elfeed-org-files (list "~/.spacemacs.d/feeds.org"))
      git
      helm
      latex

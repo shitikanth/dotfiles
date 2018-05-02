@@ -1,0 +1,11 @@
+* Blogs                                                              :elfeed:
+** Emacs                                                             :emacs:
+*** http://planet.emacsen.org/atom.xml
+*** https://nullprogram.com/feed/
+** Software                                                       :software:
+*** Scalability                                               :scalability:
+**** http://feeds.feedburner.com/HighScalability
+*** General
+**** http://www.joelonsoftware.com/feed/
+*** Tech blogs
+**** https://medium.com/feed/netflix-techblog
