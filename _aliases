@@ -72,7 +72,7 @@ if [ `uname -s` = Darwin ]
 then source ~/.aliases.darwin
 fi
 
-if [[ $SHELL = *zsh ]]
+if [[ $0 = *zsh ]]
 then source ~/.aliases.zsh
 fi
 
