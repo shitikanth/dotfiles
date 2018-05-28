@@ -521,6 +521,14 @@ before packages are loaded."
   (with-eval-after-load 'company-mode
     (define-key company-active-map (kbd "C-w") nil))
 
+  ;; hjkl in pdfview mode
+  (with-eval-after-load 'pdf-view
+    (define-key evil-emacs-state-map (kbd "j") 'pdf-view-next-line-or-next-page)
+    (define-key evil-emacs-state-map (kbd "k") 'pdf-view-previous-line-or-previous-page)
+    (define-key evil-emacs-state-map (kbd "h") 'image-backward-hscroll)
+    (define-key evil-emacs-state-map (kbd "l") 'image-forward-hscroll)
+    )
+
   (defun gitconfig-mode-post-init ()
     (setq tab-width 4
           indent-tabs-mode nil))
