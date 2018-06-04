@@ -1,5 +1,6 @@
 (setq sk-org-packages
-      '(org
+      '((ob-ipython :location local)
+        org
         ox-reveal))
 
 
@@ -31,6 +32,10 @@
   ;; enable man links
   (with-eval-after-load 'org
     (require 'org-man))
+
+
+  ;; dont prompt me to confirm everytime I want to evaluate a block
+  (setq org-confirm-babel-evaluate nil)
   )
 
 (defun sk-org/post-init-ox-reveal ()
@@ -38,3 +43,12 @@
    org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/"
    org-reveal-mathjax t
    org-reveal-title-slide "<h1>%t</h1><small><p>Created by %a</p></small>"))
+
+
+(defun sk-org/init-ob-ipython ()
+  (use-package ob-ipython
+    :after org
+    :config
+    (progn
+      (push '(ipython . t) org-babel-load-languages)
+      (setq ob-ipython-output-exec-count nil))))
