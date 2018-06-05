@@ -220,7 +220,7 @@ set t_Co=256
 if has("gui_running")
   colo distinguished
   if has("gui_gtk2")
-    set guifont=Inconsolata\ 10
+    set guifont=Monospace\ 10
   elseif has("gui_win32")
     set guifont=Consolas:h11:cANSI
   elseif has("gui_macvim")
