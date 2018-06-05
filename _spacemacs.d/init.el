@@ -523,10 +523,10 @@ before packages are loaded."
 
   ;; hjkl in pdfview mode
   (with-eval-after-load 'pdf-view
-    (define-key evil-emacs-state-map (kbd "j") 'pdf-view-next-line-or-next-page)
-    (define-key evil-emacs-state-map (kbd "k") 'pdf-view-previous-line-or-previous-page)
-    (define-key evil-emacs-state-map (kbd "h") 'image-backward-hscroll)
-    (define-key evil-emacs-state-map (kbd "l") 'image-forward-hscroll)
+    (define-key pdf-view-mode-map (kbd "j") 'pdf-view-next-line-or-next-page)
+    (define-key pdf-view-mode-map (kbd "k") 'pdf-view-previous-line-or-previous-page)
+    (define-key pdf-view-mode-map (kbd "h") 'image-backward-hscroll)
+    (define-key pdf-view-mode-map (kbd "l") 'image-forward-hscroll)
     )
 
   (defun gitconfig-mode-post-init ()
