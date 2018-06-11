@@ -58,6 +58,7 @@ This function should only modify configuration layer settings."
      syntax-checking
      version-control
      ;; my-own
+     sk-custom
      sk-org
      sk-base16
      sk-python
