@@ -1,3 +1,4 @@
+#!/bin/zsh
 # https://zshthem.es/all
 ZSH_THEME=kolo
 # Path to your oh-my-zsh installation.
@@ -47,7 +48,7 @@ plugins=(z virtualenv aws)
 # User configuration
 
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export MANPATH="/usr/local/man:$MANPATH"
+# export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
