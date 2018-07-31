@@ -50,7 +50,7 @@ This function should only modify configuration layer settings."
      helm
      latex
      org
-     pdf-tools
+     pdf
      python
      (shell :variables
       shell-default-shell 'eshell
