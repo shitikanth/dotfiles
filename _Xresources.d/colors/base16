@@ -18,13 +18,13 @@
 #define base0E #9b859d
 #define base0F #9b703f
 
-urxvt.foreground:   base05
+URxvt.foreground:   base05
 #ifdef background_opacity
-urxvt.background:   [background_opacity]base00
+URxvt.background:   [background_opacity]base00
 #else
-urxvt.background:   base00
+URxvt.background:   base00
 #endif
-urxvt.cursorColor:  base05
+URxvt.cursorColor:  base05
 
 *color0:       base00
 *color1:       base08

@@ -1,8 +1,14 @@
 ! vim: ft=xdefaults
-urxvt.scrollBar: False
+URxvt.scrollBar: False
 
 URxvt*font: xft:Terminus:size=FONT_SIZE:antialias=true:hinting=true
 URxvt*boldFont: xft:Terminus:size=FONT_SIZE:antialias=true:hinting=true
 URxvt*italicFont: xft:Terminus:style=Oblique:size=FONT_SIZE:antialias=true:hinting=true
 URxvt*boldItalicFont: xft:Terminus:style=Bold Oblique:size=FONT_SIZE:antialias=true:hinting=true
 
+! disable A-s key
+URxvt.perl-ext-common: "default, -searchable-scrollback"
+
+! Use C-S-c and C-S-v to copy-paste
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
