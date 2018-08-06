@@ -9,8 +9,8 @@
    org-agenda-files '("~/.org/work.org"
                       "~/.org/personal.org"
                       "~/.org/research.org"
-                      "~/.org/notes.org")
-   org-default-notes-file "~/.org/notes.org"
+                      "~/.org/inbox.org")
+   org-default-notes-file "~/.org/inbox.org"
    org-occur-case-fold-search 'smart
    org-highlight-sparse-tree-matches nil
    )
@@ -28,6 +28,10 @@
   (setq org-startup-indented t)
 
   (global-set-key (kbd "<f12>") 'org-agenda)
+  (global-set-key (kbd "C-'") 'org-cycle-agenda-files)
+  (spacemacs/set-leader-keys
+    "aof" 'org-cycle-agenda-files
+    "aoi" 'sk-org/inbox)
 
   ;; enable man links
   (with-eval-after-load 'org
