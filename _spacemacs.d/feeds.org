@@ -1,7 +1,14 @@
+# Local Variables:
+# eval: (local-set-key (kbd "C-c C-c") (quote elfeed-org))
+# End:
+
 * Blogs                                                              :elfeed:
-** Emacs                                                             :emacs:
-*** http://planet.emacsen.org/atom.xml
-*** https://nullprogram.com/feed/
+** Theory of computing                                              :theory:
+*** http://feedworld.net/toc/atom.xml
+
+** Science                                                         :science:
+*** http://nautil.us/rss/all
+
 ** Software                                                       :software:
 *** Scalability                                               :scalability:
 **** http://feeds.feedburner.com/HighScalability
@@ -9,3 +16,8 @@
 **** http://www.joelonsoftware.com/feed/
 *** Tech blogs
 **** https://medium.com/feed/netflix-techblog
+*** Emacs                                                           :emacs:
+**** http://planet.emacsen.org/atom.xml
+**** https://nullprogram.com/feed/
+*** Linux                                                           :linux:
+**** https://lwn.net/headlines/rss
