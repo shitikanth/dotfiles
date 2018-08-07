@@ -3,7 +3,7 @@
 
 (defun system-specific-setup()
   ; Default font
-  (set-default-font "Noto Mono-11")
+  (set-default-font "Monospace 10")
   (add-to-list 'default-frame-alist (cons 'width 120))
   ; Not much else
 )
