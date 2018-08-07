@@ -9,6 +9,12 @@
 PS1='\h:\w\$ '
 OS='uname -s'
 
+shopt -s checkwinsize
+shopt -s extglob
+shopt -s globstar
+shopt -s histappend
+set -o ignoreeof
+
 # My aliases
 source ~/.aliases
 
@@ -20,15 +26,6 @@ export TERM=xterm-256color
 
 export GTEST=/usr/local/gtest
 alias gtest="g++ -g -I${GTEST}/include -L${GTEST} -lgtest -lpthread"
-
-# Make sure display get updated when terminal window get resized
-shopt -q -s checkwinsize
-# Turn on the extended pattern matching features 
-shopt -q -s extglob
-# Append rather than overwrite history on exit
-shopt -s histappend
-# Disable [CTRL-D] which is used to exit the shell
-set -o ignoreeof
 
 SSH_ENV="$HOME/.ssh/environment"
 
