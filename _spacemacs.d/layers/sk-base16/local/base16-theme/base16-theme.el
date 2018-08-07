@@ -294,6 +294,11 @@ in the terminal.")
 ;;;; eldoc-mode
      (eldoc-highlight-function-argument            :foreground base0B :weight bold)
 
+;;;; elfeed
+     (elfeed-search-feed-face                      :foreground base0F)
+     (elfeed-search-tag-face                       :foreground base0B)
+     (elfeed-search-title-face                     :foreground base05)
+
 ;;;; erc
      (erc-direct-msg-face                          :foreground base09)
      (erc-error-face                               :foreground base08)
@@ -644,6 +649,8 @@ in the terminal.")
      (org-link                                     :foreground base0D)
      (org-level-1                                  :foreground base0C :height 1.1 :weight bold)
      (org-level-2                                  :foreground base08 :weight bold)
+     (org-level-3                                  :foreground base0E)
+     (org-level-4                                  :foreground base09)
      (org-scheduled                                :foreground base0B)
      (org-scheduled-previously                     :foreground base09)
      (org-scheduled-today                          :foreground base0B)
@@ -652,6 +659,9 @@ in the terminal.")
      (org-todo                                     :foreground base08)
      (org-upcoming-deadline                        :foreground base09)
      (org-warning                                  :foreground base08 :weight bold)
+
+;;;; org-ref
+     (org-ref-cite-face                            :foreground base0C)
 
 ;;;; paren-face-mode
      (paren-face                                   :foreground base04 :background nil)
@@ -764,9 +774,9 @@ in the terminal.")
 
 ;;;; w3m-mode
      (w3m-anchor :underline nil :inherit link)
-     (w3m-anchor-visited :underline nil :inherit link-visited)
+     (w3m-arrived-anchor :underline nil :inherit link-visited)
      (w3m-form :underline t :foreground base09)
-     (w3m-image :background base03 :foreground base05)
+     (w3m-image :foreground base05)
      (w3m-image-anchor :underline t :background base03 :foreground base05)
      (w3m-header-line-location-content :background base00 :foreground base0D)
      (w3m-header-line-location-title :background base00 :foreground base0D)
@@ -776,6 +786,9 @@ in the terminal.")
      (w3m-tab-unselected :background base01 :foreground base03)
      (w3m-tab-unselected-unseen :background base01 :foreground base03)
      (w3m-tab-unselected-retrieving :background base01 :foreground base03)
+
+;;;; helm-w3m
+     (helm-w3m-bookmarks :inherit w3m-anchor)
 
 ;;;; which-func-mode
      (which-func                                   :foreground base0D :background nil :weight bold)
