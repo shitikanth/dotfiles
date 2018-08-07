@@ -42,6 +42,13 @@
 
   ;; dont prompt me to confirm everytime I want to evaluate a block
   (setq org-confirm-babel-evaluate nil)
+
+  ;; easy templates
+  (add-to-list 'org-structure-template-alist
+               '("ipy" "#+BEGIN_SRC ipython\n?\n#+END_SRC"))
+  (add-to-list 'org-structure-template-alist
+               '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
+
   )
 
 (defun sk-org/post-init-ox-reveal ()
