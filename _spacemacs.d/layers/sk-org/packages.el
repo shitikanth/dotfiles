@@ -5,6 +5,7 @@
 
 
 (defun sk-org/post-init-org ()
+  (require 'org)
   (setq-default
    org-agenda-files '("~/.org/work.org"
                       "~/.org/personal.org"
@@ -13,6 +14,10 @@
    org-default-notes-file "~/.org/inbox.org"
    org-occur-case-fold-search 'smart
    org-highlight-sparse-tree-matches nil
+   org-confirm-babel-evaluate nil
+   org-use-fast-todo-selection t
+   org-bullets-bullet-list '("◉" "✸" "►" "○" "◇" "✿")
+   org-log-into-drawer t
    )
 
   (setq org-todo-keywords
@@ -20,11 +25,8 @@
           (sequence "WAITING(w@/!)" "MAYBE(m!)" "SOMEDAY(s!)" "|" "CANCELLED(c@/!)")
           (sequence "OPEN(O!)" "|" "CLOSED(C!)")))
 
-  (setq org-use-fast-todo-selection t)
-  (setq org-bullets-bullet-list
-        '("◉" "✸" "►" "○" "◇" "✿"))
 
-  ;; globally turn on org-indent-mode for all files
+  ;; globally turn on org-indent-mode
   (setq org-startup-indented t)
 
   (global-set-key (kbd "<f12>") 'org-agenda)
