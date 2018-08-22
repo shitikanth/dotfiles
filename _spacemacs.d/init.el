@@ -64,6 +64,7 @@ This function should only modify configuration layer settings."
      sk-org
      sk-base16
      sk-python
+     sk-dired
      w3m
      )
 
