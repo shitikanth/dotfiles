@@ -5,6 +5,7 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "site-lisp"))
 (setq custom-file (concat user-emacs-directory "custom.el"))
+(load custom-file)
 
 ;; Load settings from config files in .emacs.d/site-lisp
 (mapc
@@ -16,15 +17,8 @@
    system
    misc-hacks))
 
-
-;; Theme
-(load-theme 'adwaita)
-
 ;; Start server if not running
 (require 'server)
 (unless (server-running-p) (server-start))
 
-;; Start with agenda mode
-(org-agenda-list)
-(delete-other-windows)
 (message "Loaded .emacs")

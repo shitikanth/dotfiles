@@ -15,6 +15,9 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(column-number-mode 1)
+
+(setq-default fill-column 80)
 
 (provide 'basic-settings)
 ;;; basic-settings.el ends here

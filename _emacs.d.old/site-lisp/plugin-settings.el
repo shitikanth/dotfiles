@@ -9,18 +9,22 @@
 
 ;; List of packages I want to install automatically
 (setq package-list
-  '(
-    auctex
-    counsel
-    org-plus-contrib
-    undo-tree
-    evil
-    evil-surround
-    paredit
-    projectile
-    helm-projectile
-    which-key
-    ))
+      '(avy
+	ivy
+	counsel
+	auctex
+	org-plus-contrib
+	undo-tree
+	evil
+	evil-surround
+	paredit
+	projectile
+	which-key
+	eyebrowse
+	realgud
+	diminish
+	))
+
 
 (require 'cl-lib)
 ;; check if all packages are installed already
@@ -39,6 +43,12 @@
 
 ;;
 ;; Package settings
+
+;; Projectile mode
+(require 'projectile)
+(projectile-mode 1)
+(setq projectile-indexing-method 'native)
+(setq projectile-enable-caching t)
 
 ;; Load Paredit automatically
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
@@ -67,20 +77,38 @@
      (define-key haskell-mode-map (kbd "C-c M-.") nil)
      (define-key haskell-mode-map (kbd "C-c C-d") nil)))
 
-;; Ido mode
-(require 'ido)
-(ido-mode 1)
+;; C/C++
+(setq c-default-style "linux")
+(defun sk/c-c++-settings ()
+  (toggle-truncate-lines 1) ; disable 'word-wrap'
+  (whitespace-mode 1)
+  (setq whitespace-space-regexp "\\(  +\\)") ; only highlight mutliple spaces
+  (whitespace-toggle-options '(lines tabs newline-mark space-mark))
+  )
+
+
+(add-hook 'c-mode-hook 'sk/c-c++-settings)
+(add-hook 'c++-mode-hook 'sk/c-c++-settings)
+
+;; Ivy/counsel
+(require 'ivy)
+(ivy-mode 1)
+
+(require 'counsel)
+(require 'counsel-projectile)
+(counsel-mode 1)
+(counsel-projectile-mode 1)
+(global-set-key (kbd "C-x j") 'counsel-semantic-or-imenu)
+
+;; Avy
+(require 'avy)
+(global-set-key (kbd "C-;") 'avy-goto-word-1)
 
 ;; Recentf mode
 (require 'recentf)
 (recentf-mode 1)
+(global-set-key (kbd "C-x C-r") 'counsel-recentf)
 
-;; Projectile mode
-(require 'projectile)
-(projectile-mode 1)
-
-;; Gnus
-(setq gnus-select-method '(nntp "news.cs.uwaterloo.ca"))
 
 ;; w3m
 (setq w3m-user-agent "Mozilla/5.0 (Linux; U; Android 2.3.3; zh-tw; HTC_Pyramid Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.")
@@ -103,5 +131,28 @@
 ;; which-key
 (which-key-mode 1)
 
-;; counsel-mode
-(counsel-mode 1)
+;; window management
+(require 'winner)
+(winner-mode 1)
+
+(require 'eyebrowse)
+(eyebrowse-mode 1)
+
+(setq eyebrowse-wrap-around t)
+(define-key eyebrowse-mode-map (kbd "C-c C-w C-n") 'eyebrowse-next-window-config)
+(define-key eyebrowse-mode-map (kbd "C-c C-w C-p") 'eyebrowse-prev-window-config)
+
+;; diminish (clean up the mode line)
+(require 'diminish)
+(diminish 'projectile-mode)
+(diminish 'undo-tree-mode)
+(diminish 'counsel-mode)
+(diminish 'ivy-mode)
+(diminish 'which-key-mode)
+(diminish 'eldoc-mode)
+
+;; fix xref-find-references
+(add-to-list 'xref-prompt-for-identifier 'xref-find-references t)
+
+;; Quadeye specific files
+(require 'qe nil t)
