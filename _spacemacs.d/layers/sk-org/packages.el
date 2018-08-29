@@ -49,6 +49,9 @@
   (add-to-list 'org-structure-template-alist
                '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
 
+  ;; refile
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
+
   )
 
 (defun sk-org/post-init-ox-reveal ()
