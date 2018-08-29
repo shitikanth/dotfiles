@@ -576,6 +576,11 @@ before packages are loaded."
         (push "c:/tools/msys64/usr/bin/" exec-path)
         (setenv "PATH" (concat "C:\\tools\\msys64\\usr\\bin;" (getenv "PATH")))
         (setq find-program "c:/tools/msys64/usr/bin/find.exe")))
+
+  ;; diminish some modes
+  (diminish 'helm-mode)
+  (diminish 'which-key-mode)
+  (diminish-undo 'persp-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
