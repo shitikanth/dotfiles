@@ -1,8 +1,6 @@
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))
 
-(package-initialize)
-
 (add-to-list 'load-path (concat user-emacs-directory "site-lisp"))
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file)
@@ -12,7 +10,7 @@
  'require
  '(basic-settings
    plugin-settings
-   org-settings
+;;   org-settings
    keybindings
    system
    misc-hacks))
