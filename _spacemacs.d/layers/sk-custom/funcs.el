@@ -35,3 +35,17 @@
   (switch-to-buffer (other-buffer))
   (other-window 1))
 
+
+(defun sk/describe-symbol-at-point ()
+  "DWIM. Just show symbol at point without showing a prompt."
+  (interactive)
+  (describe-symbol (symbol-at-point)))
+
+(defun sk/load-ssh-environment ()
+  (interactive)
+  (with-temp-buffer
+    (insert-file-contents "~/.ssh/environment")
+    (re-search-forward "SSH_AUTH_SOCK=\\([^ ]*\\);")
+    (setenv "SSH_AUTH_SOCK" (match-string 1))
+    (re-search-forward "SSH_AGENT_PID=\\([^ ]*\\);")
+    (setenv "SSH_AGENT_PID" (match-string 1))))
