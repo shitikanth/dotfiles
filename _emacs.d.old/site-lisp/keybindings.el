@@ -1,8 +1,7 @@
 (provide 'keybindings)
 
-(global-set-key (kbd "C-z") 'switch-to-buffer)
+
 (global-set-key (kbd "C-x C-z") 'suspend-frame)
-(global-set-key (kbd "C-x b") 'counsel-bookmark)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (setq hs-minor-mode-map
