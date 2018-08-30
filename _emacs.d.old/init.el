@@ -16,6 +16,9 @@
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; reduce frequency of garbage collection
+(setq gc-cons-threshold 50000000)
+
 ;; enable persistent history
 (savehist-mode 1)
 
@@ -26,6 +29,7 @@
 (line-number-mode 1)
 (column-number-mode 1)
 (blink-cursor-mode -1)
+(fringe-mode '(5 . 0))
 
 (setq-default fill-column 80)
 (setq inhibit-startup-screen t)
@@ -54,6 +58,15 @@
 
 ;;
 ;; Packages
+(setq use-package-verbose t)
+
+(use-package imenu
+  :config
+  (defun imenu-use-package ()
+    (add-to-list 'imenu-generic-expression
+                 '("Packages" "^\\s-*(\\(use-package\\)\\s-+\\(\\(\\sw\\|\\s_\\)+\\)" 2)))
+  (add-hook 'emacs-lisp-mode-hook #'imenu-use-package))
+
 (use-package diminish :ensure t)
 
 (use-package ivy
@@ -77,6 +90,10 @@
   :config
   (counsel-mode 1))
 
+(use-package avy :ensure t
+  :commands (avy-goto-char-timer)
+  :bind (("C-." . avy-goto-char-timer)))
+
 (use-package paren
   :defer 1
   :config
@@ -84,10 +101,12 @@
 
 (use-package paredit :ensure t
   :defer 5
+  :diminish
   :hook
   ((emacs-lisp-mode . enable-paredit-mode)
    (lisp-mode . enable-paredit-mode)
-   (lisp-interaction-mode . enable-paredit-mode)))
+   (lisp-interaction-mode . enable-paredit-mode)
+   (eval-expression-minibuffer-setup . enable-paredit-mode)))
 
 (use-package projectile :ensure t
   :defer 5
@@ -101,13 +120,6 @@
 	projectile-completion-system 'ivy
         projectile-enable-caching t))
 
-(use-package which-key :ensure t
-  :defer 1
-  :diminish
-  :commands which-key-mode
-  :config
-  (which-key-mode 1))
-
 (use-package cc-mode
   :preface
   (defun my-c-mode-common-hook ()
@@ -119,16 +131,10 @@
   :config
   (setq c-default-style "linux"))
 
-
-(use-package avy :ensure t
-  :commands (avy-goto-char-timer)
-  :bind (("C-." . avy-goto-char-timer)))
-
-(use-package winner :ensure t
-  :unless noninteractive
-  :defer 5
-  :config
-  (winner-mode 1))
+(use-package magit
+  :ensure t
+  :commands (magit-status magit-blame)
+  :bind ("C-x g" . magit-status))
 
 (use-package eyebrowse :ensure t
   :defer 5
@@ -136,14 +142,20 @@
   (eyebrowse-mode 1)
   (setq eyebrowse-wrap-around t))
 
-(use-package qe :disabled)
-
-(use-package imenu
+(use-package which-key :ensure t
+  :defer 1
+  :diminish
+  :commands which-key-mode
   :config
-  (defun imenu-use-package ()
-    (add-to-list 'imenu-generic-expression
-                 '("Packages" "^\\s-*(\\(use-package\\)\\s-+\\(\\(\\sw\\|\\s_\\)+\\)" 2)))
-  (add-hook 'emacs-lisp-mode-hook #'imenu-use-package))
+  (which-key-mode 1))
+
+(use-package winner :ensure t
+  :unless noninteractive
+  :defer 5
+  :config
+  (winner-mode 1))
+
+(use-package qe :disabled)
 
 (use-package system
   :demand t)
