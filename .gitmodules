@@ -16,3 +16,9 @@
 [submodule "_spacemacs.d/layers/sk-org/layers/ob-ipython"]
 	path = _spacemacs.d/layers/sk-org/local/ob-ipython
 	url = git@github.com:shitikanth/ob-ipython.git
+[submodule "_emacs.d.old/lib/use-package"]
+	path = _emacs.d.old/lib/use-package
+	url = https://github.com/jwiegley/use-package
+[submodule "_emacs.d.old/lib/swiper"]
+	path = _emacs.d.old/lib/swiper
+	url = https://github.com/abo-abo/swiper
