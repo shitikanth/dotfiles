@@ -27,8 +27,9 @@ export TERM=xterm-256color
 export GTEST=/usr/local/gtest
 alias gtest="g++ -g -I${GTEST}/include -L${GTEST} -lgtest -lpthread"
 
+#
+# Load SSH environment, starting a new SSH agent if needed
 SSH_ENV="$HOME/.ssh/environment"
-
 function start_agent {
     echo "Initialising new SSH agent..."
     ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
@@ -37,12 +38,8 @@ function start_agent {
     . "${SSH_ENV}" > /dev/null
     ssh-add;
 }
-
-# Source SSH settings, if applicable
-
 if [ -f "${SSH_ENV}" ]; then
     . "${SSH_ENV}" > /dev/null
-    #ps ${SSH_AGENT_PID} doesn't work under cywgin
     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
         start_agent;
     }
