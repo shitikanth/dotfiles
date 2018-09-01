@@ -1,3 +1,5 @@
+(setq emacs-start-time (current-time))
+
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))
 
@@ -47,14 +49,14 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (setq package-enable-at-startup nil)
 (package-initialize)
-(message "Package initialize: %ss" (float-time (time-since sk/start-time)))
+(message "Package initialize: %.3fs" (float-time (time-since sk/start-time)))
 
 ;;
 ;; Bootstrap use-package
 (setq sk/start-time (current-time))
 (add-to-list 'load-path (concat user-emacs-directory "lib/use-package"))
 (require 'use-package)
-(message "Bootstrap use-package: %ss" (float-time (time-since sk/start-time)))
+(message "Bootstrap use-package: %.3fs" (float-time (time-since sk/start-time)))
 
 ;;
 ;; Packages
@@ -164,4 +166,4 @@
 (require 'server)
 (unless (server-running-p) (server-start))
 
-(message "Loaded .emacs")
+(message "Loaded .emacs in %.3fs" (float-time (time-since emacs-start-time)))
