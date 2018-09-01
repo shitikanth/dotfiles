@@ -12,8 +12,18 @@ OS='uname -s'
 shopt -s checkwinsize
 shopt -s extglob
 shopt -s globstar
-shopt -s histappend
 set -o ignoreeof
+
+#
+# Sensible history
+shopt -s histappend
+shopt -s cmdhist
+
+HISTCONTROL=ignorespace
+HISTSIZE=1000000
+HISTFILESIZE=1000000000
+export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history*:clear"
+HISTTIMEFORMAT='%F %H:%M   '
 
 # My aliases
 source ~/.aliases
