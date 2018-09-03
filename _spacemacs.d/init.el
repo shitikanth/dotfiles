@@ -581,6 +581,12 @@ before packages are loaded."
   (diminish 'helm-mode)
   (diminish 'which-key-mode)
   (diminish-undo 'persp-mode)
+
+  ;; local settings
+  (setq local-settings-file "~/.spacemacs.d/local.el")
+  (when (file-exists-p local-settings-file)
+    (load-file local-settings-file))
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
