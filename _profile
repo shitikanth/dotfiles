@@ -1,9 +1,20 @@
+#!/bin/sh
 
-#export PATH=/usr/lib/ccache:/Users/s4kashya/kde/bin:/Users/s4kashya/.gem/ruby/2.0.0/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/texbin:/Users/s4kashya/.bin:/usr/local/mysql/bin
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 export PATH=/usr/local/sbin:$PATH
 export PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
-export PATH="$HOME/.gem/ruby/2.0.0/bin:$PATH"
+
+if [ -d "$HOME/.gem/ruby/2.0.0/bin" ]; then
+    export PATH="$HOME/.gem/ruby/2.0.0/bin:$PATH"
+fi
+
+if [ -d "$HOME/.cargo/bin" ]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/node/bin" ]; then
+    export PATH="$HOME/.local/node/bin:$PATH"
+fi
 
 export GOPATH="$HOME/.go"
 if [ -d "$GOPATH" ]; then
@@ -11,22 +22,4 @@ if [ -d "$GOPATH" ]; then
 fi
 
 export MANPATH="$HOME/.local/share/man:$MANPATH"
-
-if [ -z "$HOST" ]; then
-    HOST=`hostname`
-fi
-
-if [ "$HOST" = "darwin" ]; then
-    export PATH="$PATH:/usr/local/texlive/2016basic/bin/x86_64-darwin"
-    export INFOPATH="$INFOPATH:/usr/local/texlive/2016basic/texmf-dist/doc/info"
-    export MANPATH="$MANPATH:/usr/local/texlive/2016basic/texmf-dist/doc/man"
-fi
-
-if [ "$HOST" = "ubuntu1404-102" ]; then
-    export PATH="$HOME/.local/octave-xeon/bin:$PATH"
-fi
-
-PHP_AUTOCONF="/usr/local/bin/autoconf"
 export LD_LIBRARY_PATH="$HOME/.local/lib"
-
-export FZF_CTRL_R_OPT="-e"
