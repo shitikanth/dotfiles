@@ -1,4 +1,4 @@
-! vim: ft=xdefaults
+! -*- mode: conf-xdefaults -*- vim: ft=xdefaults
 URxvt.scrollBar: False
 
 URxvt*font: xft:Iosevka Light:size=FONT_SIZE:antialias=true:hinting=true

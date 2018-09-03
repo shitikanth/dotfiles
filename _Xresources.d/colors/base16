@@ -1,3 +1,4 @@
+! -*- mode: conf-xdefaults -*- vim: ft=xdefaults
 URxvt.foreground:   base05
 #ifdef background_opacity
 URxvt.background:   [background_opacity]base00

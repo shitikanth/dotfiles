@@ -1,3 +1,4 @@
+! -*- mode: conf-xdefaults -*- vim: ft=xdefaults
 #define FONT_SIZE 11
 
 #include ".Xresources.d/rxvt-unicode"
