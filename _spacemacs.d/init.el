@@ -56,7 +56,7 @@ This function should only modify configuration layer settings."
      python
      (shell :variables
       shell-default-shell 'eshell
-      shell-default-term-shell "/bin/zsh")
+      shell-default-term-shell "/bin/bash")
      syntax-checking
      version-control
      ;; my-own
