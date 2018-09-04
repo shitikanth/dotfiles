@@ -162,8 +162,12 @@
 (use-package system
   :demand t)
 
-;; Start server if not running
-(require 'server)
-(unless (server-running-p) (server-start))
+(use-package server
+  :defer 1
+  :config
+  (setq server-name "emacs-old")
+  (message "Start server emacs-old")
+  (unless (server-running-p)
+    (server-start)))
 
 (message "Loaded .emacs in %.3fs" (float-time (time-since emacs-start-time)))
