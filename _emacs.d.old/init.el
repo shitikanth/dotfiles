@@ -178,9 +178,6 @@
 
 (use-package qe :disabled)
 
-(use-package system
-  :demand t)
-
 (use-package server
   :defer 1
   :config
