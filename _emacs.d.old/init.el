@@ -186,4 +186,6 @@
   (unless (server-running-p)
     (server-start)))
 
+(use-package org-settings)
+
 (message "Loaded .emacs in %.3fs" (float-time (time-since emacs-start-time)))

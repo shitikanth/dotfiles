@@ -20,11 +20,9 @@
       (list "~/.org/work.org"
             "~/.org/research.org"
             "~/.org/personal.org"
-;            "~/.org/hobbies.org"
-            "~/.org/notes.org" ))
+            "~/.org/inbox.org" ))
 
-(setq org-default-notes-file "~/.org/notes.org")
-
+(setq org-default-notes-file "~/.org/inbox.org")
 
 ; http://www.andrew.cmu.edu/user/cgliu/howto.html
 (setq org-publish-project-alist
@@ -128,14 +126,6 @@
 
 ;; Enable Habits
 (add-to-list 'org-modules 'org-habit)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Org-mode contrib
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'org-checklist)
 
 ;; Google calendar sync
 ;; -- not mature, don't use
@@ -468,8 +458,8 @@ the default task."
 
 
 ;; Custom Key Bindings
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
 (global-set-key (kbd "<f12>") 'org-agenda)
 (global-set-key (kbd "<f5>") 'bh/org-todo)
