@@ -92,9 +92,19 @@
   :config
   (counsel-mode 1))
 
+(use-package swiper
+  :after ivy
+  :load-path "lib/swiper"
+  :bind (:map swiper-map
+	      ("C-c ." . swiper-avy)
+	      ("C-." . swiper-avy))
+  :bind (:map isearch-mode-map
+	      ("C-o" . swiper-from-isearch)))
+
 (use-package avy :ensure t
   :commands (avy-goto-char-timer)
-  :bind (("C-." . avy-goto-char-timer)))
+  :bind (("C-c ." . avy-goto-char-timer)
+	 ("C-." . avy-goto-char-timer)))
 
 (use-package paren
   :defer 1
