@@ -137,7 +137,7 @@
   (defun my-c-mode-common-hook ()
     (toggle-truncate-lines 1)
     (whitespace-mode 1)
-    (setq whitespace-space-regexp "\\( +\\))")
+    (setq whitespace-space-regexp "\\(  +\\))")
     (whitespace-toggle-options '(lines tabs newline-mark space-mark)))
   :hook (c-mode-common . my-c-mode-common-hook)
   :config
