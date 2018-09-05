@@ -133,6 +133,15 @@
   :config
   (setq c-default-style "linux"))
 
+(use-package cquery :ensure t
+  :commands lsp-cquery-enable)
+
+(use-package lsp-mode :ensure t
+  :defer t)
+
+(use-package lsp-ui :ensure t
+  :defer t)
+
 (use-package magit
   :ensure t
   :commands (magit-status magit-blame)
