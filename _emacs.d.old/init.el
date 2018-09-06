@@ -132,6 +132,13 @@
 	projectile-completion-system 'ivy
         projectile-enable-caching t))
 
+(use-package compile
+  :preface
+  (defun my-compilation-mode-hook ()
+    )
+  :bind (("C-c c" . compile))
+  :hook (compilation-mode . my-compilation-mode-hook))
+
 (use-package cc-mode
   :preface
   (defun my-c-mode-common-hook ()
