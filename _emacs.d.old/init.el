@@ -95,6 +95,7 @@
 (use-package swiper
   :after ivy
   :load-path "lib/swiper"
+  :bind (("C-c s" . swiper))
   :bind (:map swiper-map
 	      ("C-c ." . swiper-avy)
 	      ("C-." . swiper-avy))
