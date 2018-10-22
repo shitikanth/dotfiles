@@ -5,6 +5,7 @@
     br = branch
     cm = commit -am
     graph = log --oneline --graph --decorate
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [user]
     email = shitikanth1@gmail.com
     name = Shitikanth Kashyap
