@@ -36,6 +36,6 @@
 [push]
     default = simple
 [pull]
-	rebase = true
+    rebase = true
 [rebase]
-	autoStash = true
+    autoStash = true
