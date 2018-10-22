@@ -62,6 +62,12 @@
 ;; Packages
 (setq use-package-verbose t)
 
+(use-package ibuffer
+  :bind
+  ("C-x C-b" . ibuffer)
+  :config
+  (setq ibuffer-show-empty-filter-groups nil))
+
 (use-package imenu
   :config
   (defun imenu-use-package ()
