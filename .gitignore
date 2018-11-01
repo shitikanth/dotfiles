@@ -14,3 +14,7 @@ _spacemacs.d/custom.el
 vimfiles/bundle
 .\#*
 \#*\#
+
+#py
+__pycache__
+*.pyc
