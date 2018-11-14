@@ -1,0 +1,30 @@
+{
+    "description": "ctrl-m-to-enter",
+    "store": {},
+    "type": "script",
+    "hotkey": {
+        "hotKey": "m",
+        "modifiers": [
+            "<ctrl>"
+        ]
+    },
+    "showInTrayMenu": false,
+    "modes": [
+        3
+    ],
+    "omitTrigger": false,
+    "prompt": false,
+    "filter": {
+        "regex": null,
+        "isRecursive": false
+    },
+    "abbreviation": {
+        "triggerInside": false,
+        "immediate": false,
+        "backspace": true,
+        "ignoreCase": false,
+        "wordChars": "[\\w]",
+        "abbreviations": []
+    },
+    "usageCount": 25
+}
