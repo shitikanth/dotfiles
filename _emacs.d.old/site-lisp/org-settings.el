@@ -24,6 +24,10 @@
 
 (setq org-default-notes-file "~/.org/inbox.org")
 
+(setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
+
+(setq org-startup-indented t)
+
 ; http://www.andrew.cmu.edu/user/cgliu/howto.html
 (setq org-publish-project-alist
       '(("www"
@@ -114,12 +118,12 @@
         ))
 
 (setq org-tag-faces
-      '(("@personal" :foreground "#90a0a0")
+      '(("@personal" :foreground "sienna")
         ("@college" :foreground "dark green")
         ("@office" :foreground "#0084c8")
-        ("@social" :foreground "#caccb7")
-        ("@home" :foreground "#90a0a0")
-        ("@shopping" :foreground "#90a0a0")
+        ("@social" :foreground "purple")
+        ("@home" :foreground "blue")
+        ("@shopping" :foreground "brown")
         ("@research" :foreground "#00578e")
         ("IMPORTANT" :foreground "red" :weight bold)
         ))
