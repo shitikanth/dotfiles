@@ -1,10 +1,10 @@
 ! -*- mode: conf-xdefaults -*- vim: ft=xdefaults
 URxvt.scrollBar: False
 
-URxvt*font: xft:Iosevka Light:size=FONT_SIZE:antialias=true:hinting=true
-URxvt*boldFont: xft:Iosevka Light:size=FONT_SIZE:antialias=true:hinting=true
-URxvt*italicFont: xft:Iosevka Light:style=Oblique:size=FONT_SIZE:antialias=true:hinting=true
-URxvt*boldItalicFont: xft:Iosevka Light:style=Bold Oblique:size=FONT_SIZE:antialias=true:hinting=true
+URxvt*font: xft:FONT:size=FONT_SIZE:antialias=true:hinting=true
+URxvt*boldFont: xft:FONT:size=FONT_SIZE:antialias=true:hinting=true
+URxvt*italicFont: xft:FONT:style=Oblique:size=FONT_SIZE:antialias=true:hinting=true
+URxvt*boldItalicFont: xft:FONT:style=Bold Oblique:size=FONT_SIZE:antialias=true:hinting=true
 
 ! disable A-s key
 URxvt.perl-ext-common: "default, -searchable-scrollback"
