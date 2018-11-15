@@ -3,5 +3,6 @@
 #define FONT_SIZE 11
 
 #include ".Xresources.d/rxvt-unicode"
+#include ".Xresources.d/xterm"
 #include ".Xresources.d/colors/base16-twilight.dark"
 #include ".Xresources.d/colors/base16"
