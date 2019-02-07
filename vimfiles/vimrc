@@ -98,8 +98,6 @@ map <leader>a ;A<cr>
 " imap <c-l> <right>
 " }}}
 " filetype specific settings {{{
-" clean whitespace before save
-autocmd fileType asm,c,cpp,java,php,tex,haskell,python,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
 autocmd filetype tex,html,haskell,ruby setl sw=2
 " good indentation in C++
 " }}}
