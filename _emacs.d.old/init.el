@@ -200,4 +200,9 @@
 
 (use-package org-settings)
 
+;; local settings
+(setq local-settings-file (concat user-emacs-directory "local.el"))
+(when (file-exists-p local-settings-file)
+  (load-file local-settings-file))
+
 (message "Loaded .emacs in %.3fs" (float-time (time-since emacs-start-time)))
