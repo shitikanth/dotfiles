@@ -34,6 +34,7 @@
 
 (setq-default fill-column 80)
 (setq inhibit-startup-screen t)
+(setq initial-major-mode 'emacs-lisp-mode)
 
 ;; utf-8
 (prefer-coding-system 'utf-8)
@@ -148,6 +149,7 @@
   :init
   :config
   (projectile-global-mode)
+  (add-to-list 'projectile-globally-ignored-directories ".cquery_cached_index")
   (setq projectile-indexing-method 'native
 	projectile-completion-system 'ivy
         projectile-enable-caching t))
