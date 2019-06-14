@@ -24,12 +24,13 @@
 
 ;; appearance settings
 (menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
 (line-number-mode 1)
 (column-number-mode 1)
 (blink-cursor-mode -1)
-(fringe-mode '(5 . 0))
+(when window-system
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (fringe-mode '(5 . 0)))
 
 (setq-default fill-column 80)
 (setq inhibit-startup-screen t)
@@ -66,6 +67,10 @@
   :config
   (setq ibuffer-show-empty-filter-groups nil))
 
+(use-package bookmark
+  :config
+  (setq bookmark-save-flag t))
+
 (use-package imenu
   :config
   (defun imenu-use-package ()
@@ -75,11 +80,21 @@
 
 (use-package diminish :ensure t)
 
+(use-package recentf
+  :config
+  (setq recentf-max-saved-items 500
+        recentf-max-menu-items 15
+        ;; disable recentf-cleanup on Emacs start, because it can cause
+        ;; problems with remote files
+        recentf-auto-cleanup 'never)
+  (recentf-mode +1))
+
 (use-package ivy
   :defer 1
   :load-path "lib/swiper"
   :diminish
-  :bind (("C-z" . ivy-switch-buffer))
+  :bind (("C-z" . ivy-switch-buffer)
+	 ("C-c h" . ivy-resume))
   :commands (ivy-switch-buffer ivy-mode)
   :config
   (setq-default ivy-use-virtual-buffers t)
@@ -188,8 +203,6 @@
   :config
   (winner-mode 1))
 
-(use-package qe :disabled)
-
 (use-package server
   :defer 1
   :config
@@ -199,6 +212,7 @@
     (server-start)))
 
 (use-package org-settings)
+(global-set-key (kbd "C-c r") 'revert-buffer)
 
 ;; local settings
 (setq local-settings-file (concat user-emacs-directory "local.el"))
