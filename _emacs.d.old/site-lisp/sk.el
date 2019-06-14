@@ -65,9 +65,9 @@
   (call-interactively 'projectile-find-file))
 
 (defun sk/ag-notes ()
-  "Search in notes."
+  "Search in notes (ignores html files by default)."
   (interactive)
-  (counsel-ag nil "~/Dropbox/Notes" nil "Search"))
+  (counsel-ag nil "~/Dropbox/Notes" "--ignore \"*.html*\" --ignore \"*.js\" --ignore \"*.css\" " "Search"))
 
 (defun sk/find-init-file ()
   "Open init file for editing."
@@ -123,6 +123,23 @@
   "Revert buffer without confirmation."
   (interactive)
   (revert-buffer t (not (buffer-modified-p)) t))
+
+(defun sk/ref-download-url (url)
+  (interactive "surl to download:")
+  (save-excursion
+    (bibtex-beginning-of-entry)
+    (let* ((bibtex-expand-strings t)
+           (entry (bibtex-parse-entry t))
+           (key (reftex-get-bib-field "=key=" entry))
+           (pdf (concat org-ref-pdf-directory key ".pdf")))
+      (message "pdf: %s" pdf)
+      (url-copy-file url pdf))))
+
+
+(defun sk/shell-command-on-buffer (command)
+  (interactive
+   (list (read-shell-command "Shell command on buffer: ")))
+  (shell-command-on-region (point-min) (point-max) command))
 
 (provide 'sk)
 ;;; sk.el ends here

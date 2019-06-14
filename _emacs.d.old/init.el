@@ -213,6 +213,15 @@
   (unless (server-running-p)
     (server-start)))
 
+(use-package sk
+  :bind
+  (("C-c n f" . sk/find-notes)
+   ("C-c n n" . sk/ag-notes)
+   ("C-c r" . sk/revert-buffer-confirm-if-modified))
+  :bind
+  (:map dired-mode-map
+	("C-c o" . sk/dired-open-file)))
+
 (use-package org-settings)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 
