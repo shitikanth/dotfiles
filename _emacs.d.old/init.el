@@ -62,6 +62,11 @@
 ;; Packages
 (setq use-package-verbose t)
 
+(use-package dired
+  :config
+  (setq dired-auto-revert-buffer t
+	dired-dwim-target t))
+
 (use-package ibuffer
   :bind
   ("C-x C-b" . ibuffer)
@@ -188,9 +193,16 @@
 
 (use-package eyebrowse :ensure t
   :defer 5
+  :custom (eyebrowse-keymap-prefix (kbd "C-x w"))
   :config
   (eyebrowse-mode 1)
   (setq eyebrowse-wrap-around t))
+
+(use-package multiple-cursors
+  :defer 5
+  :commands (mc/mark-next-like-this mc/mark-previous-like-this)
+  :bind (("C->" . mc/mark-next-like-this)
+	 ("C-<" . mc/mark-next-like-this)))
 
 (use-package which-key :ensure t
   :defer 1
@@ -226,6 +238,16 @@
 (global-set-key (kbd "C-c r") 'revert-buffer)
 
 ;; local settings
+(setq local-settings-file (concat user-emacs-directory "local.el"))
+(when (file-exists-p local-settings-file)
+  (load-file local-settings-file))
+
+(use-package sk-utils
+  :bind
+  (("C-c n f" . sk/find-notes)
+   ("C-c n n" . sk/ag-notes)))
+
+;; local-settings
 (setq local-settings-file (concat user-emacs-directory "local.el"))
 (when (file-exists-p local-settings-file)
   (load-file local-settings-file))
