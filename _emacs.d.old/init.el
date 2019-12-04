@@ -235,7 +235,9 @@
 	("C-c o" . sk/dired-open-file)))
 
 (use-package org-settings)
-(global-set-key (kbd "C-c r") 'revert-buffer)
+
+(use-package help-fns+)
+
 
 ;; local settings
 (setq local-settings-file (concat user-emacs-directory "local.el"))
