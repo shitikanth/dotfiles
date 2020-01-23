@@ -137,14 +137,11 @@
   :config
   (show-paren-mode 1))
 
-(use-package paredit :ensure t
-  :defer 5
-  :diminish
-  :hook
-  ((emacs-lisp-mode . enable-paredit-mode)
-   (lisp-mode . enable-paredit-mode)
-   (lisp-interaction-mode . enable-paredit-mode)
-   (eval-expression-minibuffer-setup . enable-paredit-mode)))
+(use-package smartparens :ensure t
+  :config
+  (smartparens-global-mode 1)
+  (require 'smartparens-config)
+  (add-hook 'lisp-mode-hook #'smartparens-strict-mode))
 
 (use-package projectile :ensure t
   :defer 5
@@ -225,6 +222,8 @@
   (unless (server-running-p)
     (server-start)))
 
+(use-package help-fns+)
+
 (use-package sk
   :bind
   (("C-c n f" . sk/find-notes)
@@ -235,14 +234,6 @@
 	("C-c o" . sk/dired-open-file)))
 
 (use-package org-settings)
-
-(use-package help-fns+)
-
-
-;; local settings
-(setq local-settings-file (concat user-emacs-directory "local.el"))
-(when (file-exists-p local-settings-file)
-  (load-file local-settings-file))
 
 (use-package sk-utils
   :bind
