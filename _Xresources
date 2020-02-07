@@ -1,8 +1,10 @@
 ! -*- mode: conf-xdefaults -*- vim: ft=xdefaults
-#define FONT Terminus
-#define FONT_SIZE 11
+#define FONT Monospace
+#define FONT_SIZE 12
 
 #include ".Xresources.d/rxvt-unicode"
 #include ".Xresources.d/xterm"
-#include ".Xresources.d/colors/base16-twilight.dark"
+#include ".Xresources.d/rofi"
+! #include ".Xresources.d/colors/base16-twilight.dark"
+#include ".Xresources.d/colors/base16-tomorrow.light"
 #include ".Xresources.d/colors/base16"

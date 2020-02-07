@@ -1,5 +1,7 @@
 ! -*- mode: conf-xdefaults -*- vim: ft=xdefaults
-UXTerm*faceName: FONT:size=FONT_SIZE
-UXTerm*metaSendsEscape: true
+UXTerm.vt100.faceName: FONT
+UXTerm.vt100.faceSize: FONT_SIZE
+UXTerm.vt100.metaSendsEscape: true
+UXTerm.vt100.renderFont: true
 ! XTerm*eightBitInput: false
 ! XTerm*backarrowKey: false

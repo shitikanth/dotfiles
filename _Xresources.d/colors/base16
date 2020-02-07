@@ -24,3 +24,6 @@ URxvt.cursorColor:  base05
 *color13:      base0E
 *color14:      base0C
 *color15:      base07
+
+UXTerm.vt100.background: base00
+UXTerm.vt100.foreground: base05

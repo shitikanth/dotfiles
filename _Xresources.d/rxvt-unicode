@@ -6,8 +6,12 @@ URxvt*boldFont: xft:FONT:size=FONT_SIZE:antialias=true:hinting=true
 URxvt*italicFont: xft:FONT:style=Oblique:size=FONT_SIZE:antialias=true:hinting=true
 URxvt*boldItalicFont: xft:FONT:style=Bold Oblique:size=FONT_SIZE:antialias=true:hinting=true
 
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
 ! disable A-s key
-URxvt.perl-ext-common: "default, -searchable-scrollback"
+URxvt.keysym.Meta-s:  builtin-string:
+URxvt.keysym.Shift-Control-F: searchable-scrollback:start
 
 ! Use C-S-c and C-S-v to copy-paste
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
