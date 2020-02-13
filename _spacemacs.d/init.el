@@ -582,6 +582,9 @@ before packages are loaded."
   (diminish 'which-key-mode)
   (diminish-undo 'persp-mode)
 
+  ;; disable extra coloring in dired
+  (setq font-lock-maximum-decoration '((dired-mode . 1) (t . t)))
+
   ;; local settings
   (setq local-settings-file "~/.spacemacs.d/local.el")
   (when (file-exists-p local-settings-file)

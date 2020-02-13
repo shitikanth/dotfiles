@@ -5,7 +5,8 @@
   "of" 'describe-function
   "ob" 'ibuffer-list-buffers
   "on" 'sk/emacs-notes
-  "oN" 'sk/find-notes)
+  "oN" 'sk/find-notes
+  "hh" 'sk/describe-symbol-at-point)
 
 ;; Layout
 (spacemacs/set-leader-keys
@@ -13,6 +14,7 @@
   "w3" 'sk/layout-three-windows)
 
 ;; global keybindings
-(global-set-key (kbd "M-`") 'other-frame)
+(global-set-key (kbd "M-`") 'eyebrowse-next-window-config)
+(global-set-key (kbd "s-`") 'persp-next)
 (global-set-key (kbd "M-<f4>") 'delete-frame)
 (global-set-key (kbd "C-x C-b") 'ibuffer-list-buffers)

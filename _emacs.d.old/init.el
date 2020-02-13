@@ -224,21 +224,17 @@
 
 (use-package help-fns+)
 
-(use-package sk
+(use-package sk-utils
   :bind
   (("C-c n f" . sk/find-notes)
    ("C-c n n" . sk/ag-notes)
    ("C-c r" . sk/revert-buffer-confirm-if-modified))
   :bind
   (:map dired-mode-map
-	("C-c o" . sk/dired-open-file)))
+		("C-c o" . sk/dired-open-file)))
 
 (use-package org-settings)
 
-(use-package sk-utils
-  :bind
-  (("C-c n f" . sk/find-notes)
-   ("C-c n n" . sk/ag-notes)))
 
 ;; local-settings
 (setq local-settings-file (concat user-emacs-directory "local.el"))
