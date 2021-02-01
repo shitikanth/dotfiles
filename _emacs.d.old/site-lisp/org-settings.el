@@ -13,8 +13,6 @@
 (require 'org-install)
 
 
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-
 ;(message "orgsettings: set agenda files")
 (setq org-agenda-files
       (list "~/.org/work.org"
@@ -66,7 +64,7 @@
       '((auto-mode . emacs)
 	("\\.mm\\'" . default)
 	("\\.x?html?\\'" . default)
-	("\\.pdf\\'" . "/Applications/Skim.app/Contents/MacOS/Skim %s")))
+	("\\.pdf\\'" . default)))
 
 ;(MESSAGE "orgsettings: set todo keywords")
 (setq org-todo-keywords

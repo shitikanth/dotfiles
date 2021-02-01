@@ -72,22 +72,34 @@
           (set-window-buffer (next-window) next-win-buffer)
           (select-window first-win)
           (if this-win-2nd (other-window 1))))))
+
+(defun sk/toggle-fullscreen ()
+  "Toggle full screen"
+  (interactive)
+  (set-frame-parameter
+     nil 'fullscreen
+     (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
+
 ;; Notes
+(defvar sk/notes-directory
+  "~/Dropbox/Notes/"
+  "Directory where notes are stored.")
+
 (defun sk/emacs-notes ()
   "Open emacs notes."
   (interactive)
-  (find-file "~/Dropbox/Notes/programming/emacs.org"))
+  (find-file (concat sk/notes-directory "programming/emacs.org")))
 
 (defun sk/find-notes ()
   "Search file in notes."
   (interactive)
-  (find-file "~/Dropbox/Notes")
+  (find-file sk/notes-directory)
   (call-interactively 'projectile-find-file))
 
 (defun sk/ag-notes ()
   "Search notes."
   (interactive)
-  (counsel-ag nil "~/Dropbox/Notes" "--ignore \"*.html*\" --ignore \"*.js\" --ignore \"*.css\""))
+  (counsel-ag nil sk/notes-directory "--ignore \"*.html*\" --ignore \"*.js\" --ignore \"*.css\""))
 
 ;; Misc
 (defun sk/load-ssh-environment ()
@@ -113,6 +125,73 @@
           (rename-buffer new-name)
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
+
+(defun sk/find-init-file ()
+  "Open init file for editing."
+  (interactive)
+  (find-file user-init-file))
+
+(defun sk/describe-symbol-at-point ()
+  "DWIM. Just show symbol at point without showing a prompt."
+  (interactive)
+  (describe-symbol (symbol-at-point)))
+
+(defun sk/dired-open-file ()
+  "In dired, open the file named on this line."
+  (interactive)
+  (let* ((file (dired-get-filename nil t)))
+    (when file
+      (shell-command (format "nohup xdg-open \"%s\" > /dev/null < /dev/null &" file)))))
+
+(defun sk/revert-buffer-confirm-if-modified ()
+  "Revert buffer without confirmation."
+  (interactive)
+  (revert-buffer t (not (buffer-modified-p))))
+
+(defun sk/ref-download-url (url)
+  (interactive "surl to download:")
+  (save-excursion
+    (bibtex-beginning-of-entry)
+    (let* ((bibtex-expand-strings t)
+           (entry (bibtex-parse-entry t))
+           (key (reftex-get-bib-field "=key=" entry))
+           (pdf (concat org-ref-pdf-directory key ".pdf")))
+      (message "pdf: %s" pdf)
+      (url-copy-file url pdf))))
+
+
+(defun sk/shell-command-on-buffer (command)
+  (interactive
+   (list (read-shell-command "Shell command on buffer: ")))
+  (shell-command-on-region (point-min) (point-max) command))
+
+(defun sk/shell-command-on-buffer (command)
+  (interactive
+   (list (read-shell-command "Shell command on buffer: ")))
+  (shell-command-on-region (point-min) (point-max) command))
+
+(defun sk/pipe-buffer (command)
+  (interactive
+   (list (read-shell-command "Shell command on buffer: ")))
+  (shell-command-on-region (point-min) (point-max) command t t))
+
+(defun sk/occur-dwim ()
+  "Call `occur' with a sane default."
+  (interactive)
+  (push (if (region-active-p)
+			(buffer-substring-no-properties
+			 (region-beginning)
+			 (region_end))
+		  (let ((sym (thing-at-point 'symbol)))
+			(when (stringp sym)
+			  (regexp-quote sym))))
+		regexp-history)
+  (call-interactively 'occur))
+
+(defun sk/font-lock-force-reset ()
+  (interactive)
+  (font-lock-mode -1)
+  (font-lock-mode))
 
 (provide 'sk-utils)
 ;;; sk-utils.el ends here

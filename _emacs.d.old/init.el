@@ -5,7 +5,7 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "site-lisp"))
 (setq custom-file (concat user-emacs-directory "custom.el"))
-(load custom-file)
+(load custom-file t)
 
 ;;
 ;; My basic customizations and settings
@@ -141,7 +141,10 @@
   :config
   (smartparens-global-mode 1)
   (require 'smartparens-config)
-  (add-hook 'lisp-mode-hook #'smartparens-strict-mode))
+  (add-hook 'lisp-mode-hook #'smartparens-strict-mode)
+  (sp-use-smartparens-bindings)
+  (setq sp-override-key-bindings
+	'(("M-<backspace>" . nil))))
 
 (use-package projectile :ensure t
   :defer 5
@@ -152,15 +155,17 @@
   :config
   (projectile-global-mode)
   (add-to-list 'projectile-globally-ignored-directories ".cquery_cached_index")
-  (setq projectile-indexing-method 'native
+  (setq projectile-indexing-method 'alien
+	projectile-git-command "git ls-files -zco --exclude-standard --exclude 'build*'"
 	projectile-completion-system 'ivy
-        projectile-enable-caching t))
+        projectile-enable-caching nil))
 
 (use-package compile
   :preface
   (defun my-compilation-mode-hook ()
     )
-  :bind (("C-c c" . compile))
+  :bind (:map prog-mode-map
+	 ("C-c c" . compile))
   :hook (compilation-mode . my-compilation-mode-hook))
 
 (use-package cc-mode
@@ -172,7 +177,9 @@
     (whitespace-toggle-options '(lines tabs newline-mark space-mark)))
   :hook (c-mode-common . my-c-mode-common-hook)
   :config
-  (setq c-default-style "linux"))
+  (setf  (alist-get 'c-mode c-default-style) "gnu")
+  (setf  (alist-get 'cc-mode c-default-style) "gnu"))
+
 
 (use-package cquery :ensure t
   :commands lsp-cquery-enable)
@@ -233,8 +240,20 @@
   (:map dired-mode-map
 		("C-c o" . sk/dired-open-file)))
 
-(use-package org-settings)
+;; (use-package org-settings)
 
+(use-package hippie-exp
+  :bind
+  (("M-/" . hippie-expand)))
+
+(use-package yasnippet
+  :defer 5
+  :diminish yas-minor-mode
+  :config
+  (use-package yasnippet-snippets)
+  (yas-global-mode 1)
+  (add-to-list 'hippie-expand-try-functions-list
+	       #'yas-hippie-try-expand))
 
 ;; local-settings
 (setq local-settings-file (concat user-emacs-directory "local.el"))

@@ -32,7 +32,7 @@ alias b='back'
 alias vimr='vim --remote-silent'
 alias vimrt='vim --remote-tab-silent'
 alias ec='emacsclient -n -c'
-alias e='TERM=xterm emacsclient --nw -c'
+alias e='TERM=xterm emacsclient --nw -c -s emacs-old'
 alias ecc='ec -s clojure'
 alias emacs_old='emacs -q -l ~/.emacs.d.old/init.el'
 alias c++11='clang++ -std=c++11'
@@ -69,6 +69,10 @@ alias cd..='cd ..'
 alias udo='sudo'
 #PS1='[\u:\h \W]\$ '
 
+if [ -f /etc/redhat-release ]
+then
+    alias vim=vimx
+fi
 if [ `uname -s` = Darwin ]
 then source ~/.aliases.darwin
 fi

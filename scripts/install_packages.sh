@@ -1,7 +1,16 @@
 #!/bin/bash
 # Script for installing commonly used packages.
-SYNC_CMD="sudo apt update"
-INSTALL_CMD="sudo apt install -y"
+
+if [ -f /etc/lsb-release ]
+then
+    SYNC_CMD="sudo apt update"
+    INSTALL_CMD="sudo apt install -y"
+elif [ -f /etc/redhat-release ]
+then
+    SYNC_CMD="sudo dnf update"
+    INSTALL_CMD="sudo dnf install -y"
+fi
+
 
 # Print usage
 usage () {
@@ -30,13 +39,15 @@ fi
 
 # Build packages list
 PACKAGES=(
+    gcc
+    gdb
     vim
-    emacs25
+    emacs
     git
     rofi
     feh
     caja
-    caja-dropbox
+    #caja-dropbox
     lxpanel
     lxappearance
     subversion
