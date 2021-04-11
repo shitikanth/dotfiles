@@ -1,25 +1,29 @@
 #!/bin/sh
+pathmunge () {
+    if [ ! -d "$1" ]; then
+	return
+    fi
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
-export PATH=/usr/local/sbin:$PATH
-export PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
+    case ":${PATH}:" in
+        *:"$1":*)
+            ;;
+        *)
+            if [ "$2" = "after" ] ; then
+                PATH=$PATH:$1
+            else
+                PATH=$1:$PATH
+            fi
+    esac
+}
 
-if [ -d "$HOME/.gem/ruby/2.0.0/bin" ]; then
-    export PATH="$HOME/.gem/ruby/2.0.0/bin:$PATH"
-fi
-
-if [ -d "$HOME/.cargo/bin" ]; then
-    export PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-if [ -d "$HOME/.local/node/bin" ]; then
-    export PATH="$HOME/.local/node/bin:$PATH"
-fi
+pathmunge "$HOME/.bin"
+pathmunge "$HOME/.local/bin"
+pathmunge "$HOME/.gem/ruby/2.0.0/bin"
+pathmunge "$HOME/.cargo/bin"
+pathmunge "$HOME/.local/node/bin"
 
 export GOPATH="$HOME/.go"
-if [ -d "$GOPATH" ]; then
-    export PATH="$GOPATH/bin:$PATH"
-fi
+pathmunge "$GOPATH/bin"
 
 export MANPATH="$HOME/.local/share/man:$MANPATH"
 export LD_LIBRARY_PATH="$HOME/.local/lib"
