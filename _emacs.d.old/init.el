@@ -238,9 +238,15 @@
    ("C-c r" . sk/revert-buffer-confirm-if-modified))
   :bind
   (:map dired-mode-map
-		("C-c o" . sk/dired-open-file)))
+	("C-c o" . sk/dired-open-file))
+  :config
+  (setq sk/notes-directory "~/OneDrive/Documents/Notes/"))
 
 ;; (use-package org-settings)
+
+(use-package python
+  :config
+  (require 'python-fixes))
 
 (use-package hippie-exp
   :bind
