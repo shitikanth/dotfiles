@@ -45,7 +45,7 @@
 ;; Package initialize
 (setq sk/start-time (current-time))
 (require 'package)
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (setq package-enable-at-startup nil)
 (package-initialize)
@@ -240,7 +240,7 @@
   (:map dired-mode-map
 	("C-c o" . sk/dired-open-file))
   :config
-  (setq sk/notes-directory "~/OneDrive/Documents/Notes/"))
+  (setq sk/notes-directory "~/MEGA/Documents/Notes/"))
 
 ;; (use-package org-settings)
 
