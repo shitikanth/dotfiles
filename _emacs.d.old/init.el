@@ -261,6 +261,10 @@
   (add-to-list 'hippie-expand-try-functions-list
 	       #'yas-hippie-try-expand))
 
+(use-package find-func
+  :bind
+  (("C-h C-l" . find-library)))
+
 ;; local-settings
 (setq local-settings-file (concat user-emacs-directory "local.el"))
 (when (file-exists-p local-settings-file)
