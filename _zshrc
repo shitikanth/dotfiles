@@ -75,7 +75,7 @@ ZSH_THEME="kolo"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(docker docker-compose kubectl virtualenv z mvn gcloud fzf npm yarn)
+plugins=(docker docker-compose kubectl virtualenv z mvn gcloud fzf npm)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
