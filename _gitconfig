@@ -13,6 +13,7 @@
     status = true
 [core]
     autocrlf = input
+	excludesfile = ~/.gitignore
 [color]
     ui = auto
 [filter "media"]

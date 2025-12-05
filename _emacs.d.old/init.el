@@ -265,6 +265,10 @@
   :bind
   (("C-h C-l" . find-library)))
 
+(use-package org
+  :config
+  (setq org-startup-indented t))
+
 ;; local-settings
 (setq local-settings-file (concat user-emacs-directory "local.el"))
 (when (file-exists-p local-settings-file)
