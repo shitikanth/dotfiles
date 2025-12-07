@@ -54,7 +54,8 @@
 ;;
 ;; Bootstrap use-package
 (setq sk/start-time (current-time))
-(add-to-list 'load-path (concat user-emacs-directory "lib/use-package"))
+(when (version< emacs-version "29")
+  (add-to-list 'load-path (concat user-emacs-directory "lib/use-package")))
 (require 'use-package)
 (message "Bootstrap use-package: %.3fs" (float-time (time-since sk/start-time)))
 
