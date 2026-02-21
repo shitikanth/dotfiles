@@ -16,6 +16,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-sleuth'
 Plugin 'godlygeek/tabular'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
@@ -98,7 +99,7 @@ map <leader>a ;A<cr>
 " imap <c-l> <right>
 " }}}
 " filetype specific settings {{{
-autocmd filetype tex,html,haskell,ruby setl sw=2
+autocmd filetype tex,html,haskell,javascript,json,ruby setl sw=2
 " good indentation in C++
 " }}}
 

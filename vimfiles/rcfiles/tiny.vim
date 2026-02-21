@@ -6,7 +6,7 @@ let mapleader=","
 "tab behaviour
 set sw=4
 set tabstop=4
-set expandtab
+"set expandtab
 
 "backspace behaviour
 set backspace=indent,eol,start
