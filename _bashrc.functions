@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # Extract many files with one command
 function extract () {
@@ -37,7 +38,7 @@ function cl () {
 }
 
 function man() {
-    env \
+  env \
     LESS_TERMCAP_mb=$(printf "\e[1;36m") \
     LESS_TERMCAP_md=$(printf "\e[1;36m") \
     LESS_TERMCAP_me=$(printf "\e[0m") \
@@ -46,9 +47,24 @@ function man() {
     LESS_TERMCAP_ue=$(printf "\e[0m") \
     LESS_TERMCAP_us=$(printf "\e[1;33m") \
     man "$@"
-}
+  }
 
 function swap() {
-    local TMPFILE=tmp.$$
-    mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE $2
+  local TMPFILE=tmp.$$
+  mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE $2
+}
+
+function clone() {
+  URL="$1"
+  if [[ ! "$URL" == https://github.com/* ]]; then
+    echo "Error: URL must start with https://github.com" >&2
+    return 1
+  fi
+  local OWNER_REPO="${URL#https://github.com/}"
+  git clone "${URL}" "${OWNER_REPO}"
+  cd "${OWNER_REPO}"
+}
+
+function path() {
+  echo "$PATH" | tr ':' '\n'
 }
