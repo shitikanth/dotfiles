@@ -42,6 +42,7 @@ alias start='xdg-open'
 # Git
 alias gt='git --no-pager'
 alias gdf='git diff'
+alias gdc='git diff --cached'
 alias gad='git add'
 alias gadd='git add'
 alias gca='git commit -a'
@@ -78,6 +79,10 @@ fi
 
 if [ -n "$ZSH_VERSION" ]
 then source ~/.aliases.zsh
+fi
+
+if [ -f ~/.aliases.local ]
+then source ~/.aliases.local
 fi
 
 alias uwdev='ssh uwlinux -t dev-tmux'

@@ -99,7 +99,7 @@
 (defun sk/ag-notes ()
   "Search notes."
   (interactive)
-  (counsel-rg nil sk/notes-directory "-g \"!*.html*\" -g \"!*.js\" -g \"!*.css\""))
+  (counsel-rg nil sk/notes-directory "-g !*.html* -g !*.js -g !*.css"))
 
 ;; Misc
 (defun sk/load-ssh-environment ()

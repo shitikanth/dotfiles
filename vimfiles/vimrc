@@ -100,7 +100,11 @@ map <leader>a ;A<cr>
 " }}}
 " filetype specific settings {{{
 autocmd filetype tex,html,haskell,javascript,json,ruby setl sw=2
-" good indentation in C++
+" }}}
+" ripgrep {{{
+if executable("rg")
+  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+endif
 " }}}
 
 " }}}
@@ -164,6 +168,9 @@ let g:necoghc_enable_detailed_browse = 1
 if executable('ag')
     let g:ackprg = "ag --vimgrep --ignore tags"
 endif
+
+" sleuth
+let g:sleuth_java_heuristics = 0
 " }}}
 " Awesome Macros {{{
 

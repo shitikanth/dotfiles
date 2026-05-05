@@ -57,6 +57,7 @@
 (when (version< emacs-version "29")
   (add-to-list 'load-path (concat user-emacs-directory "lib/use-package")))
 (require 'use-package)
+(setq use-package-compute-statistics t)
 (message "Bootstrap use-package: %.3fs" (float-time (time-since sk/start-time)))
 
 ;;
@@ -66,7 +67,7 @@
 (use-package dired
   :config
   (setq dired-auto-revert-buffer t
-	dired-dwim-target t))
+        dired-dwim-target t))
 
 (use-package ibuffer
   :bind
@@ -91,17 +92,15 @@
   :config
   (setq recentf-max-saved-items 500
         recentf-max-menu-items 15
-        ;; disable recentf-cleanup on Emacs start, because it can cause
-        ;; problems with remote files
         recentf-auto-cleanup 'never)
-  (recentf-mode +1))
+  (recentf-mode 1))
 
 (use-package ivy
   :defer 1
   :load-path "lib/swiper"
   :diminish
   :bind (("C-z" . ivy-switch-buffer)
-	 ("C-c h" . ivy-resume))
+         ("C-c h" . ivy-resume))
   :commands (ivy-switch-buffer ivy-mode)
   :config
   (setq-default ivy-use-virtual-buffers t)
@@ -113,7 +112,8 @@
   :diminish ivy-mode
   :diminish counsel-mode
   :bind (("C-x b" . counsel-bookmark)
-	 ("C-x j" . counsel-semantic-or-imenu))
+         ("C-x j" . counsel-semantic-or-imenu)
+         ("C-c C-t" . counsel-load-theme))
   :commands (counsel-bookmark counsel-mode)
   :config
   (counsel-mode 1))
@@ -123,15 +123,15 @@
   :load-path "lib/swiper"
   :bind (("C-c s" . swiper))
   :bind (:map swiper-map
-	      ("C-c ." . swiper-avy)
-	      ("C-." . swiper-avy))
+              ("C-c ." . swiper-avy)
+              ("C-." . swiper-avy))
   :bind (:map isearch-mode-map
-	      ("C-o" . swiper-from-isearch)))
+              ("C-o" . swiper-from-isearch)))
 
 (use-package avy :ensure t
   :commands (avy-goto-char-timer)
   :bind (("C-c ." . avy-goto-char-timer)
-	 ("C-." . avy-goto-char-timer)))
+         ("C-." . avy-goto-char-timer)))
 
 (use-package paren
   :defer 1
@@ -145,7 +145,7 @@
   (add-hook 'lisp-mode-hook #'smartparens-strict-mode)
   (sp-use-smartparens-bindings)
   (setq sp-override-key-bindings
-	'(("M-<backspace>" . nil))))
+        '(("M-<backspace>" . nil))))
 
 (use-package projectile :ensure t
   :defer 5
@@ -157,8 +157,8 @@
   (projectile-global-mode)
   (add-to-list 'projectile-globally-ignored-directories ".cquery_cached_index")
   (setq projectile-indexing-method 'alien
-	projectile-git-command "git ls-files -zco --exclude-standard --exclude 'build*'"
-	projectile-completion-system 'ivy
+        projectile-git-command "git ls-files -zco --exclude-standard --exclude 'build*'"
+        projectile-completion-system 'ivy
         projectile-enable-caching nil))
 
 (use-package compile
@@ -166,21 +166,23 @@
   (defun my-compilation-mode-hook ()
     )
   :bind (:map prog-mode-map
-	 ("C-c c" . compile))
+              ("C-c c" . compile))
   :hook (compilation-mode . my-compilation-mode-hook))
 
 (use-package cc-mode
   :preface
   (defun my-c-mode-common-hook ()
     (toggle-truncate-lines 1)
-    (whitespace-mode 1)
-    (setq whitespace-space-regexp "\\(  +\\))")
-    (whitespace-toggle-options '(lines tabs newline-mark space-mark)))
+    (whitespace-mode 1))
   :hook (c-mode-common . my-c-mode-common-hook)
   :config
   (setf  (alist-get 'c-mode c-default-style) "gnu")
   (setf  (alist-get 'cc-mode c-default-style) "gnu"))
 
+
+(use-package elisp-mode
+  :hook
+  (emacs-lisp-mode-hook . (lambda () (setq indent-tabs-mode nil))))
 
 (use-package cquery :ensure t
   :commands lsp-cquery-enable)
@@ -207,7 +209,7 @@
   :defer 5
   :commands (mc/mark-next-like-this mc/mark-previous-like-this)
   :bind (("C->" . mc/mark-next-like-this)
-	 ("C-<" . mc/mark-next-like-this)))
+         ("C-<" . mc/mark-next-like-this)))
 
 (use-package which-key :ensure t
   :defer 1
@@ -239,11 +241,11 @@
    ("C-c r" . sk/revert-buffer-confirm-if-modified))
   :bind
   (:map dired-mode-map
-	("C-c o" . sk/dired-open-file))
+        ("C-c o" . sk/dired-open-file))
   :config
   (setq sk/notes-directory "~/MEGA/Documents/Notes/"))
 
-;; (use-package org-settings)
+(use-package org-settings)
 
 (use-package python
   :config
@@ -260,7 +262,7 @@
   (use-package yasnippet-snippets)
   (yas-global-mode 1)
   (add-to-list 'hippie-expand-try-functions-list
-	       #'yas-hippie-try-expand))
+               #'yas-hippie-try-expand))
 
 (use-package find-func
   :bind
@@ -270,9 +272,18 @@
   :config
   (setq org-startup-indented t))
 
+(use-package emacs
+  :config
+  (unless (version< emacs-version "29")
+    (pixel-scroll-precision-mode 1))
+  :hook (nxml-mode . (lambda ()
+                       (setq-local tab-width 4))))
+
+(setq whitespace-style '(face tab-mark trailing))
 ;; local-settings
 (setq local-settings-file (concat user-emacs-directory "local.el"))
 (when (file-exists-p local-settings-file)
   (load-file local-settings-file))
 
 (message "Loaded .emacs in %.3fs" (float-time (time-since emacs-start-time)))
+

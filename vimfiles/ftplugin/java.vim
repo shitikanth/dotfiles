@@ -1,2 +1,3 @@
 set foldmethod=syntax
-set foldlevel=1
+set foldlevel=0
+set tabstop=4

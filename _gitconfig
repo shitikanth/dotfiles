@@ -6,14 +6,16 @@
     cm = commit -am
     graph = log --oneline --graph --decorate
     lg = log --color --pretty=format:'%Cred%h%Creset %C(bold blue)%<(15,trunc)%an %Creset%Cgreen%cs%Creset %s' --abbrev-commit
+    yolo = !git commit -a --amend --no-edit && git push --force
 [user]
-    email = shitikanth1@gmail.com
+    email = shitikanth@osfin.ai
     name = Shitikanth Kashyap
 [pager]
     status = true
 [core]
-    autocrlf = input
-	excludesfile = ~/.gitignore
+    autocrlf = false
+    excludesfile = ~/.gitignore
+	pager = less --tabs 4
 [color]
     ui = auto
 [filter "media"]
@@ -36,15 +38,23 @@
     pushInsteadOf = sk:
 [push]
     default = simple
+    autoSetupRemote = true
 [pull]
     rebase = true
 [rebase]
     autoStash = true
 [credential "https://github.com"]
-	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+    helper = 
+    helper = !/opt/homebrew/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+    helper = 
+    helper = !/opt/homebrew/bin/gh auth git-credential
 [init]
-	defaultBranch = main
+    defaultBranch = main
+[merge]
+    conflictStyle = diff3
+[merge "mergiraf"]
+    name = mergiraf
+    driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
+[diff]
+    tool = vimdiff

@@ -1,0 +1,110 @@
+#!/usr/bin/env node
+// -*- tab-width: 4; -*-
+
+import fs from "fs";
+import path from "path";
+import { Readable } from "stream"
+import { finished } from 'stream/promises';
+
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+
+function mkdir(dirPath) {
+	try {
+		fs.mkdirSync(dirPath, { recurse: true });
+	} catch (e) {
+		if (e.code == 'EEXIST') {
+			if (!fs.statSync(dirPath).isDirectory()) {
+				throw e;
+			}
+		} else {
+			throw e;
+		}
+	}
+}
+
+
+function githubApi(url, options = {}) {
+	let defaultOptions = {
+		headers: {
+			"User-Agent": "node",
+			"Authorization": `Bearer ${GITHUB_TOKEN}`,
+		}
+	}
+	let mergedOptions = { ...defaultOptions, ...options };
+	return fetch(url, mergedOptions);
+}
+
+async function githubDL(repo, ref, srcPath, destPath) {
+	async function downloadFile(url, destPath) {
+		const res = await githubApi(url);
+		if (!res.ok) {
+			throw new Error(`Failed to download file ${srcPath}`);
+		}
+		const fileStream = fs.createWriteStream(destPath, { flags: 'w' });
+		await finished(Readable.fromWeb(res.body).pipe(fileStream));
+	}
+
+	async function downloadDir(srcPath, destPath) {
+		const res = await githubApi(`https://api.github.com/repos/${repo}/contents/${srcPath}?ref=${ref}`, {
+			headers: {
+				Accept: "application/vnd.github.v3+json"
+			}
+		});
+		if (!res.ok) {
+			throw new Error(`Failed to download folder ${srcPath}`);
+		}
+
+		mkdir(destPath)
+
+		const items = await res.json();
+		items.forEach(async (item) => {
+			if (item.type === 'file') {
+				await downloadFile(item.download_url, path.join(destPath, item.name));
+			} else if (item.type === 'dir') {
+				await downloadDir(item.path, path.join(destPath, item.name));
+			}
+		});
+	}
+
+	await downloadDir(srcPath, destPath);
+}
+
+function parseGithubUrl(url) {
+	const u = new URL(url);
+	if (u.hostname !== 'github.com') {
+		throw new Error('Invalid GitHub URL');
+	}
+	const parts = u.pathname.split('/').filter(part => part.length > 0);
+
+	if (parts.length < 5 || parts[2] !== 'tree') {
+		throw new Error('URL is not in the expected format: /{owner}/{repo}/tree/{ref}/path...');
+	}
+	
+	const repo = `${parts[0]}/${parts[1]}`;
+	const ref = parts[3];
+	const path = parts.slice(4).join('/');
+	return [repo, ref, path];
+}
+
+function parseArgs() {
+	const args = process.argv.slice(2);
+	if (args.length > 2 || args.length < 1) {
+		console.error("Usage: github-dl <url> [<destPath>]");
+		process.exit(1);
+	}
+
+	const [repo, ref, srcPath] = parseGithubUrl(args[0]);
+	const destPath = path.join(args[1] || './', path.basename(srcPath));
+
+	return {
+		repo,
+		ref,
+		srcPath,
+		destPath,
+	}
+}
+
+await (async function main() {
+	const { repo, ref, srcPath, destPath } = parseArgs();
+	githubDL("nginx/nginx-gateway-fabric", "main", "examples/cafe-example", "cafe-example");
+})();
