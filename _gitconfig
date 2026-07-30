@@ -5,8 +5,9 @@
     br = branch
     cm = commit -am
     graph = log --oneline --graph --decorate
-    lg = log --color --pretty=format:'%Cred%h%Creset %C(bold blue)%<(15,trunc)%an %Creset%Cgreen%cs%Creset %s' --abbrev-commit
+    lg = log --color --pretty=format:'%Cred%h%Creset %C(bold blue)%<(15,trunc)%aN %Creset%Cgreen%cs%Creset %s' --abbrev-commit
     yolo = !git commit -a --amend --no-edit && git push --force
+	sweep = !git fetch -p && git for-each-ref --format \"%(refname:short) %(upstream:track)\" refs/heads | grep \" \\[gone\\]$\" | cut -d\" \" -f1 | xargs -r git branch -d
 [user]
     email = shitikanth@osfin.ai
     name = Shitikanth Kashyap
@@ -57,4 +58,10 @@
     name = mergiraf
     driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
 [diff]
-    tool = vimdiff
+	tool = difftastic
+[difftool "difftastic"]
+	cmd = difft \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[fetch]
+	prune = true
