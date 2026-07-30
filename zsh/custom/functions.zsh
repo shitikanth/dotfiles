@@ -11,7 +11,7 @@ worktree() {
         echo "  worktree rm <name> [--force]    remove worktree (--force skips dirty check)"
         echo "  worktree ls                     list worktrees"
         echo "  worktree sync                   push all worktrees"
-        echo "  worktree clean [--dry-run] [--unsafe]  fetch and remove worktrees with merged branches"
+        echo "  worktree clean [--dry-run] [-i] [--force]  fetch and remove worktrees with merged branches"
     }
 
     case "$1" in
@@ -40,10 +40,12 @@ worktree() {
 
             # DWIM: check out existing branch, or create new one
             echo "Creating worktree '$name' at $dest (branch: $branch)"
-            if git -C "$MAIN_REPO" rev-parse --verify "$branch" &>/dev/null; then
+            if git -C "$MAIN_REPO" show-ref --verify --quiet "refs/heads/$branch"; then
                 git -C "$MAIN_REPO" worktree add "$dest" "$branch" || return 1
+            elif git -C "$MAIN_REPO" show-ref --verify --quiet "refs/remotes/origin/$branch"; then
+                git -C "$MAIN_REPO" worktree add --track -b "$branch" "$dest" "origin/$branch" || return 1
             else
-                git -C "$MAIN_REPO" worktree add -b "$branch" "$dest" || return 1
+                git -C "$MAIN_REPO" worktree add -b "$branch" "$dest" develop || return 1
             fi
 
             cd "$dest/$SUBDIR" || return 1
@@ -81,18 +83,19 @@ worktree() {
 
         # ── clean ─────────────────────────────────────────────────────────────
         clean)
-            local unsafe=0 dry_run=0
+            local interactive=0 dry_run=0 force=0
             for arg in "${@:2}"; do
-                [[ "$arg" == "--unsafe"   ]] && unsafe=1
+                [[ "$arg" == "--interactive" || "$arg" == "-i" ]] && interactive=1
                 [[ "$arg" == "--dry-run"  ]] && dry_run=1
+                [[ "$arg" == "--force"    ]] && force=1
             done
 
             echo "Fetching..."
             git -C "$MAIN_REPO" fetch --prune || return 1
 
-            # Branches whose remote tracking ref is gone (deleted on server, covers squash/rebase merges)
+            # Branches whose remote tracking ref is gone (pushed + deleted on server — covers squash/rebase merges)
             local gone_branches
-            gone_branches=$(git -C "$MAIN_REPO" branch -vv | awk '/: gone\]/ { print ($1 == "+" || $1 == "*") ? $2 : $1 }')
+            gone_branches=$(git -C "$MAIN_REPO" branch -vv | awk '/\[.*: gone\]/ { print ($1 == "*" || $1 == "+") ? $2 : $1 }')
 
             # Branches reachable from origin/develop (covers regular merges)
             local merged_branches
@@ -102,16 +105,30 @@ worktree() {
             for wt_path in "$WORKTREE_BASE"/*/; do
                 [[ -d "$wt_path" ]] || continue
                 wt_branch=$(git -C "$wt_path" rev-parse --abbrev-ref HEAD 2>/dev/null) || continue
-                if echo "$gone_branches" | grep -qx "$wt_branch" || echo "$merged_branches" | grep -qx "$wt_branch"; then
+
+                local should_clean=0
+                if echo "$gone_branches" | grep -qx "$wt_branch"; then
+                    # Remote tracking ref was deleted — branch was pushed and MR closed/merged
+                    should_clean=1
+                elif echo "$merged_branches" | grep -qx "$wt_branch"; then
+                    # Only treat as merged if the branch has/had an upstream (i.e. was pushed)
+                    if git -C "$MAIN_REPO" rev-parse --abbrev-ref "${wt_branch}@{upstream}" &>/dev/null; then
+                        should_clean=1
+                    fi
+                fi
+
+                if (( should_clean )); then
                     if (( dry_run )); then
                         echo "${wt_path%/} ($wt_branch)"
                         continue
                     fi
-                    if (( ! unsafe )); then
-                        read -r "reply?Remove worktree '${wt_path%/}' (branch '$wt_branch' merged/deleted)? [y/N] "
+                    if (( interactive )); then
+                        read -r "reply?Remove worktree '${wt_path%/}' (branch '$wt_branch' merged)? [y/N] "
                         [[ "$reply" =~ ^[Yy]$ ]] || continue
+                    else
+                        echo "Removing ${wt_path%/} ($wt_branch)"
                     fi
-                    git -C "$MAIN_REPO" worktree remove "$wt_path" && (( cleaned++ ))
+                    git -C "$MAIN_REPO" worktree remove ${force:+--force} "$wt_path" && (( cleaned++ ))
                 fi
             done
 
@@ -158,7 +175,7 @@ _worktree_complete() {
         cmd)
             local worktree_names=("${(@f)$(ls -1 "$BEEWORKS/worktree" 2>/dev/null)}")
             _alternative \
-                'subcommands:subcommand:((new\:create\ a\ new\ worktree rm\:remove\ a\ worktree ls\:list\ worktrees sync\:push\ all\ worktrees clean\:fetch\ and\ remove\ merged\ worktrees))' \
+                'subcommands:subcommand:((new\:create\ a\ new\ worktree rm\:remove\ a\ worktree ls\:list\ worktrees sync\:push\ all\ worktrees clean\:auto-remove\ worktrees\ with\ merged\ branches))' \
                 "worktrees:worktree name:(${worktree_names[*]})"
             ;;
 
@@ -175,7 +192,7 @@ _worktree_complete() {
                     _values 'branch' "${branches[@]}"
                     ;;
                 clean)
-                    _values 'flag' '--dry-run' '--unsafe'
+                    _values 'flag' '--dry-run' '--interactive' '-i' '--force'
                     ;;
             esac
             ;;
