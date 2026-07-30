@@ -36,9 +36,9 @@ Layered so non-zsh shells still work:
 3. `_zshrc` — oh-my-zsh setup, then sources `~/.bashrc.functions` and `~/.aliases`. Tool blocks (bun, sdkman, dbt) accumulate at the bottom; **the sdkman block must stay last in the file**.
 4. `_aliases` — POSIX aliases, then conditionally sources `~/.aliases.darwin` (macOS), `~/.aliases.zsh` (zsh global aliases like `L='| less'`), and `~/.aliases.local` (untracked, per-machine).
 
-`ZSH_CUSTOM` is `$HOME/dotfiles/zsh/custom` — a hardcoded absolute path into the repo, not a symlink. oh-my-zsh auto-sources every `*.zsh` there, so `zsh/custom/functions.zsh` and `custom.zsh` need no `source` line.
+`ZSH_CUSTOM` is `$HOME/dotfiles/zsh/custom` — a hardcoded absolute path into the repo, not a symlink. oh-my-zsh auto-sources every `*.zsh` there, so `zsh/custom/worktree.zsh` and `custom.zsh` need no `source` line.
 
-`zsh/custom/functions.zsh` holds the `worktree` command and its zsh completion. It assumes `$BEEWORKS/bee_recon` with a `recon-platform` subdir and a `develop` base branch. Keep the completion's flag list in sync when changing subcommand flags.
+`zsh/custom/worktree.zsh` holds the `worktree` command and its zsh completion. It assumes `$BEEWORKS/bee_recon` with a `recon-platform` subdir and a `develop` base branch. Keep the completion's flag list in sync when changing subcommand flags.
 
 ## Emacs
 
