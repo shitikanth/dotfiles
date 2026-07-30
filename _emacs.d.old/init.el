@@ -184,14 +184,27 @@
   :hook
   (emacs-lisp-mode-hook . (lambda () (setq indent-tabs-mode nil))))
 
-(use-package cquery :ensure t
-  :commands lsp-cquery-enable)
+;; (use-package cquery :ensure t
+;;   :commands lsp-cquery-enable)
 
-(use-package lsp-mode :ensure t
-  :defer t)
+;; (use-package lsp-mode :ensure t
+;;   :defer t)
 
-(use-package lsp-ui :ensure t
-  :defer t)
+;; (use-package lsp-ui :ensure t
+;;   :defer t)
+
+(use-package eglot
+  :ensure nil
+  :defer t
+  :config
+  (add-to-list
+   'eglot-server-programs
+   '(((js-mode :language-id "javascript")
+      (js-ts-mode :language-id "javascript")
+      (tsx-ts-mode :language-id "typescriptreact")
+      (typescript-ts-mode :language-id "typescript")
+      (typescript-mode :language-id "typescript"))
+     "tsc" "--lsp" "--stdio")))
 
 (use-package magit
   :ensure t
@@ -251,6 +264,13 @@
   :config
   (require 'python-fixes))
 
+(use-package js
+  :ensure nil
+  :config
+  (when (treesit-language-available-p 'javascript)
+    (add-to-list 'major-mode-remap-alist
+                 '(js-mode . js-ts-mode))))
+
 (use-package hippie-exp
   :bind
   (("M-/" . hippie-expand)))
@@ -270,14 +290,18 @@
 
 (use-package org
   :config
-  (setq org-startup-indented t))
+  (setq org-startup-indented t
+        org-use-speed-commands t))
 
 (use-package emacs
   :config
   (unless (version< emacs-version "29")
     (pixel-scroll-precision-mode 1))
-  :hook (nxml-mode . (lambda ()
-                       (setq-local tab-width 4))))
+  :hook
+  (nxml-mode . (lambda ()
+                 (setq-local tab-width 4)))
+  (java-ts-mode . (lambda ()
+                    (setq-local tab-width 4))))
 
 (setq whitespace-style '(face tab-mark trailing))
 ;; local-settings
