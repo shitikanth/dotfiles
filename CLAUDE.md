@@ -40,6 +40,8 @@ Layered so non-zsh shells still work:
 
 `zsh/custom/worktree.zsh` holds the `worktree` command and its zsh completion. It assumes `$BEEWORKS/bee_recon` with a `recon-platform` subdir and a `develop` base branch. Keep the completion's flag list in sync when changing subcommand flags.
 
+`zsh/custom/dotenv.zsh` holds `dotenv` — parses `.env` files and runs a command under them via `env`, never touching the calling shell. Same convention: keep its `_dotenv_complete` flag list in sync with the option parser.
+
 ## Emacs
 
 Two independent configs coexist:
