@@ -30,6 +30,7 @@ set foldmethod=marker
 
 set ruler
 set textwidth=78
+set nowrap
 set visualbell
 set guioptions=m
 set encoding=utf-8
