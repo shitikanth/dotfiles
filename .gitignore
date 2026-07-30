@@ -4,6 +4,16 @@ _emacs.d/autosave
 _emacs.d/auto-save-list
 _emacs.d/ido.last
 _emacs.d/url
+_emacs.d.old/.cache
+_emacs.d.old/eln-cache
+_emacs.d.old/elfeed
+_emacs.d.old/hackernews
+_emacs.d.old/newsticker
+_emacs.d.old/url
+_emacs.d.old/bookmarks
+_emacs.d.old/places
+_emacs.d.old/forge-database.sqlite
+_emacs.d.old/tree-sitter/*.dylib
 /elpa
 /custom.el
 /ido.last
