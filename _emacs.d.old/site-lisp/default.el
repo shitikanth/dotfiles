@@ -1,5 +1,4 @@
-;; default.el
-;; setting to use by default
+;;; default.el --- settings to use by default  -*- lexical-binding: t; -*-
 (provide 'default)
 (defun system-specific-setup()
 )

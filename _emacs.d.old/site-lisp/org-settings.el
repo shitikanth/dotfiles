@@ -1,3 +1,4 @@
+;;; org-settings.el --- Org-mode settings  -*- lexical-binding: t; -*-
 
 ;;
 ;;

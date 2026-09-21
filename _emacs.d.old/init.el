@@ -1,3 +1,5 @@
+;;; init.el --- Personal Emacs configuration  -*- lexical-binding: t; -*-
+
 (setq emacs-start-time (current-time))
 
 (setq user-init-file (or load-file-name (buffer-file-name)))
@@ -245,12 +247,11 @@
   (unless (server-running-p)
     (server-start)))
 
-(use-package help-fns+)
-
 (use-package sk-utils
   :bind
   (("C-c n f" . sk/find-notes)
    ("C-c n n" . sk/ag-notes)
+   ("C-c e" . sk/find-init-file)
    ("C-c r" . sk/revert-buffer-confirm-if-modified))
   :bind
   (:map dired-mode-map
