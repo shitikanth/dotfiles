@@ -1,5 +1,6 @@
 /.cache/
 /.mc-lists.el
+/agent/
 /autosave/
 /bookmarks
 /custom.el
