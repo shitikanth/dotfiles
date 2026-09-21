@@ -75,7 +75,7 @@ ZSH_CUSTOM=$HOME/dotfiles/zsh/custom
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(docker docker-compose kubectl virtualenv z mvn gcloud fzf npm gradle run-help)
+plugins=(docker docker-compose kubectl virtualenv z mvn gcloud fzf npm gradle run-help jj)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -141,3 +141,31 @@ alias dbtf=/Users/shitikanth/.local/bin/dbt
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# jj-aware prompt segment: nearest bookmark(+changes above it) or short change id; ✗ on
+# conflict. Replaces the kolo git segment inside jj repos, where git is permanently in
+# detached HEAD and vcs_info shows a useless hash. --ignore-working-copy on every call so
+# rendering a prompt never snapshots the repo or writes the op log.
+jj_prompt_precmd() {
+  local out bookmark seg dist conflict
+  # Also the "is this a jj repo" probe -- no pipes, so the exit code is jj's own.
+  out=$(jj log -r 'heads(::@ & bookmarks())' --no-graph --ignore-working-copy \
+      --color never -T 'bookmarks.join(",") ++ "\n"' 2>/dev/null) || return 0
+  bookmark=${out%%$'\n'*}; bookmark=${bookmark%%,*}
+  conflict=$(jj log -r @ --no-graph --ignore-working-copy --color never \
+      -T 'if(conflict, "x")' 2>/dev/null)
+  if [[ -n $bookmark ]]; then
+    # One dot per change above the bookmark; a resting (empty, undescribed) @ counts 0.
+    dist=$(jj log -r "\"$bookmark\"..@ ~ (empty() & description(exact:\"\"))" \
+        --no-graph --ignore-working-copy --color never -T '"."' 2>/dev/null)
+    seg=$bookmark
+    [[ -n $dist ]] && seg+="+${#dist}"
+  else
+    seg=$(jj log -r @ --no-graph --ignore-working-copy --color never \
+        -T 'change_id.shortest(4)' 2>/dev/null)
+  fi
+  [[ -n $conflict ]] && seg+=" %F{red}✗%B%F{green}"
+  vcs_info_msg_0_=" [${seg}]"
+}
+autoload -U add-zsh-hook
+add-zsh-hook precmd jj_prompt_precmd
