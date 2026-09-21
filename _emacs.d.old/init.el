@@ -294,6 +294,11 @@
   (setq org-startup-indented t
         org-use-speed-commands t))
 
+(use-package w3m :ensure t
+  :defer t
+  :config
+  (require 'w3m-livemint))
+
 (use-package emacs
   :config
   (unless (version< emacs-version "29")
