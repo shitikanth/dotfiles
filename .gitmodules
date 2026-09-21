@@ -7,15 +7,6 @@
 [submodule "bundle/Vundle.vim"]
 	path = vimfiles/bundle/Vundle.vim
 	url = https://github.com/gmarik/Vundle.vim.git
-[submodule "_emacs.d"]
-	path = _emacs.d
-	url = https://github.com/syl20bnr/spacemacs
-[submodule "w3m"]
-	path = _spacemacs.d/layers/w3m
-	url = ssh://git@github.com/shitikanth/w3m-layer.git
-[submodule "_spacemacs.d/layers/sk-org/layers/ob-ipython"]
-	path = _spacemacs.d/layers/sk-org/local/ob-ipython
-	url = git@github.com:shitikanth/ob-ipython.git
 [submodule "_emacs.d.old/lib/use-package"]
 	path = _emacs.d.old/lib/use-package
 	url = https://github.com/jwiegley/use-package

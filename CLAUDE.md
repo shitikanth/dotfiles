@@ -44,10 +44,11 @@ Layered so non-zsh shells still work:
 
 ## Emacs
 
-Two independent configs coexist:
+**`_emacs.d.old/init.el`** is the config. Hand-rolled, `use-package`-based, one `(use-package ...)` block per package. Load order: `site-lisp/` onto `load-path` → `custom.el` → package blocks → `local.el` last. Language servers via `eglot`; the old `lsp-mode`/`cquery` blocks are commented out, not deleted. Tree-sitter modes are guarded by `treesit-language-available-p` before `major-mode-remap-alist`.
 
-- **`_emacs.d.old/init.el`** — the one in use. Hand-rolled, `use-package`-based, one `(use-package ...)` block per package. Load order: `site-lisp/` onto `load-path` → `custom.el` → package blocks → `local.el` last. Language servers via `eglot`; the old `lsp-mode`/`cquery` blocks are commented out, not deleted. Tree-sitter modes are guarded by `treesit-language-available-p` before `major-mode-remap-alist`.
-- **`_emacs.d`** (spacemacs submodule) + **`_spacemacs.d/layers/sk-*`** — legacy, unused by the current aliases.
+Despite the `.old` name there is no newer config — a spacemacs setup (`_emacs.d` submodule + `_spacemacs.d/layers/sk-*`) was removed in 2026-09. `~/.emacs.d` is a hand-made symlink to `_emacs.d.old`, not one `bootstrap.sh` creates.
+
+Every elisp file needs a `-*- lexical-binding: t; -*-` cookie on line 1; Emacs 31 warns at load without it.
 
 The `ec` / `e` aliases talk to a daemon named `emacs-old` (`emacsclient -s emacs-old`).
 

@@ -21,8 +21,7 @@ function vim_plugin_install() {
 }
 
 function emacs_plugin_install() {
-    # spacemacs automatically installs plugins on install
-    emacs --eval "(if (functionp 'spacemacs/kill-emacs) (spacemacs/kill-emacs) (kill-emacs))"
+    emacs --eval "(kill-emacs)"
 }
 
 git submodule update --init --recursive
