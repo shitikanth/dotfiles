@@ -54,7 +54,7 @@ The `ec` / `e` aliases talk to a daemon named `emacs-old` (`emacsclient -s emacs
 
 `local.el` and `custom.el` are untracked — the per-machine escape hatch (host paths, `mac-command-modifier`, org agenda files, API-backed packages). Machine-specific state goes in `local.el`, not `init.el`.
 
-Ignore rules for emacs runtime state live in `_emacs.d.old/.gitignore` as root-anchored patterns (`/recentf`); add new state files there. `ielm-history.eld`, `projects`, and `projectile-bookmarks.eld` are tracked, so ordinary emacs use dirties them.
+Ignore rules for emacs runtime state live in `_emacs.d.old/.gitignore` as root-anchored patterns (`/recentf`); add new state files there. Nothing under `_emacs.d.old/` is tracked except the elisp itself — no history, project lists, caches, or compiled grammars.
 
 ## Vim
 
