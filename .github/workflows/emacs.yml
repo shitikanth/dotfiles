@@ -4,12 +4,12 @@ on:
   push:
     branches: [develop]
     paths:
-      - '_emacs.d.old/**.el'
+      - '_emacs.d.old/**'
       - 'ci/**'
       - '.github/workflows/emacs.yml'
   pull_request:
     paths:
-      - '_emacs.d.old/**.el'
+      - '_emacs.d.old/**'
       - 'ci/**'
       - '.github/workflows/emacs.yml'
 
