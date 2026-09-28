@@ -51,6 +51,8 @@ Despite the `.old` name there is no newer config — a spacemacs setup (`_emacs.
 
 Every elisp file needs a `-*- lexical-binding: t; -*-` cookie on line 1; Emacs 31 warns at load without it.
 
+`init.el` needs Emacs 29+: it relies on the built-in `use-package` (the `lib/use-package` submodule was removed).
+
 `ci/byte-compile` runs `batch-byte-compile` with `byte-compile-error-on-warn`, packages from `~/.emacs.d/elpa`, and deletes the `.elc` files afterwards. The pre-commit hook `ci/pre-commit` (enabled by `bootstrap.sh` via `core.hooksPath`) runs it on staged `.el` files. `.github/workflows/emacs.yml` symlinks the checkout to `~/.emacs.d` like bbatsov/prelude, runs `ci/test-startup` (purcell/emacs.d's batch load of `init.el`, which installs the `:ensure t` packages into the cached `~/.emacs.d/elpa`), then `ci/byte-compile` on every file. `ci/test-startup` is CI-only: Emacs saves recentf, bookmarks and similar state into `~/.emacs.d` on exit.
 
 The `ec` / `e` aliases talk to a daemon named `emacs-old` (`emacsclient -s emacs-old`).
