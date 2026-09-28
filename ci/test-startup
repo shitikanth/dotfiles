@@ -1,0 +1,13 @@
+#!/bin/sh -e
+# CI only: kill-emacs-hook saves recentf, bookmarks etc. into ~/.emacs.d.
+echo "Attempting startup..."
+${EMACS:=emacs} -nw --batch \
+                --eval '(progn
+                        (defvar url-show-status)
+                        (let ((debug-on-error t)
+                              (url-show-status nil)
+                              (user-init-file (locate-user-emacs-file "init.el")))
+                           (setq package-check-signature nil)
+                           (load-file user-init-file)
+                           (run-hooks (quote after-init-hook))))'
+echo "Startup successful"
