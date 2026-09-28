@@ -1,30 +1,31 @@
-name: lint-elisp
+name: emacs
 
 on:
   push:
     paths:
       - '_emacs.d.old/**.el'
-      - 'ci/lint-elisp*'
-      - '.github/workflows/lint-elisp.yml'
+      - 'ci/**'
+      - '.github/workflows/emacs.yml'
   pull_request:
     paths:
       - '_emacs.d.old/**.el'
-      - 'ci/lint-elisp*'
-      - '.github/workflows/lint-elisp.yml'
+      - 'ci/**'
+      - '.github/workflows/emacs.yml'
 
 jobs:
-  lint:
+  check:
     runs-on: ubuntu-latest
-    env:
-      LINT_ELISP_ELPA: ~/.cache/lint-elisp/elpa
     steps:
       - uses: actions/checkout@v7
+      - run: git submodule update --init _emacs.d.old/lib/swiper
       - uses: purcell/setup-emacs@master
         with:
           version: 31.1
+      - run: ln -s "$PWD/_emacs.d.old" ~/.emacs.d
       - uses: actions/cache@v6
         with:
-          path: ${{ env.LINT_ELISP_ELPA }}
+          path: ~/.emacs.d/elpa
           key: elpa-31.1-${{ hashFiles('_emacs.d.old/init.el') }}
           restore-keys: elpa-31.1-
-      - run: ci/lint-elisp
+      - run: ci/test-startup
+      - run: ci/byte-compile

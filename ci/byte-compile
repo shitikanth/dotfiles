@@ -1,0 +1,16 @@
+#!/bin/sh
+# Usage: ci/byte-compile [FILE...]
+# With no FILE, compiles every tracked .el file under _emacs.d.old.
+cd "$(git rev-parse --show-toplevel)"
+[ $# -gt 0 ] || set -- $(git ls-files '_emacs.d.old/*.el')
+status=0
+${EMACS:=emacs} -Q --batch -L _emacs.d.old/site-lisp \
+                --eval '(progn
+                          (package-initialize)
+                          (setq byte-compile-error-on-warn t
+                                ad-redefinition-action (quote accept)))' \
+                -f batch-byte-compile "$@" || status=$?
+# _emacs.d.old is the live ~/.emacs.d, and Emacs loads a stale .elc over a
+# newer .el.
+for f in "$@"; do rm -f "${f%.el}.elc"; done
+exit $status

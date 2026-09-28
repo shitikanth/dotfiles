@@ -23,7 +23,7 @@ source ~/.zshrc                     # or the `reload` alias
 vim +PluginInstall +qall            # Vundle plugin install
 ZSH_DEBUGRC=1 zsh                   # profile zsh startup (zprof)
 emacs -q -l ~/.emacs.d.old/init.el  # the `emacs_old` alias; init.el prints per-package load times
-ci/lint-elisp [--fix] [FILE...] # byte-compile + indentation check of _emacs.d.old/**/*.el
+ci/byte-compile [FILE...]           # byte-compile _emacs.d.old/**/*.el, warnings are errors
 ```
 
 `bootstrap.sh` begins with `git pull`.
@@ -51,7 +51,7 @@ Despite the `.old` name there is no newer config — a spacemacs setup (`_emacs.
 
 Every elisp file needs a `-*- lexical-binding: t; -*-` cookie on line 1; Emacs 31 warns at load without it.
 
-`ci/lint-elisp` fails on any byte-compile warning or on indentation that `indent-region` (with `indent-tabs-mode nil`) would change; `--fix` rewrites the indentation. It runs from the pre-commit hook `ci/pre-commit` (enabled by `bootstrap.sh` via `core.hooksPath`) on staged `.el` files, and in `.github/workflows/lint-elisp.yml` on every file. Locally it reads packages from `~/.emacs.d/elpa` without writing to it; CI sets `LINT_ELISP_ELPA` and installs every `use-package` from `init.el` into a cached directory.
+`ci/byte-compile` runs `batch-byte-compile` with `byte-compile-error-on-warn`, packages from `~/.emacs.d/elpa`, and deletes the `.elc` files afterwards. The pre-commit hook `ci/pre-commit` (enabled by `bootstrap.sh` via `core.hooksPath`) runs it on staged `.el` files. `.github/workflows/emacs.yml` symlinks the checkout to `~/.emacs.d` like bbatsov/prelude, runs `ci/test-startup` (purcell/emacs.d's batch load of `init.el`, which installs the `:ensure t` packages into the cached `~/.emacs.d/elpa`), then `ci/byte-compile` on every file. `ci/test-startup` is CI-only: Emacs saves recentf, bookmarks and similar state into `~/.emacs.d` on exit.
 
 The `ec` / `e` aliases talk to a daemon named `emacs-old` (`emacsclient -s emacs-old`).
 
