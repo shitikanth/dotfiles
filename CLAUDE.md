@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Personal dotfiles for macOS and Linux. No build, test, or lint step — deployment is symlinking into `$HOME`. Files in `$HOME` are symlinks into this repo, so an edit here changes the running config immediately; only a reload of the affected program is needed.
+Personal dotfiles for macOS and Linux. No build or test step — deployment is symlinking into `$HOME`. The one check is the Elisp lint (see Emacs). Files in `$HOME` are symlinks into this repo, so an edit here changes the running config immediately; only a reload of the affected program is needed.
 
 ## Symlink convention
 
@@ -11,7 +11,7 @@ Personal dotfiles for macOS and Linux. No build, test, or lint step — deployme
 - `_vim` → `~/.vim` (`_vim` is itself an in-repo symlink to `vimfiles/`)
 
 - A new dotfile is deployed only if it sits at the repo root and is named `_name`. Nested files are never linked.
-- Top-level dirs without the underscore (`config/`, `local/`, `scripts/`, `zsh/`, `gdb_printers/`, `vimfiles/`) are not symlinked. They are referenced by absolute path (see `ZSH_CUSTOM`), reached through another symlink (`_vim`), or copied into place by hand (`config/` and `local/` mirror `~/.config` and `~/.local` on Linux).
+- Top-level dirs without the underscore (`ci/`, `config/`, `local/`, `scripts/`, `zsh/`, `gdb_printers/`, `vimfiles/`) are not symlinked. They are referenced by absolute path (see `ZSH_CUSTOM`), reached through another symlink (`_vim`), or copied into place by hand (`config/` and `local/` mirror `~/.config` and `~/.local` on Linux).
 - `bootstrap.sh` requires GNU find; on macOS it uses `gfind` (`brew install findutils`).
 
 ## Commands
@@ -23,6 +23,7 @@ source ~/.zshrc                     # or the `reload` alias
 vim +PluginInstall +qall            # Vundle plugin install
 ZSH_DEBUGRC=1 zsh                   # profile zsh startup (zprof)
 emacs -q -l ~/.emacs.d.old/init.el  # the `emacs_old` alias; init.el prints per-package load times
+ci/lint-elisp [--fix] [FILE...] # byte-compile + indentation check of _emacs.d.old/**/*.el
 ```
 
 `bootstrap.sh` begins with `git pull`.
@@ -49,6 +50,8 @@ Layered so non-zsh shells still work:
 Despite the `.old` name there is no newer config — a spacemacs setup (`_emacs.d` submodule + `_spacemacs.d/layers/sk-*`) was removed in 2026-09. `~/.emacs.d` is a hand-made symlink to `_emacs.d.old`, not one `bootstrap.sh` creates.
 
 Every elisp file needs a `-*- lexical-binding: t; -*-` cookie on line 1; Emacs 31 warns at load without it.
+
+`ci/lint-elisp` fails on any byte-compile warning or on indentation that `indent-region` (with `indent-tabs-mode nil`) would change; `--fix` rewrites the indentation. It runs from the pre-commit hook `ci/pre-commit` (enabled by `bootstrap.sh` via `core.hooksPath`) on staged `.el` files, and in `.github/workflows/lint-elisp.yml` on every file. Locally it reads packages from `~/.emacs.d/elpa` without writing to it; CI sets `LINT_ELISP_ELPA` and installs every `use-package` from `init.el` into a cached directory.
 
 The `ec` / `e` aliases talk to a daemon named `emacs-old` (`emacsclient -s emacs-old`).
 

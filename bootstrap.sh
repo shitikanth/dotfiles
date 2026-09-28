@@ -24,7 +24,12 @@ function emacs_plugin_install() {
     emacs --eval "(kill-emacs)"
 }
 
+function git_hooks_install() {
+    git config core.hooksPath ci
+}
+
 git submodule update --init --recursive
 create_symlinks
+git_hooks_install
 vim_plugin_install
 emacs_plugin_install

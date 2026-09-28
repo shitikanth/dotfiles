@@ -1,0 +1,30 @@
+name: lint-elisp
+
+on:
+  push:
+    paths:
+      - '_emacs.d.old/**.el'
+      - 'ci/lint-elisp*'
+      - '.github/workflows/lint-elisp.yml'
+  pull_request:
+    paths:
+      - '_emacs.d.old/**.el'
+      - 'ci/lint-elisp*'
+      - '.github/workflows/lint-elisp.yml'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    env:
+      LINT_ELISP_ELPA: ~/.cache/lint-elisp/elpa
+    steps:
+      - uses: actions/checkout@v7
+      - uses: purcell/setup-emacs@master
+        with:
+          version: 31.1
+      - uses: actions/cache@v6
+        with:
+          path: ${{ env.LINT_ELISP_ELPA }}
+          key: elpa-31.1-${{ hashFiles('_emacs.d.old/init.el') }}
+          restore-keys: elpa-31.1-
+      - run: ci/lint-elisp
