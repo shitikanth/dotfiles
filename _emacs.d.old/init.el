@@ -29,10 +29,6 @@
 (line-number-mode 1)
 (column-number-mode 1)
 (blink-cursor-mode -1)
-(when window-system
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
-  (fringe-mode '(5 . 0)))
 
 (setq-default fill-column 80)
 (setq inhibit-startup-screen t)
