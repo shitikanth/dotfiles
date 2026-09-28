@@ -77,8 +77,8 @@
   "Toggle full screen"
   (interactive)
   (set-frame-parameter
-     nil 'fullscreen
-     (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
+   nil 'fullscreen
+   (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
 
 ;; Notes
 (defvar sk/notes-directory
@@ -130,7 +130,7 @@
   "Open `user-init-file'."
   (interactive)
   (select-window (display-buffer (find-file-noselect user-init-file)
-		  '(display-buffer-reuse-window (inihibit-same-window)))))
+                                 '(display-buffer-reuse-window (inihibit-same-window)))))
 
 (defun sk/disable-all-themes ()
   "disable all active themes."
@@ -155,6 +155,12 @@
   (interactive)
   (revert-buffer t (not (buffer-modified-p))))
 
+(defvar bibtex-expand-strings)
+(defvar org-ref-pdf-directory)
+(declare-function bibtex-beginning-of-entry "bibtex")
+(declare-function bibtex-parse-entry "bibtex")
+(declare-function reftex-get-bib-field "reftex-cite")
+
 (defun sk/ref-download-url (url)
   (interactive "surl to download:")
   (save-excursion
@@ -172,11 +178,6 @@
    (list (read-shell-command "Shell command on buffer: ")))
   (shell-command-on-region (point-min) (point-max) command))
 
-(defun sk/shell-command-on-buffer (command)
-  (interactive
-   (list (read-shell-command "Shell command on buffer: ")))
-  (shell-command-on-region (point-min) (point-max) command))
-
 (defun sk/pipe-buffer (command)
   (interactive
    (list (read-shell-command "Shell command on buffer: ")))
@@ -186,13 +187,13 @@
   "Call `occur' with a sane default."
   (interactive)
   (push (if (region-active-p)
-			(buffer-substring-no-properties
-			 (region-beginning)
-			 (region_end))
-		  (let ((sym (thing-at-point 'symbol)))
-			(when (stringp sym)
-			  (regexp-quote sym))))
-		regexp-history)
+            (buffer-substring-no-properties
+             (region-beginning)
+             (region-end))
+          (let ((sym (thing-at-point 'symbol)))
+            (when (stringp sym)
+              (regexp-quote sym))))
+        regexp-history)
   (call-interactively 'occur))
 
 (defun sk/font-lock-force-reset ()

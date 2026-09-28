@@ -27,13 +27,13 @@
 ;; * Keep track of last python buffer
 (defun python--maybe-remember-python-buffer (buffer)
   (when (and buffer
-	     (eq 'python-mode (with-current-buffer buffer major-mode))
-	     (eq 'inferior-python-mode major-mode))
+             (eq 'python-mode (with-current-buffer buffer major-mode))
+             (eq 'inferior-python-mode major-mode))
     (setq python--last-python-buffer buffer)))
 
 (defun python-shell--tracing-function (orig-fun &rest args)
   (let ((buf (current-buffer))
-	(res (apply orig-fun args)))
+        (res (apply orig-fun args)))
     (python--maybe-remember-python-buffer buf)
     res))
 
@@ -46,7 +46,7 @@
     (pop-to-buffer python--last-python-buffer)))
 
 (define-key inferior-python-mode-map
-  (kbd "C-c C-z") #'python-shell-switch-to-python-buffer)
+            (kbd "C-c C-z") #'python-shell-switch-to-python-buffer)
 
 ;; * Fix for python-shell-switch-to-shell
 (defun python-shell-switch-to-shell (&optional msg)

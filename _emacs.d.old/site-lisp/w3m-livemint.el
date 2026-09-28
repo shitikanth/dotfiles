@@ -15,36 +15,36 @@
 
 (require 'w3m-filter)
 
-(defun w3m-filter-livemint (url)
+(defun w3m-filter-livemint (_url)
   "Strip navigation, promos and footer cruft from livemint.com pages."
   (w3m-filter-delete-regions
-   url "<body[^>]*>" "<\\(?:article\\|section\\)[^>]*\\bmainSec\\b"
+   _url "<body[^>]*>" "<\\(?:article\\|section\\)[^>]*\\bmainSec\\b"
    t t t nil nil 1)
   (w3m-filter-delete-regions
-   url "<div class=\"rightPanel\">" "</body>" nil t nil nil nil 1)
+   _url "<div class=\"rightPanel\">" "</body>" nil t nil nil nil 1)
   ;; Author pages have no rightPanel; their rail is a run of .rightBlock divs.
   (w3m-filter-delete-regions
-   url "<div[^>]*\\bclass=\"[^\"]*\\brightBlock\\b" "<footer id=\"footer\""
+   _url "<div[^>]*\\bclass=\"[^\"]*\\brightBlock\\b" "<footer id=\"footer\""
    nil t t nil nil 1)
   (w3m-filter-delete-regions
-   url "<footer id=\"footer\"" "</body>" nil t nil nil nil 1)
+   _url "<footer id=\"footer\"" "</body>" nil t nil nil nil 1)
   ;; The gift/subscribe CTAs sit between the summary and the story body.
   (w3m-filter-delete-regions
-   url "<div class=\"[^\"]*lm-gift-cta-pair[^\"]*\">" "<div class=\"mainArea\""
+   _url "<div class=\"[^\"]*lm-gift-cta-pair[^\"]*\">" "<div class=\"mainArea\""
    nil t t nil nil 1)
   (w3m-filter-delete-regions
-   url "<div class=\"[^\"]*lm-gift-cta-pair[^\"]*\">" "</button></div>"
+   _url "<div class=\"[^\"]*lm-gift-cta-pair[^\"]*\">" "</button></div>"
    nil nil t nil nil 1)
   (w3m-filter-delete-regions
-   url "<div[^>]*class=\"alsoRead\"" "</div>" nil nil t)
+   _url "<div[^>]*class=\"alsoRead\"" "</div>" nil nil t)
   ;; SEO boilerplate ("Catch all the Business News...") plus the topic tags
   ;; and app download pitch that follow it.
   (w3m-filter-delete-regions
-   url "<div class=\"seoTxtContainer" "</article>" nil t nil nil nil 1)
+   _url "<div class=\"seoTxtContainer" "</article>" nil t nil nil nil 1)
   ;; w3m 0.5.6 does not know <article>, and renders the leftover attributes as
   ;; text once the tag is the first thing in <body>.  Must run after the
   ;; deletion above, which uses </article> as its end marker.
-  (w3m-filter-replace-regexp url "</?article[^>]*>" ""))
+  (w3m-filter-replace-regexp _url "</?article[^>]*>" ""))
 
 (add-to-list 'w3m-filter-configuration
              '(t "Strip navigation and promos from livemint.com"
@@ -52,5 +52,10 @@
                  w3m-filter-livemint))
 
 (provide 'w3m-livemint)
+
+;; Every w3m-filter macro expansion assigns to a variable named `_dummy'.
+;; Local Variables:
+;; byte-compile-warnings: (not not-unused)
+;; End:
 
 ;;; w3m-livemint.el ends here

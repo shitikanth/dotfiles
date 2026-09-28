@@ -1,6 +1,6 @@
 ;;; init.el --- Personal Emacs configuration  -*- lexical-binding: t; -*-
 
-(setq emacs-start-time (current-time))
+(defconst emacs-start-time (current-time))
 
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))
@@ -15,8 +15,6 @@
       user-mail-address "shitikanth1@gmail.com")
 
 (setq make-backup-files nil) ; stop creating ~ files
-(setq autosave-dir (expand-file-name "~/.emacs.d/autosave/"))
-(setq auto-save-list-file-prefix autosave-dir)
 
 ;; reduce frequency of garbage collection
 (setq gc-cons-threshold 50000000)
@@ -41,9 +39,10 @@
 (set-keyboard-coding-system 'utf-8)
 
 ;; Package initialize
+(defvar sk/start-time)
 (setq sk/start-time (current-time))
 (require 'package)
-;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (setq package-enable-at-startup nil)
 (package-initialize)
@@ -70,6 +69,7 @@
 (use-package ibuffer
   :bind
   ("C-x C-b" . ibuffer)
+  :defines ibuffer-show-empty-filter-groups
   :config
   (setq ibuffer-show-empty-filter-groups nil))
 
@@ -78,6 +78,7 @@
   (setq bookmark-save-flag t))
 
 (use-package imenu
+  :functions imenu-use-package
   :config
   (defun imenu-use-package ()
     (add-to-list 'imenu-generic-expression
@@ -152,7 +153,7 @@
   :bind-keymap ("C-c p" . projectile-command-map)
   :init
   :config
-  (projectile-global-mode)
+  (projectile-mode 1)
   (add-to-list 'projectile-globally-ignored-directories ".cquery_cached_index")
   (setq projectile-indexing-method 'alien
         projectile-git-command "git ls-files -zco --exclude-standard --exclude 'build*'"
@@ -237,6 +238,7 @@
 
 (use-package server
   :defer 1
+  :functions server-running-p
   :config
   (setq server-name "emacs-old")
   (message "Start server emacs-old")
@@ -275,6 +277,7 @@
 (use-package yasnippet
   :defer 5
   :diminish yas-minor-mode
+  :functions yas-hippie-try-expand
   :config
   (use-package yasnippet-snippets)
   (yas-global-mode 1)
@@ -305,9 +308,10 @@
   (java-ts-mode . (lambda ()
                     (setq-local tab-width 4))))
 
+(defvar whitespace-style)
 (setq whitespace-style '(face tab-mark trailing))
 ;; local-settings
-(setq local-settings-file (concat user-emacs-directory "local.el"))
+(defvar local-settings-file (concat user-emacs-directory "local.el"))
 (when (file-exists-p local-settings-file)
   (load-file local-settings-file))
 
