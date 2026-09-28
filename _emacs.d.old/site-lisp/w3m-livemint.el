@@ -35,6 +35,8 @@
   (w3m-filter-delete-regions
    url "<div class=\"[^\"]*lm-gift-cta-pair[^\"]*\">" "</button></div>"
    nil nil t nil nil 1)
+  (w3m-filter-delete-regions
+   url "<div[^>]*class=\"alsoRead\"" "</div>" nil nil t)
   ;; SEO boilerplate ("Catch all the Business News...") plus the topic tags
   ;; and app download pitch that follow it.
   (w3m-filter-delete-regions
