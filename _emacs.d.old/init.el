@@ -32,7 +32,8 @@
   (setq mac-command-modifier 'meta
         mac-option-modifier 'super
         mac-right-option-modifier nil)
-  (menu-bar-mode 1))
+  (menu-bar-mode 1)
+  (global-set-key (kbd "M-`") #'other-frame))
 
 (setq-default fill-column 80)
 (setq inhibit-startup-screen t)
