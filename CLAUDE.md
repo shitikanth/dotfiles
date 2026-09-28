@@ -57,7 +57,7 @@ Every elisp file needs a `-*- lexical-binding: t; -*-` cookie on line 1; Emacs 3
 
 The `ec` / `e` aliases talk to a daemon named `emacs-old` (`emacsclient -s emacs-old`).
 
-`local.el` and `custom.el` are untracked — the per-machine escape hatch (host paths, `mac-command-modifier`, org agenda files, API-backed packages). Machine-specific state goes in `local.el`, not `init.el`.
+`local.el` and `custom.el` are untracked — the per-machine escape hatch (host paths, org agenda files, API-backed packages). OS-specific settings like `mac-command-modifier` go in `init.el` behind a `system-type` check. Machine-specific state goes in `local.el`, not `init.el`.
 
 Ignore rules for emacs runtime state live in `_emacs.d.old/.gitignore` as root-anchored patterns (`/recentf`); add new state files there. Nothing under `_emacs.d.old/` is tracked except the elisp itself — no history, project lists, caches, or compiled grammars.
 

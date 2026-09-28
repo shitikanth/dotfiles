@@ -28,6 +28,12 @@
 (column-number-mode 1)
 (blink-cursor-mode -1)
 
+(when (eq system-type 'darwin)
+  (setq mac-command-modifier 'meta
+        mac-option-modifier 'super
+        mac-right-option-modifier nil)
+  (menu-bar-mode 1))
+
 (setq-default fill-column 80)
 (setq inhibit-startup-screen t)
 (setq initial-major-mode 'emacs-lisp-mode)
@@ -301,6 +307,7 @@
 (use-package emacs
   :config
   (pixel-scroll-precision-mode 1)
+  (repeat-mode 1)
   :hook
   (nxml-mode . (lambda ()
                  (setq-local tab-width 4)))
