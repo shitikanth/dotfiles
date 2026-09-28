@@ -16,9 +16,6 @@
 
 (setq make-backup-files nil) ; stop creating ~ files
 
-;; reduce frequency of garbage collection
-(setq gc-cons-threshold 50000000)
-
 ;; enable persistent history
 (savehist-mode 1)
 
@@ -51,7 +48,6 @@
 (require 'package)
 ;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(setq package-enable-at-startup nil)
 (package-initialize)
 (message "Package initialize: %.3fs" (float-time (time-since sk/start-time)))
 
