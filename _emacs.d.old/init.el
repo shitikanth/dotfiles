@@ -95,6 +95,14 @@
         recentf-auto-cleanup 'never)
   (recentf-mode 1))
 
+(use-package autorevert
+  :custom
+  (auto-revert-avoid-polling t)
+  (auto-revert-interval 5)
+  (auto-revert-check-vc-info t)
+  :config
+  (global-auto-revert-mode 1))
+
 (use-package ivy
   :defer 1
   :load-path "lib/swiper"
