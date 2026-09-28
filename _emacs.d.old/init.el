@@ -142,7 +142,7 @@
   :config
   (smartparens-global-mode 1)
   (require 'smartparens-config)
-  (add-hook 'lisp-mode-hook #'smartparens-strict-mode)
+  (add-hook 'lisp-data-mode-hook #'smartparens-strict-mode)
   (sp-use-smartparens-bindings)
   (setq sp-override-key-bindings
         '(("M-<backspace>" . nil))))
