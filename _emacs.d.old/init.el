@@ -18,6 +18,7 @@
 
 ;; enable persistent history
 (savehist-mode 1)
+(save-place-mode 1)
 
 ;; appearance settings
 (menu-bar-mode -1)
