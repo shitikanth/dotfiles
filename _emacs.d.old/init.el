@@ -51,8 +51,6 @@
 ;;
 ;; Bootstrap use-package
 (setq sk/start-time (current-time))
-(when (version< emacs-version "29")
-  (add-to-list 'load-path (concat user-emacs-directory "lib/use-package")))
 (require 'use-package)
 (setq use-package-compute-statistics t)
 (message "Bootstrap use-package: %.3fs" (float-time (time-since sk/start-time)))
@@ -302,8 +300,7 @@
 
 (use-package emacs
   :config
-  (unless (version< emacs-version "29")
-    (pixel-scroll-precision-mode 1))
+  (pixel-scroll-precision-mode 1)
   :hook
   (nxml-mode . (lambda ()
                  (setq-local tab-width 4)))

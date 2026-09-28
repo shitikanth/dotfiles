@@ -7,9 +7,6 @@
 [submodule "bundle/Vundle.vim"]
 	path = vimfiles/bundle/Vundle.vim
 	url = https://github.com/gmarik/Vundle.vim.git
-[submodule "_emacs.d.old/lib/use-package"]
-	path = _emacs.d.old/lib/use-package
-	url = https://github.com/jwiegley/use-package
 [submodule "_emacs.d.old/lib/swiper"]
 	path = _emacs.d.old/lib/swiper
 	url = https://github.com/abo-abo/swiper
