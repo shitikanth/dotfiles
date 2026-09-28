@@ -107,6 +107,7 @@ leading --fix rewrites files with indentation off instead of failing."
         (files command-line-args-left)
         (failed nil))
     (setq command-line-args-left nil)
+    (setq ad-redefinition-action 'accept)
     (lint-elisp--setup-packages)
     (add-to-list 'load-path (expand-file-name "_emacs.d.old/site-lisp" lint-elisp-root))
     (dolist (file files)
