@@ -218,6 +218,7 @@
   (setq eyebrowse-wrap-around t))
 
 (use-package multiple-cursors
+  :ensure t
   :defer 5
   :commands (mc/mark-next-like-this mc/mark-previous-like-this)
   :bind (("C->" . mc/mark-next-like-this)
@@ -275,11 +276,12 @@
   (("M-/" . hippie-expand)))
 
 (use-package yasnippet
+  :ensure t
   :defer 5
   :diminish yas-minor-mode
   :functions yas-hippie-try-expand
   :config
-  (use-package yasnippet-snippets)
+  (use-package yasnippet-snippets :ensure t)
   (yas-global-mode 1)
   (add-to-list 'hippie-expand-try-functions-list
                #'yas-hippie-try-expand))
