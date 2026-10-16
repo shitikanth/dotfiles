@@ -1,0 +1,11 @@
+version: 2
+updates:
+  - package-ecosystem: gitsubmodule
+    directory: /
+    target-branch: develop
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: _oh-my-zsh
+    commit-message:
+      prefix: "[zsh]"
