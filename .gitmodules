@@ -1,6 +1,3 @@
-[submodule "vimfiles/bundle/cvim"]
-	path = vimfiles/bundle/cvim
-	url = https://github.com/HenningM/cvim-pathogen.git
 [submodule "_oh-my-zsh"]
 	path = _oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
