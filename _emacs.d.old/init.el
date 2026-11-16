@@ -113,6 +113,9 @@
   :commands (ivy-switch-buffer ivy-mode)
   :config
   (setq-default ivy-use-virtual-buffers t)
+  ;; Org's multiple-tag prompt installs a RET binding that bypasses ivy-done.
+  (add-to-list 'ivy-completing-read-handlers-alist
+               '(org-set-tags-command . completing-read-default))
   (ivy-mode 1))
 
 (use-package counsel
