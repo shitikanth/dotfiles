@@ -26,6 +26,10 @@
 (column-number-mode 1)
 (blink-cursor-mode -1)
 
+(defvar mac-command-modifier)
+(defvar mac-option-modifier)
+(defvar mac-right-option-modifier)
+
 (when (eq system-type 'darwin)
   (setq mac-command-modifier 'meta
         mac-option-modifier 'super

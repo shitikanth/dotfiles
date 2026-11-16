@@ -24,6 +24,8 @@
 
 ;;; Code:
 
+(declare-function dired-get-filename "dired" (&optional localp no-error-if-not-filep))
+
 ;; Layout
 (defun sk/layout-two-windows()
   "Set the layout to double columns and populate them with

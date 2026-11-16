@@ -10,6 +10,8 @@
 
 (provide 'org-settings)
 
+(require 'org)
+
 (setq org-directory "~/MEGA/org/")
 (setq org-agenda-files
       (list "work.org"
